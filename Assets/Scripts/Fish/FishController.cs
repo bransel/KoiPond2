@@ -18,7 +18,7 @@ public class FishController : MonoBehaviour
 	private List<FishData> fishDataList = new List<FishData>();
 
 	IEnumerator Start()
-	{
+	{		
 		fishes = new Dictionary<Fish, string>();
 
 		while (fishes.Count < maxFishOnScreen)
@@ -108,8 +108,8 @@ public class FishController : MonoBehaviour
 		
 		fish.transform.position = GetNewStartPos();
 		fish.transform.eulerAngles += Vector3.up * 180;
-		fish.currentTarget = GetNewTargetPos();
-		fish.textureController.ApplyTexture(fishData.texture);
+        fish.currentTarget = GetNewTargetPos();        
+        fish.textureController.ApplyTexture(fishData.texture);
 		fish.guid = fishData.guid;
 		fish.message = fishData.message;
 	}
