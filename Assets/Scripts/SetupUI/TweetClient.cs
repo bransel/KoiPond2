@@ -9,15 +9,27 @@ using Tweetinvi;
 using Tweetinvi.Models;
 using Tweetinvi.Parameters;
 
-public class TweetClient
+public class TweetClient : MonoBehaviour
 {
 	// Note: The following access keys & secrets are for debug ONLY. Please change to a production account for live use.
-	private static string CONSUMER_KEY = "1xopSCf75Vpib1hEajqPy00Ga";
-	private static string CONSUMER_SECRET = "vi3V1HuTFlUotm5hIp67UXQzORyMYX5WXBOlDhka56YBN4QOZC";
-	private static string ACCESS_TOKEN = "992795554781454336-Lnlh7rKpTyBpwcF5idacaGD9iKBgXRa";
-	private static string ACCESS_TOKEN_SECRET = "YZ2ITFMjCA8h55cQ5v5O7p3ubdqT3Gn0fzTLDU1TVD300";
+	private static string CONSUMER_KEY = "7kzahJTRFmHmWKU6BEba8hysa";
+	private static string CONSUMER_SECRET = "zIgV7JOH0HCNumsPCuCsAzG9lajzDfx26HTdBgrfMWcLk1kTjD";
+	private static string ACCESS_TOKEN = "1130142920147738626-mzce2SyeSm1QMhdtUgQ6z5BO0H1LYt";
+	private static string ACCESS_TOKEN_SECRET = "pes1cVccQ2J2lflEXBPtbTWGW8myZY3mNxQhRpYQfNEnK";
 
-	public TweetClient()
+	void Start()
+	{
+		DontDestroyOnLoad(gameObject);
+
+		InitTweetClient();
+
+		foreach (var item in GetTimelineTweets())
+		{
+			print(string.Format("{0}: {1}", item.CreatedBy, item.Text));
+		}
+	}
+	
+	public void InitTweetClient()
 	{
 		Auth.SetUserCredentials(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET);
 	}
@@ -35,5 +47,17 @@ public class TweetClient
 		{
 			Medias = new List<IMedia> { media }
 		});
+	}
+
+	public IEnumerable<ITweet> GetTimelineTweets(int maximumTweets = 40)
+	{
+		var homeTimelineParameter = new HomeTimelineParameters
+		{
+			MaximumNumberOfTweetsToRetrieve = maximumTweets,
+			IncludeContributorDetails = true
+			// ... setup additional parameters
+		};
+		
+		return Timeline.GetHomeTimeline(homeTimelineParameter);
 	}
 }
