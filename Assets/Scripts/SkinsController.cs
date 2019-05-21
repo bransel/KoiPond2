@@ -24,7 +24,7 @@ public class SkinsController : MonoBehaviour
     // Start is called before the first frame update
     IEnumerator Start()
     {
-        fishController.LinkFishDataList(fishDataList);
+        //fishController.LinkFishDataList(fishDataList);
 		
 		if (!gcpTextureJSON && !(gcpTextureJSON = FindObjectOfType<GCPTextureJSON>()))
             gcpTextureJSON = gameObject.AddComponent<GCPTextureJSON>();

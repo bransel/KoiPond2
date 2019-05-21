@@ -13,17 +13,17 @@ public class FishController : MonoBehaviour
 	public Transform[] targets;
 
 	public BubbleButton bubble { get; set; }
-	public Dictionary<Fish, string> fishes { get; set; }
+	public Dictionary<Fish, long> fishes { get; set; }
 
-	private List<FishData> fishDataList = new List<FishData>();
+	private List<TwitterFishData> fishDataList = new List<TwitterFishData>();
 
 	IEnumerator Start()
 	{		
-		fishes = new Dictionary<Fish, string>();
+		fishes = new Dictionary<Fish, long>();
 
 		while (fishes.Count < maxFishOnScreen)
 		{
-			FishData fishData = GetRandomFishData();
+			TwitterFishData fishData = GetRandomFishData();
 
 			if (fishData != null)
 				AddFish(fishData);
@@ -32,7 +32,7 @@ public class FishController : MonoBehaviour
 		}
 	}
 
-	public void LinkFishDataList(List<FishData> fishDataList)
+	public void LinkFishDataList(List<TwitterFishData> fishDataList)
 	{
 		this.fishDataList = fishDataList;
 	}
@@ -77,7 +77,7 @@ public class FishController : MonoBehaviour
 						Random.Range(-startAndExitBounds.x, startAndExitBounds.x) / 2f);
 	}
 
-	public void AddFish(string guid, string message, Texture texture)
+	public void AddFish(long id, string message, Texture texture = null)
 	{
 		Fish fish = Instantiate(fishPrefab);
 		fish.fishController = this;
@@ -85,11 +85,12 @@ public class FishController : MonoBehaviour
 		fish.transform.eulerAngles += Vector3.up * 180;
 		fish.GetComponentInChildren<Animator>().Play("Swim", 0, Random.value);
 		fish.currentTarget = GetNewTargetPos();
-		fish.textureController.ApplyTexture(texture);
-		fish.guid = guid;
+		if (texture)
+			fish.textureController.ApplyTexture(texture);
+		fish.id = id;
 		fish.message = message;
 
-		fishes.Add(fish, guid);
+		fishes.Add(fish, id);
 	}
 
 	public void ReassignFish(Fish fish)
@@ -99,27 +100,28 @@ public class FishController : MonoBehaviour
 
 	IEnumerator ReassignFishCoro(Fish fish)
 	{
-		FishData fishData;
+		TwitterFishData fishData;
 
 		while ((fishData = GetRandomFishData()) == null)
 			yield return null;
 		
-		fishes[fish] = fishData.guid;
+		fishes[fish] = fishData.id;
 		
 		fish.transform.position = GetNewStartPos();
 		fish.transform.eulerAngles += Vector3.up * 180;
-        fish.currentTarget = GetNewTargetPos();        
-        fish.textureController.ApplyTexture(fishData.texture);
-		fish.guid = fishData.guid;
+        fish.currentTarget = GetNewTargetPos();
+		if (fishData.texture)
+			fish.textureController.ApplyTexture(fishData.texture);
+		fish.id = fishData.id;
 		fish.message = fishData.message;
 	}
 
-	public void AddFish(FishData fishData)
+	public void AddFish(TwitterFishData fishData)
 	{
-		AddFish(fishData.guid, fishData.message, fishData.texture);
+		AddFish(fishData.id, fishData.message, fishData.texture);
 	}
 
-	public FishData GetRandomFishData(bool unique = true)
+	public TwitterFishData GetRandomFishData(bool unique = true)
 	{
 		if (fishDataList.Count == 0)
 			return null;
@@ -134,7 +136,7 @@ public class FishController : MonoBehaviour
 
 			index = Random.Range(0, fishDataList.Count);
 
-			if (fishes.ContainsValue(fishDataList[index].guid))
+			if (fishes.ContainsValue(fishDataList[index].id))
 				return null;
 
 			return fishDataList[index];

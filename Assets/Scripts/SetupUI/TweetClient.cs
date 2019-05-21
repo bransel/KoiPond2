@@ -23,10 +23,16 @@ public class TweetClient : MonoBehaviour
 
 		InitTweetClient();
 
-		foreach (var item in GetTimelineTweets())
+		/* foreach (var item in GetUserTweets())
 		{
 			print(string.Format("{0}: {1}", item.CreatedBy, item.Text));
-		}
+			
+
+			foreach (var media in item.Media)
+			{
+				print(string.Format("{0}: {1}", media.MediaType, media.MediaURL));
+			}
+		} */
 	}
 	
 	public void InitTweetClient()
@@ -49,15 +55,13 @@ public class TweetClient : MonoBehaviour
 		});
 	}
 
-	public IEnumerable<ITweet> GetTimelineTweets(int maximumTweets = 40)
+	public IEnumerable<ITweet> GetUserTweets(int maximumTweets = 40)
 	{
-		var homeTimelineParameter = new HomeTimelineParameters
-		{
-			MaximumNumberOfTweetsToRetrieve = maximumTweets,
-			IncludeContributorDetails = true
-			// ... setup additional parameters
-		};
-		
-		return Timeline.GetHomeTimeline(homeTimelineParameter);
+		return Timeline.GetUserTimeline(User.GetAuthenticatedUser(), maximumTweets);
+	}
+
+	public IEnumerable<ITweet> GetMentionsTweets(int maximumTweets = 40)
+	{
+		return Timeline.GetMentionsTimeline(maximumTweets);
 	}
 }

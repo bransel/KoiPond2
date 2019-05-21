@@ -13,7 +13,7 @@ public class Fish : MonoBehaviour
 	public Transform mouth;
 	public GameObject bubblePrefab;
 	
-	public string guid { get; set; }
+	public long id { get; set; }
 	public string message { get; set; }
 
 	public Transform worldCanvas { get; set; }
