@@ -2814,8 +2814,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1081856764}
-  - component: {fileID: 1081856763}
-  - component: {fileID: 1081856765}
+  - component: {fileID: 1081856766}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -2854,7 +2853,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1081856765
+--- !u!114 &1081856766
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2863,19 +2862,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1081856762}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a3b7b65995553249bd8ba05741bae90, type: 3}
+  m_Script: {fileID: 11500000, guid: 6bb0a34bb01714741b3f6025b908120f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uri: https://www.googleapis.com/storage/v1/b/unity-koi-bucket/o
-  prefix: ?prefix=Data%2F
-  clientID: 823765277171-h2djqlq1hp86ctc0p6sp39kuo2pg4ufd.apps.googleusercontent.com
-  clientSecret: W0LM3lyEdSGUdxtHtF_SHulf
-  refreshToken: 1/NySkiGFB0bY98Zct1tPY89gPvoPL3Hn5m0AGoFITiUg6Ma7BK2kIY9DMnMCD0aw2
-  gcpJWT:
-    header: 
-    claimset: 
-    signature: 
-    jwt: 
+  refreshTimerInSeconds: 150
+  fishController: {fileID: 685364408}
 --- !u!4 &1103233484 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 7b71e3c0bddba6c4694a65208f246f54,

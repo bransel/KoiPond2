@@ -32,7 +32,9 @@ public class TexturePainter : MonoBehaviour
     {
         cursorSprite = brushCursor.GetComponent<SpriteRenderer>();
         targetSprite = cursorSprite.sprite;
-		tweetClient = new TweetClient();
+
+        GameObject tweetClientObject = new GameObject("TweetClient");
+        tweetClient = tweetClientObject.AddComponent<TweetClient>();
     }
 
     void Update()
@@ -238,8 +240,8 @@ public class TexturePainter : MonoBehaviour
 
 			tweetClient.TweetMessageAndImage(message, textureBytes);
 
-            StartCoroutine(UploadTexture(textureBytes, guid));
-            StartCoroutine(UploadMessage(message, guid));
+            //StartCoroutine(UploadTexture(textureBytes, guid));
+            //StartCoroutine(UploadMessage(message, guid));
         }
     }
 
@@ -258,8 +260,8 @@ public class TexturePainter : MonoBehaviour
 
 			tweetClient.TweetMessageAndImage(text.text, textureBytes);
 
-            StartCoroutine(UploadTexture(textureBytes, guid));
-            StartCoroutine(UploadMessage(text.text, guid));
+            //StartCoroutine(UploadTexture(textureBytes, guid));
+            //StartCoroutine(UploadMessage(text.text, guid));
             StartCoroutine(LoadSceneOnUpload());
         }
     }
@@ -304,12 +306,14 @@ public class TexturePainter : MonoBehaviour
 
     IEnumerator LoadSceneOnUpload()
     {
-        int timeout = 1000;
-        int timer = 0;
+        /* int timeout = 1000;
+        int timer = 0; */
 
         SceneController sceneController = FindObjectOfType<SceneController>();
 
-        while (!textureUploaded || !messageUploaded)
+        yield return new WaitForSeconds(2.5f);
+
+        /* while (!textureUploaded || !messageUploaded)
         {
             timer++;
 
@@ -320,7 +324,7 @@ public class TexturePainter : MonoBehaviour
             }
 
             yield return null;
-        }
+        } */
 
         sceneController.LoadNextScene();
     }
