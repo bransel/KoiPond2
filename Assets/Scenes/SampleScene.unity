@@ -21,7 +21,7 @@ RenderSettings:
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0, g: 1, b: 0.6129379, a: 1}
-  m_AmbientEquatorColor: {r: 1, g: 0.9926669, b: 0.8235294, a: 1}
+  m_AmbientEquatorColor: {r: 1, g: 0.9494555, b: 0.759434, a: 1}
   m_AmbientGroundColor: {r: 1, g: 0.6933962, b: 0.9150538, a: 1}
   m_AmbientIntensity: 1.44
   m_AmbientMode: 1
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.8318135, g: 0.53893876, b: 0.5315644, a: 1}
+  m_IndirectSpecularColor: {r: 0.75475836, g: 0.39572483, b: 0.42521176, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -842,8 +842,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 9
   m_Type: 1
-  m_Color: {r: 0.9339623, g: 0.6339851, b: 0.17181383, a: 1}
-  m_Intensity: 0.5
+  m_Color: {r: 1, g: 0.7263791, b: 0.2971698, a: 1}
+  m_Intensity: 0.69
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -888,7 +888,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: -4.628773e+28, z: 7.19e-43, w: -4.628773e+28}
+  m_BoundingSphereOverride: {x: 7.12e-43, y: -1471947, z: 6.15e-43, w: -1471948}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -899,13 +899,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170076733}
-  m_LocalRotation: {x: 0.18137738, y: 0, z: 0, w: 0.9834136}
+  m_LocalRotation: {x: 0.07368541, y: -0.12619558, z: 0.009400103, w: 0.98922026}
   m_LocalPosition: {x: -8817, y: -6397, z: 11766}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 20.9, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 8.52, y: -14.54, z: 0}
 --- !u!1001 &205506305
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2815,6 +2815,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1081856764}
   - component: {fileID: 1081856766}
+  - component: {fileID: 1081856763}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -2837,7 +2838,7 @@ MonoBehaviour:
   buttonPrefab: {fileID: 8616921288370633608, guid: 91f8fc9f3949cb24cbf04a5dd3ed331b,
     type: 3}
   buttonPanel: {fileID: 0}
-  gcpTextureJSON: {fileID: 1081856765}
+  gcpTextureJSON: {fileID: 0}
   fishController: {fileID: 685364408}
 --- !u!4 &1081856764
 Transform:
@@ -3474,12 +3475,12 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 46a31246f9842fc4f842303bb4125921,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.21
+      value: 1.31
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 46a31246f9842fc4f842303bb4125921,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.45
+      value: -2.84
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 46a31246f9842fc4f842303bb4125921,
         type: 3}
@@ -3489,22 +3490,22 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 46a31246f9842fc4f842303bb4125921,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.37010485
+      value: -0.5871843
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 46a31246f9842fc4f842303bb4125921,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.6323695
+      value: -0.43827295
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 46a31246f9842fc4f842303bb4125921,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.5851001
+      value: 0.40352273
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 46a31246f9842fc4f842303bb4125921,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.34754735
+      value: 0.5479971
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 46a31246f9842fc4f842303bb4125921,
         type: 3}
@@ -3514,17 +3515,17 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 46a31246f9842fc4f842303bb4125921,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 28.865002
+      value: -16.849
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 46a31246f9842fc4f842303bb4125921,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 265.16998
+      value: 265.581
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 46a31246f9842fc4f842303bb4125921,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 447.293
+      value: 450.912
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 46a31246f9842fc4f842303bb4125921,
         type: 3}
@@ -4956,7 +4957,7 @@ GameObject:
   - component: {fileID: 2059490992}
   - component: {fileID: 2059490991}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: Particle System- leaves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5980,8 +5981,8 @@ ParticleSystem:
     enabled: 0
     curve:
       serializedVersion: 2
-      minMaxState: 1
-      scalar: 1
+      minMaxState: 3
+      scalar: 2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -6033,7 +6034,7 @@ ParticleSystem:
         m_RotationOrder: 4
     y:
       serializedVersion: 2
-      minMaxState: 1
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -6086,7 +6087,7 @@ ParticleSystem:
         m_RotationOrder: 4
     z:
       serializedVersion: 2
-      minMaxState: 1
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
