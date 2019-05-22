@@ -35,7 +35,6 @@ public class TexturePainter : MonoBehaviour
 
         GameObject tweetClientObject = new GameObject("TweetClient");
         tweetClient = tweetClientObject.AddComponent<TweetClient>();
-        tweetClient.InitTweetClient();
     }
 
     void Update()

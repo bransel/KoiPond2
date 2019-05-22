@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class TwitterSkinsController : MonoBehaviour
 {
@@ -24,7 +25,6 @@ public class TwitterSkinsController : MonoBehaviour
         {
             GameObject tweetClientObject = new GameObject("TweetClient");
             tweetClient = tweetClientObject.AddComponent<TweetClient>();
-            tweetClient.InitTweetClient();
         }
 
         fishController.LinkFishDataList(fishDataList);
@@ -35,7 +35,6 @@ public class TwitterSkinsController : MonoBehaviour
         while (refreshTimerInSeconds > 0)
         {
             RefreshTweets();
-            //StartCoroutine(RefreshTweets());
 
             if (timerTime != refreshTimerInSeconds)
             {
@@ -47,27 +46,45 @@ public class TwitterSkinsController : MonoBehaviour
         }
     }
 
-    public void RefreshTweets()
+    void RefreshTweets()
     {
-        foreach (var tweet in tweetClient.GetMentionsTweets())
+        UnityEvent mentionsEvent = new UnityEvent();
+        mentionsEvent.AddListener(delegate {
+            ProcessMentionsTweets(tweetClient.GetMentionsTweets());
+        });
+        StartCoroutine(tweetClient.RetrieveMentionsTweets(mentionsEvent));
+
+        UnityEvent userEvent = new UnityEvent();
+        userEvent.AddListener(delegate {
+            ProcessUserTweets(tweetClient.GetUserTweets());
+        });
+        StartCoroutine(tweetClient.RetrieveUserTweets(userEvent));
+    }
+
+    void ProcessMentionsTweets(List<Tweet> tweets)
+    {
+        foreach (var tweet in tweets)
         {
-            if (!fishDataList.Select(i => i.id).Contains(tweet.Id))
+            if (!fishDataList.Select(i => i.id).Contains(tweet.id))
             {
                 TwitterFishData fishData = new TwitterFishData();
-                fishData.id = tweet.Id;
-                fishData.message = tweet.Text;
+                fishData.id = tweet.id;
+                fishData.message = tweet.text;
                 fishDataList.Add(fishData);
             }
         }
-        
-        foreach (var tweet in tweetClient.GetUserTweets())
+    }
+
+    void ProcessUserTweets(List<Tweet> tweets)
+    {
+        foreach (var tweet in tweets)
         {
-            if (!fishDataList.Select(i => i.id).Contains(tweet.Id))
+            if (!fishDataList.Select(i => i.id).Contains(tweet.id))
             {
                 TwitterFishData fishData = new TwitterFishData();
-                fishData.id = tweet.Id;
-                fishData.textureURL = tweet.Media[0].MediaURL;
-                fishData.message = tweet.Text;
+                fishData.id = tweet.id;
+                fishData.textureURL = tweet.extended_entities.media[0].media_url;
+                fishData.message = tweet.text;
                 StartCoroutine(FinishTextureFish(fishData, fishData.textureURL));
             }
         }

@@ -5,25 +5,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
-using Tweetinvi;
-using Tweetinvi.Models;
-using Tweetinvi.Parameters;
+using Newtonsoft.Json;
+using UnityEngine.Events;
 
 public class TweetClient : MonoBehaviour
 {
-	// Note: The following access keys & secrets are for debug ONLY. Please change to a production account for live use.
-	private static string CONSUMER_KEY = "7kzahJTRFmHmWKU6BEba8hysa";
-	private static string CONSUMER_SECRET = "zIgV7JOH0HCNumsPCuCsAzG9lajzDfx26HTdBgrfMWcLk1kTjD";
-	private static string ACCESS_TOKEN = "1130142920147738626-mzce2SyeSm1QMhdtUgQ6z5BO0H1LYt";
-	private static string ACCESS_TOKEN_SECRET = "pes1cVccQ2J2lflEXBPtbTWGW8myZY3mNxQhRpYQfNEnK";
+    void Start()
+    {
+        DontDestroyOnLoad(gameObject);
 
-	void Start()
-	{
-		DontDestroyOnLoad(gameObject);
+        //InitTweetClient();
 
-		InitTweetClient();
-
-		/* foreach (var item in GetUserTweets())
+        /* foreach (var item in GetUserTweets())
 		{
 			print(string.Format("{0}: {1}", item.CreatedBy, item.Text));
 			
@@ -33,35 +26,93 @@ public class TweetClient : MonoBehaviour
 				print(string.Format("{0}: {1}", media.MediaType, media.MediaURL));
 			}
 		} */
-	}
-	
-	public void InitTweetClient()
-	{
-		Auth.SetUserCredentials(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET);
-	}
+    }
 
-	public void TweetMessage(string message)
-	{
-		Tweet.PublishTweet(string.Format("{0}", message));
-	}
+    public void TweetMessage(string message)
+    {
+        //Tweet.PublishTweet(string.Format("{0}", message));
+    }
 
-	public void TweetMessageAndImage(string message, byte[] image)
-	{
-		var media = Upload.UploadBinary(image);
+    public void TweetMessageAndImage(string message, byte[] image)
+    {
+        //var media = Upload.UploadBinary(image);
 
-		var tweet = Tweet.PublishTweet(message, new PublishTweetOptionalParameters
-		{
-			Medias = new List<IMedia> { media }
-		});
-	}
+        //var tweet = Tweet.PublishTweet(message, new PublishTweetOptionalParameters
+        //{
+        //	Medias = new List<IMedia> { media }
+        //});
+    }
 
-	public IEnumerable<ITweet> GetUserTweets(int maximumTweets = 40)
-	{
-		return Timeline.GetUserTimeline(User.GetAuthenticatedUser(), maximumTweets);
-	}
+    List<Tweet> userTweets;
+    public List<Tweet> GetUserTweets()
+    {
+        return userTweets;
+    }
 
-	public IEnumerable<ITweet> GetMentionsTweets(int maximumTweets = 40)
-	{
-		return Timeline.GetMentionsTimeline(maximumTweets);
-	}
+    public IEnumerator RetrieveUserTweets(UnityEvent userEvent)
+    {
+        using (UnityWebRequest webRequest = UnityWebRequest.Get("https://asia-east2-unity-koi.cloudfunctions.net/user-timeline"))
+        {
+            yield return webRequest.SendWebRequest();
+
+            if (webRequest.isNetworkError || webRequest.isHttpError)
+            {
+                Debug.Log("Error: " + webRequest.error);
+            }
+            else
+            {
+                print(webRequest.downloadHandler.text);
+                userTweets = JsonConvert.DeserializeObject<List<Tweet>>(webRequest.downloadHandler.text);
+                userEvent.Invoke();
+            }
+        }
+    }
+
+    List<Tweet> mentionsTweets;
+    public List<Tweet> GetMentionsTweets()
+    {
+        return mentionsTweets;
+    }
+
+    public IEnumerator RetrieveMentionsTweets(UnityEvent mentionsEvent)
+    {
+        using (UnityWebRequest webRequest = UnityWebRequest.Get("https://asia-east2-unity-koi.cloudfunctions.net/mentions-timeline"))
+        {
+            yield return webRequest.SendWebRequest();
+
+            if (webRequest.isNetworkError || webRequest.isHttpError)
+            {
+                Debug.Log("Error: " + webRequest.error);
+            }
+            else
+            {
+                print(webRequest.downloadHandler.text);
+                mentionsTweets = JsonConvert.DeserializeObject<List<Tweet>>(webRequest.downloadHandler.text);
+                mentionsEvent.Invoke();
+            }
+        }
+    }
+}
+
+[Serializable]
+public class Tweet
+{
+    public long id;
+    public string text;
+    public Extended_Entities extended_entities;
+}
+
+[Serializable]
+public class Extended_Entities
+{
+    public Media[] media;
+}
+
+[Serializable]
+public class Media
+{
+    public long id;
+    public string media_url;
+    public string media_url_https;
+    public string type;
 }
