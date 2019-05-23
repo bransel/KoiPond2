@@ -13,34 +13,84 @@ public class TweetClient : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject);
-
-        //InitTweetClient();
-
-        /* foreach (var item in GetUserTweets())
-		{
-			print(string.Format("{0}: {1}", item.CreatedBy, item.Text));
-			
-
-			foreach (var media in item.Media)
-			{
-				print(string.Format("{0}: {1}", media.MediaType, media.MediaURL));
-			}
-		} */
     }
 
-    public void TweetMessage(string message)
+    public void TweetMessage(string message, UnityEvent onTweetFinish = null, UnityEvent onError = null)
     {
-        //Tweet.PublishTweet(string.Format("{0}", message));
+        StartCoroutine(SendTweet(message, onTweetFinish, onError));
     }
 
-    public void TweetMessageAndImage(string message, byte[] image)
+    IEnumerator SendTweet(string message, UnityEvent onTweetFinish = null, UnityEvent onError = null)
     {
-        //var media = Upload.UploadBinary(image);
+        using (UnityWebRequest webRequest = UnityWebRequest.Post("https://asia-east2-unity-koi.cloudfunctions.net/tweet", message))
+        {
+            yield return webRequest.SendWebRequest();
 
-        //var tweet = Tweet.PublishTweet(message, new PublishTweetOptionalParameters
-        //{
-        //	Medias = new List<IMedia> { media }
-        //});
+            if (webRequest.isNetworkError || webRequest.isHttpError)
+            {
+                Debug.Log("Error: " + webRequest.error);
+
+                if (onError != null)
+                    onError.Invoke();
+            }
+            else
+            {
+                if (onTweetFinish != null)
+                    onTweetFinish.Invoke();
+            }
+        }
+    }
+
+    public void TweetMessageAndImage(string message, byte[] image, UnityEvent onTweetFinish = null, UnityEvent onError = null)
+    {
+        StartCoroutine(SendTweetAndImage(message, image, onTweetFinish, onError));
+    }
+
+    IEnumerator SendTweetAndImage(string message, byte[] image, UnityEvent onTweetFinish = null, UnityEvent onError = null)
+    {
+        WWWForm form = new WWWForm();
+        form.AddBinaryData("file", image, "texture.png", "image/png");
+        string guid = System.Guid.NewGuid().ToString();
+        string url = string.Format("https://storage.googleapis.com/unity-koi-bucket/Twitter/{0}.png", guid);
+
+        using (UnityWebRequest webRequest = UnityWebRequest.Post(url, form))
+        {
+            yield return webRequest.SendWebRequest();
+
+            if (webRequest.isNetworkError || webRequest.isHttpError)
+            {
+                Debug.Log("Error: " + webRequest.error);
+
+                if (onError != null)
+                    onError.Invoke();
+
+                yield break;
+            }
+        }
+
+        form = new WWWForm();
+        form.AddField("text", message);
+        form.AddField("url", url);
+
+        using (UnityWebRequest webRequest = UnityWebRequest.Post("https://asia-east2-unity-koi.cloudfunctions.net/media", form))
+        {
+            yield return webRequest.SendWebRequest();
+
+            if (webRequest.isNetworkError || webRequest.isHttpError)
+            {
+                Debug.Log("Error: " + webRequest.error);
+
+                if (onError != null)
+                    onError.Invoke();
+                    
+                yield break;
+            }
+            else
+            {
+                if (onTweetFinish != null)
+                    onTweetFinish.Invoke();
+            }
+        }
     }
 
     List<Tweet> userTweets;
@@ -86,7 +136,7 @@ public class TweetClient : MonoBehaviour
             else
             {
                 mentionsTweets = JsonConvert.DeserializeObject<List<Tweet>>(webRequest.downloadHandler.text);
-				mentionsEvent.Invoke();
+                mentionsEvent.Invoke();
             }
         }
     }
