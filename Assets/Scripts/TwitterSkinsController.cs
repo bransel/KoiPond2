@@ -17,6 +17,20 @@ public class TwitterSkinsController : MonoBehaviour
     private float timerTime;
     
     // Start is called before the first frame update
+    /* void Start()
+    {
+        tweetClient = FindObjectOfType<TweetClient>();
+
+        if (!tweetClient)
+        {
+            GameObject tweetClientObject = new GameObject("TweetClient");
+            tweetClient = tweetClientObject.AddComponent<TweetClient>();
+        }
+
+        fishController.LinkFishDataList(fishDataList);
+
+        RefreshTweets();
+    } */
     IEnumerator Start()
     {
         tweetClient = FindObjectOfType<TweetClient>();
@@ -69,7 +83,11 @@ public class TwitterSkinsController : MonoBehaviour
             {
                 TwitterFishData fishData = new TwitterFishData();
                 fishData.id = tweet.id;
-                fishData.message = tweet.text;
+
+                string link = tweet.text.Split(' ')[0];
+                fishData.message = tweet.text.Replace(string.Format("{0} ", link), "");
+                //fishData.message = tweet.text;
+
                 fishDataList.Add(fishData);
             }
         }
@@ -84,7 +102,11 @@ public class TwitterSkinsController : MonoBehaviour
                 TwitterFishData fishData = new TwitterFishData();
                 fishData.id = tweet.id;
                 fishData.textureURL = tweet.extended_entities.media[0].media_url;
-                fishData.message = tweet.text;
+
+                string link = tweet.text.Split(' ').Last();
+                fishData.message = tweet.text.Replace(string.Format(" {0}", link), "");
+                //fishData.message = tweet.text;
+
                 StartCoroutine(FinishTextureFish(fishData, fishData.textureURL));
             }
         }
@@ -108,61 +130,6 @@ public class TwitterSkinsController : MonoBehaviour
             }
         }
     }
-
-    /* IEnumerator RefreshTweets()
-    {
-        foreach (var item in collection)
-        {
-            
-        }
-        
-        foreach (var guid in gcpTextureJSON.guids)
-        {
-            string textureURN = string.Format("Data/{0}/texture.png", guid);
-            string messageURN = string.Format("Data/{0}/message.txt", guid);
-
-            FishData fishData = new FishData();
-            fishData.guid = guid;
-            
-            using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(URI + textureURN))
-            {
-                yield return uwr.SendWebRequest();
-
-                if (uwr.isNetworkError || uwr.isHttpError)
-                {
-                    Debug.Log(uwr.error);
-                }
-                else
-                {
-                    Texture texture = DownloadHandlerTexture.GetContent(uwr);
-
-                    buttonElement.AssignTexture(texture);
-                    fishData.texture = texture;
-                }
-            }
-
-            using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(URI + messageURN))
-            {
-                yield return uwr.SendWebRequest();
-
-                if (uwr.isNetworkError || uwr.isHttpError)
-                {
-                    Debug.Log(uwr.error);
-                }
-                else
-                {
-                    string message = uwr.downloadHandler.text;
-
-                    buttonElement.AssignMessage(message);
-                    fishData.message = message;
-                }
-            }
-
-            fishDataList.Add(fishData);
-        }
-
-        finishedDL = true;
-    } */
 }
 
 [Serializable]

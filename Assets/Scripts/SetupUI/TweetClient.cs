@@ -61,7 +61,6 @@ public class TweetClient : MonoBehaviour
             }
             else
             {
-                print(webRequest.downloadHandler.text);
                 userTweets = JsonConvert.DeserializeObject<List<Tweet>>(webRequest.downloadHandler.text);
                 userEvent.Invoke();
             }
@@ -86,9 +85,8 @@ public class TweetClient : MonoBehaviour
             }
             else
             {
-                print(webRequest.downloadHandler.text);
                 mentionsTweets = JsonConvert.DeserializeObject<List<Tweet>>(webRequest.downloadHandler.text);
-                mentionsEvent.Invoke();
+				mentionsEvent.Invoke();
             }
         }
     }

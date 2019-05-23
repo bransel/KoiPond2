@@ -83,7 +83,7 @@ public class FishController : MonoBehaviour
 		fish.fishController = this;
 		fish.transform.position = GetNewStartPos();
 		fish.transform.eulerAngles += Vector3.up * 180;
-		fish.GetComponentInChildren<Animator>().Play("Swim", 0, Random.value);
+		//fish.GetComponentInChildren<Animator>().Play("forward", 0, Random.value);
 		fish.currentTarget = GetNewTargetPos();
 		if (texture)
 			fish.textureController.ApplyTexture(texture);
