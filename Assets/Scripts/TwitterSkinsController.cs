@@ -75,6 +75,7 @@ public class TwitterSkinsController : MonoBehaviour
         StartCoroutine(tweetClient.RetrieveUserTweets(userEvent));
     }
 
+    public Texture[] mentionsTextures;
     void ProcessMentionsTweets(List<Tweet> tweets)
     {
         foreach (var tweet in tweets)
@@ -83,6 +84,7 @@ public class TwitterSkinsController : MonoBehaviour
             {
                 TwitterFishData fishData = new TwitterFishData();
                 fishData.id = tweet.id;
+                fishData.texture = mentionsTextures[UnityEngine.Random.Range(0, mentionsTextures.Length)];
 
                 string link = tweet.text.Split(' ')[0];
                 fishData.message = tweet.text.Replace(string.Format("{0} ", link), "");
