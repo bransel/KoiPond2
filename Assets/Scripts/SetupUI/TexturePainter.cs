@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.Networking;
+using UnityEngine.Events;
 
 public class TexturePainter : MonoBehaviour
 {
@@ -229,103 +230,36 @@ public class TexturePainter : MonoBehaviour
 
     ////////////////// OPTIONAL METHODS //////////////////
 
-    public void SaveTextureAndMessage(string message)
+    public GameObject UploadMessage;
+
+    public void SaveTextureAndMessage(InputField inputField)
     {
-        if (string.IsNullOrEmpty(message))
-            Debug.LogError("Message is empty!");
-        else
-        {
-            string guid = System.Guid.NewGuid().ToString();
-			byte[] textureBytes = SaveTexture().EncodeToPNG();
-
-			tweetClient.TweetMessageAndImage(message, textureBytes);
-
-            //StartCoroutine(UploadTexture(textureBytes, guid));
-            //StartCoroutine(UploadMessage(message, guid));
-        }
-    }
-
-    public void SaveTextureAndMessage(Text text)
-    {
-        if (string.IsNullOrEmpty(text.text))
+        if (string.IsNullOrEmpty(inputField.text))
             Debug.LogError("Message is empty!");
         else if (uploadInProgress)
             Debug.LogError("Upload is already in progress!");
         else
         {
             uploadInProgress = true;
+            UploadMessage.SetActive(true);
 
             string guid = System.Guid.NewGuid().ToString();
 			byte[] textureBytes = SaveTexture().EncodeToPNG();
 
-			tweetClient.TweetMessageAndImage(text.text, textureBytes);
+			SceneController sceneController = FindObjectOfType<SceneController>();
 
-            //StartCoroutine(UploadTexture(textureBytes, guid));
-            //StartCoroutine(UploadMessage(text.text, guid));
-            StartCoroutine(LoadSceneOnUpload());
+            UnityEvent sceneLoadEvent = new UnityEvent();
+            sceneLoadEvent.AddListener(sceneController.LoadNextScene);
+
+            UnityEvent uploadFailEvent = new UnityEvent();
+            uploadFailEvent.AddListener(DisableUploadMessage);
+
+            tweetClient.TweetMessageAndImage(inputField.text, textureBytes, sceneLoadEvent, uploadFailEvent);
         }
     }
 
-    IEnumerator UploadTexture(byte[] textureBytes, string guid)
+    void DisableUploadMessage()
     {
-        WWWForm form = new WWWForm();
-        form.AddBinaryData("file", textureBytes, "texture.png", "image/png");
-        
-        using (UnityWebRequest webRequest = UnityWebRequest.Post(string.Format("https://storage.googleapis.com/unity-koi-bucket/Data/{0}/texture.png", guid), form))
-        {
-            yield return webRequest.SendWebRequest();
-
-            if (webRequest.isNetworkError || webRequest.isHttpError)
-                Debug.Log("Error: " + webRequest.error);
-            else
-                textureUploaded = true;
-        }
-
-        yield return null;
-    }
-
-    IEnumerator UploadMessage(string message, string guid)
-    {
-        byte[] messageBytes = System.Text.Encoding.UTF8.GetBytes(message);
-
-        WWWForm form = new WWWForm();
-        form.AddBinaryData("file", messageBytes, "message.txt", "text/plain");
-        
-        using (UnityWebRequest webRequest = UnityWebRequest.Post(string.Format("https://storage.googleapis.com/unity-koi-bucket/Data/{0}/message.txt", guid), form))
-        {
-            yield return webRequest.SendWebRequest();
-
-            if (webRequest.isNetworkError || webRequest.isHttpError)
-                Debug.Log("Error: " + webRequest.error);
-            else
-                messageUploaded = true;
-        }
-
-        yield return null;
-    }
-
-    IEnumerator LoadSceneOnUpload()
-    {
-        /* int timeout = 1000;
-        int timer = 0; */
-
-        SceneController sceneController = FindObjectOfType<SceneController>();
-
-        yield return new WaitForSeconds(2.5f);
-
-        /* while (!textureUploaded || !messageUploaded)
-        {
-            timer++;
-
-            if (timer >= timeout)
-            {
-                uploadInProgress = false;
-                yield break;
-            }
-
-            yield return null;
-        } */
-
-        sceneController.LoadNextScene();
+        UploadMessage.SetActive(false);
     }
 }
