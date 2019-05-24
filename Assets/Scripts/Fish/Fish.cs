@@ -29,8 +29,10 @@ public class Fish : MonoBehaviour
 	private float swapTimer;
 	private float exitTimer;
 
-	// Start is called before the first frame update
-	void Start()
+    public static Vector3 worldUp = -1 * Vector3.forward;
+
+    // Start is called before the first frame update
+    void Start()
 	{
 		moveSpeed = Random.Range(minMoveSpeed, maxMoveSpeed);
 		rotSpeed = Random.Range(minRotSpeed, maxRotSpeed);
@@ -47,7 +49,7 @@ public class Fish : MonoBehaviour
 	void Update()
 	{
 		rigidbody.MovePosition(rigidbody.position + transform.forward * moveSpeed * Time.deltaTime);
-		rigidbody.MoveRotation(Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(currentTarget - transform.position, Vector3.forward), Time.deltaTime * rotSpeed));
+		rigidbody.MoveRotation(Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(currentTarget - transform.position, worldUp), Time.deltaTime * rotSpeed));
 
 		if (exiting && !IsVisibleFrom(textureController.meshRenderer, Camera.main))
 		{
@@ -55,6 +57,7 @@ public class Fish : MonoBehaviour
 			exitTimer = Random.Range(minExitTimer, maxExitTimer);
 			fishController.ReassignFish(this);
 		}
+
 		/* else if (fishController && (currentTarget - transform.position).magnitude <= distanceCheck)
 		{
 			if (exiting)

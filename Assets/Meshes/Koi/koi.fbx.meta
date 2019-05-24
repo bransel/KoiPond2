@@ -85,8 +85,8 @@ ModelImporter:
       name: left
       takeName: left
       internalID: 393857517099109624
-      firstFrame: -1
-      lastFrame: 98
+      firstFrame: 22
+      lastFrame: 95
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -114,7 +114,7 @@ ModelImporter:
       name: lefttransition
       takeName: lefttransition
       internalID: -1529713396965818913
-      firstFrame: 0
+      firstFrame: 5
       lastFrame: 31
       wrapMode: 0
       orientationOffsetY: 0
@@ -143,7 +143,7 @@ ModelImporter:
       name: right
       takeName: right
       internalID: 6937921772212350291
-      firstFrame: -1
+      firstFrame: 21
       lastFrame: 97
       wrapMode: 0
       orientationOffsetY: 0
@@ -172,7 +172,7 @@ ModelImporter:
       name: righttransition
       takeName: righttransition
       internalID: 9205382226328139290
-      firstFrame: -1
+      firstFrame: 10
       lastFrame: 39
       wrapMode: 0
       orientationOffsetY: 0
