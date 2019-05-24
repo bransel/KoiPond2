@@ -888,7 +888,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 1e-45, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 4.5905e-41, y: 0, z: 0, w: -1.2480327e-31}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1402,7 +1402,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 316510659}
   m_LocalRotation: {x: -0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.28, y: -0.18, z: 1.3171}
+  m_LocalPosition: {x: -0.26, y: -0.18, z: 1.3171}
   m_LocalScale: {x: 1.6548475, y: 1.4546831, z: 1.4546831}
   m_Children:
   - {fileID: 1817791506}
@@ -1492,7 +1492,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_LocalRotation: {x: -0.07928609, y: -0, z: -0, w: 0.9968519}
-  m_LocalPosition: {x: -0.05, y: -0.26, z: -6.6}
+  m_LocalPosition: {x: -0.05, y: -0.16, z: -5.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4603,6 +4603,11 @@ PrefabInstance:
         type: 3}
       propertyPath: moveState
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6605031614359566916, guid: 46097ed8425445b4b902cf366d5c026f,
+        type: 3}
+      propertyPath: screenExitRange
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3794923833596227397, guid: 46097ed8425445b4b902cf366d5c026f,
         type: 3}

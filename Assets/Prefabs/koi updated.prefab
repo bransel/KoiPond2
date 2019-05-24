@@ -398,10 +398,12 @@ MonoBehaviour:
   moveStateTimer: 0
   stateTimerFloor: 8
   stateTimerCeiling: 12
-  turnRateFloor: 3
-  turnRateCeiling: 6
+  turnRateFloor: 1
+  turnRateCeiling: 2
   origin: {x: 0, y: 0, z: 0}
   maxWanderRange: 4
+  screenExitRange: 8
+  exitFlag: 0
   minScale: 0.15
   maxScale: 0.5
 --- !u!54 &3578995824736014562

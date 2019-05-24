@@ -24,8 +24,7 @@ public class Fish : MonoBehaviour
 	public float moveSpeed { get; set; }
 	public float rotSpeed { get; set; }
 
-	private new Rigidbody rigidbody;
-	private bool exiting;
+	private new Rigidbody rigidbody;	
 	private float swapTimer;
 	private float exitTimer;
 
@@ -44,6 +43,8 @@ public class Fish : MonoBehaviour
     public float turnRateCeiling = 5;
     public Vector3 origin = Vector3.zero;
     public float maxWanderRange = 3;
+    public float screenExitRange = 6;
+    public bool exitFlag;
 
     [Header("Scale Randomiser")]
     public float minScale = 0.1f;
@@ -54,7 +55,7 @@ public class Fish : MonoBehaviour
         0: forward,
         1: turn left;
         2: turn right;
-
+        3: exiting;
     */
 
     // Start is called before the first frame update
@@ -70,66 +71,31 @@ public class Fish : MonoBehaviour
 
 		worldCanvas = GameObject.FindWithTag("WorldCanvas").transform;
 
+        InitFish();
+    }
+
+    void InitFish()
+    {
         //randomise the fish size.
         float randomScale = Random.Range(minScale, maxScale);
         transform.localScale = new Vector3(randomScale, randomScale, randomScale);
-	}
+        currentTarget = origin;
+        moveState = 0;
+        exitFlag = false;
 
-	// Update is called once per frame
-	void Update()
+        //ED add code here to vary starting conditions...
+    }
+
+    // Update is called once per frame
+    void Update()
 	{
 		rigidbody.MovePosition(rigidbody.position + transform.forward * moveSpeed * Time.deltaTime);
 		rigidbody.MoveRotation(Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(currentTarget - transform.position, worldUp), Time.deltaTime * rotSpeed));
 
-		if (exiting && !IsVisibleFrom(textureController.meshRenderer, Camera.main))
+        MattMove();
+
+        if (moveState != 3 && !exitFlag)
 		{
-			exiting = false;
-			exitTimer = Random.Range(minExitTimer, maxExitTimer);
-			fishController.ReassignFish(this);
-		}
-
-		/* else if (fishController && (currentTarget - transform.position).magnitude <= distanceCheck)
-		{
-			if (exiting)
-			{
-				exiting = false;
-				exitTimer = Random.Range(minExitTimer, maxExitTimer);
-				fishController.ReassignFish(this);
-			}
-			else
-			{
-				currentTarget = fishController.GetNewTargetPos();
-			}
-		} */
-
-		if (bubbleButton && !bubbleButton.triggered)
-		{
-			currentTarget = new Vector3(bubbleButton.transform.position.x, bubbleButton.transform.position.y, currentTarget.z);
-		}
-		else
-		{
-
-            MattMove();
-
-            /*
-            pete's original swapper code code
-			swapTimer -= Time.deltaTime;
-
-			if (swapTimer <= 0)
-			{
-				swapTimer = Random.Range(minSwapTimer, maxSwapTimer);
-				currentTarget = fishController.Swap(currentTarget);
-			}
-            */
-        }
-
-        if (!exiting)
-		{
-			exitTimer -= Time.deltaTime;
-
-			if (exitTimer <= 0)
-				Exit();
-			
 			if (Input.GetMouseButtonDown(0))
 			{
 				Vector3 nearPoint = Camera.main.ScreenToWorldPoint(
@@ -148,14 +114,26 @@ public class Fish : MonoBehaviour
 				{
 					if (hit.transform.root == transform)
 					{
-						/* textureController.Flash();
+                        /* 
+                         * 
+                        textureController.Flash();
 						SpawnBubble();
 						Exit(); */
 
+                        /*
 						moveSpeed = maxMoveSpeed * 1.5f;
 						rotSpeed = maxRotSpeed * 2;
-						
-						textureController.Flash();
+                        */
+
+                        if (moveState == 0)
+                            moveState = Random.Range(1, 2);
+
+                        turnRate = 1.5f;
+                        moveStateTimer += Random.Range(9, 12);
+
+                        exitFlag = true;
+
+                        textureController.Flash();
 						SpawnBubble();
 					}
 				}
@@ -179,25 +157,57 @@ public class Fish : MonoBehaviour
                 currentTarget = transform.position + (transform.forward * 5) + (transform.right * turnRate);
                 break;
 
+            case 3://move straight to exit screen eventually...
+                currentTarget = transform.position + transform.forward;
+                break;
+
         }
 
-        moveStateTimer -= Time.deltaTime;
+        
 
-        if (moveStateTimer <= 0)
+        if (moveStateTimer > 0)
         {
-            moveStateTimer = Random.Range(stateTimerFloor, stateTimerCeiling);
-            moveState = Random.Range(0, 2);
-            turnRate = Random.Range(turnRateFloor, turnRateCeiling);
+            moveStateTimer -= Time.deltaTime;            
+        }
+        else
+        {
+            NewState();
+        }
 
-            if (moveState > 0)
+        if(moveState != 3)
+        { 
+            //go back to the middle if you're too far from the middle
+            if (Vector3.Distance(transform.position, origin) >= maxWanderRange)
             {
-                moveStateTimer += Random.Range(stateTimerFloor, stateTimerCeiling);
+                currentTarget = origin;
+                moveState = 0;
             }
         }
-
-        if (Vector3.Distance(transform.position, origin) >= maxWanderRange)
+        else
         {
-            currentTarget = origin;
+            //return to the centre of the screen;
+            if (Vector3.Distance(transform.position, origin) >= screenExitRange)
+            {
+                InitFish();
+            }
+        }
+    }
+
+    void NewState()
+    {
+        if (exitFlag)
+        {
+            moveState = 3;
+            return;
+        } 
+
+        moveStateTimer = Random.Range(stateTimerFloor, stateTimerCeiling);
+        moveState = Random.Range(0, 2);
+        turnRate = Random.Range(turnRateFloor, turnRateCeiling);
+
+        if (moveState > 0)
+        {
+            moveStateTimer += Random.Range(stateTimerFloor, stateTimerCeiling);
         }
     }
 
@@ -222,9 +232,9 @@ public class Fish : MonoBehaviour
 
 	public void Exit()
 	{
-		if (!exiting)
+		if (!exitFlag)
 		{
-			exiting = true;
+			exitFlag = true;
 			currentTarget = fishController.GetNewExitPos();
 		}
 	}
