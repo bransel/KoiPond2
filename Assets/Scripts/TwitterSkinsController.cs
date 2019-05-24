@@ -103,7 +103,7 @@ public class TwitterSkinsController : MonoBehaviour
             {
                 TwitterFishData fishData = new TwitterFishData();
                 fishData.id = tweet.id;
-                fishData.textureURL = tweet.extended_entities.media[0].media_url;
+                fishData.textureURL = tweet.extended_entities.media[0].media_url_https;
 
                 string link = tweet.text.Split(' ').Last();
                 fishData.message = tweet.text.Replace(string.Format(" {0}", link), "");

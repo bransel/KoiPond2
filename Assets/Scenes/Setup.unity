@@ -1174,7 +1174,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!114 &273438256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1458,7 +1458,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 0
+  m_IsOn: 1
 --- !u!114 &343748299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2396,7 +2396,6 @@ GameObject:
   m_Component:
   - component: {fileID: 675977515}
   - component: {fileID: 675977518}
-  - component: {fileID: 675977517}
   - component: {fileID: 675977516}
   m_Layer: 0
   m_Name: CanvasBase
@@ -2456,20 +2455,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &675977517
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 675977514}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &675977518
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2489,7 +2474,6 @@ GameObject:
   - component: {fileID: 698892061}
   - component: {fileID: 698892060}
   - component: {fileID: 698892059}
-  - component: {fileID: 698892058}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -2497,20 +2481,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!64 &698892058
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 698892057}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &698892059
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2671,8 +2641,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 765371995}
   m_LocalRotation: {x: 0.04325853, y: -0.69781315, z: 0.7139851, w: -0.037563086}
-  m_LocalPosition: {x: 0.1676949, y: 0.17742237, z: -0.016337013}
-  m_LocalScale: {x: 1.0418603, y: 1.0418596, z: 1.1591736}
+  m_LocalPosition: {x: 2.5025709, y: 2.110223, z: 4.8541574}
+  m_LocalScale: {x: 2.6046572, y: 2.6046522, z: 2.8979397}
   m_Children: []
   m_Father: {fileID: 791640840}
   m_RootOrder: 0
@@ -2689,7 +2659,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 0
-  m_CookingOptions: 14
+  m_CookingOptions: -1
   m_Mesh: {fileID: 8337423065168650712, guid: 69eb208b671374142802cb6240b09217, type: 3}
 --- !u!23 &765371998
 MeshRenderer:
@@ -2760,8 +2730,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 791640839}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.0833335, y: 1.666667, z: 4.895}
-  m_LocalScale: {x: 2.5000005, y: 2.5000002, z: 2.5000002}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 765371996}
   - {fileID: 4147426260426215630}
@@ -3805,7 +3775,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!114 &1096701249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6576,7 +6546,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 0
+  m_IsOn: 1
 --- !u!114 &1811253066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8242,7 +8212,6 @@ GameObject:
   - component: {fileID: 223109523991755483}
   - component: {fileID: 223109523991755482}
   - component: {fileID: 223109523991755481}
-  - component: {fileID: 223109523991755480}
   m_Layer: 0
   m_Name: SandBG (1)
   m_TagString: Untagged
@@ -8250,19 +8219,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &223109523991755480
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223109523991755479}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 10, y: 1.5, z: 10}
-  m_Center: {x: 0, y: -0.75, z: 0}
 --- !u!23 &223109523991755481
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8708,8 +8664,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1141037902793417437}
   m_LocalRotation: {x: -0.04357183, y: 0.6931071, z: -0.71828705, w: 0.042044446}
-  m_LocalPosition: {x: 0.24, y: 0.27, z: 0.08}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 2.6833336, y: 2.3416672, z: 5.095}
+  m_LocalScale: {x: 2.5000038, y: 2.5000002, z: 2.5000012}
   m_Children:
   - {fileID: 369458532106689344}
   - {fileID: 2792455572699257755}
