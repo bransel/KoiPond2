@@ -29,7 +29,33 @@ public class Fish : MonoBehaviour
 	private float swapTimer;
 	private float exitTimer;
 
+    
+    
+
     public static Vector3 worldUp = -1 * Vector3.forward;
+
+    [Header("Movement System")]
+    public float turnRate = 0.5f;
+    public int moveState = 0;
+    public float moveStateTimer;
+    public float stateTimerFloor = 3;
+    public float stateTimerCeiling = 6;
+    public float turnRateFloor = 0.5f;
+    public float turnRateCeiling = 5;
+    public Vector3 origin = Vector3.zero;
+    public float maxWanderRange = 3;
+
+    [Header("Scale Randomiser")]
+    public float minScale = 0.1f;
+    public float maxScale = 0.5f;
+
+    //Move states
+    /*
+        0: forward,
+        1: turn left;
+        2: turn right;
+
+    */
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +69,10 @@ public class Fish : MonoBehaviour
 		exitTimer = Random.Range(minExitTimer, maxExitTimer);
 
 		worldCanvas = GameObject.FindWithTag("WorldCanvas").transform;
+
+        //randomise the fish size.
+        float randomScale = Random.Range(minScale, maxScale);
+        transform.localScale = new Vector3(randomScale, randomScale, randomScale);
 	}
 
 	// Update is called once per frame
@@ -78,6 +108,11 @@ public class Fish : MonoBehaviour
 		}
 		else
 		{
+
+            MattMove();
+
+            /*
+            pete's original swapper code code
 			swapTimer -= Time.deltaTime;
 
 			if (swapTimer <= 0)
@@ -85,9 +120,10 @@ public class Fish : MonoBehaviour
 				swapTimer = Random.Range(minSwapTimer, maxSwapTimer);
 				currentTarget = fishController.Swap(currentTarget);
 			}
-		}
+            */
+        }
 
-		if (!exiting)
+        if (!exiting)
 		{
 			exitTimer -= Time.deltaTime;
 
@@ -126,6 +162,44 @@ public class Fish : MonoBehaviour
 			}
 		}
 	}
+
+    void MattMove()
+    {
+        switch (moveState)
+        {
+            case 0://go forward
+                currentTarget = transform.position + transform.forward;
+                break;
+
+            case 1://turn left
+                currentTarget = transform.position + (transform.forward * 5) - (transform.right * turnRate);
+                break;
+
+            case 2://turn right
+                currentTarget = transform.position + (transform.forward * 5) + (transform.right * turnRate);
+                break;
+
+        }
+
+        moveStateTimer -= Time.deltaTime;
+
+        if (moveStateTimer <= 0)
+        {
+            moveStateTimer = Random.Range(stateTimerFloor, stateTimerCeiling);
+            moveState = Random.Range(0, 2);
+            turnRate = Random.Range(turnRateFloor, turnRateCeiling);
+
+            if (moveState > 0)
+            {
+                moveStateTimer += Random.Range(stateTimerFloor, stateTimerCeiling);
+            }
+        }
+
+        if (Vector3.Distance(transform.position, origin) >= maxWanderRange)
+        {
+            currentTarget = origin;
+        }
+    }
 
 	public bool IsVisibleFrom(Renderer renderer, Camera camera)
     {

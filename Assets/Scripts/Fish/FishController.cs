@@ -45,6 +45,7 @@ public class FishController : MonoBehaviour
 													Random.Range(-swimLimits.y, swimLimits.y),
 													Random.Range(-swimLimits.z, swimLimits.z));
 	} */
+
 	public Vector3 GetNewTargetPos()
 	{
 		Vector3 swimLimits = transform.localScale / 2f;
@@ -65,9 +66,16 @@ public class FishController : MonoBehaviour
 
 	public Vector3 GetNewStartPos()
 	{
-		return new Vector3(startAndExitDistance,
-						Random.Range(-startAndExitBounds.y, startAndExitBounds.y) / 2f,
-						Random.Range(-startAndExitBounds.x, startAndExitBounds.x) / 2f);
+        float randomAngle = Random.Range(0, 360);
+        float distance2Middle = 8;
+
+        return new Vector3(Mathf.Cos(randomAngle) * distance2Middle, Mathf.Sin(randomAngle) * distance2Middle, 0);
+        /*
+        //randomised spawn from origin
+		return new Vector3(Random.Range(-startAndExitBounds.x, startAndExitBounds.x) / 2f,
+						Random.Range(-startAndExitBounds.y, startAndExitBounds.y) / 2f, 
+                        0);
+        */
 	}
 
 	public Vector3 GetNewExitPos()
