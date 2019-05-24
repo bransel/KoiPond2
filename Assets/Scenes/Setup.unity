@@ -1458,7 +1458,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!114 &343748299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2249,7 +2249,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1160325845}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2512546329410610604, guid: 00041707c1abe7741a064dcde2090cb9,
         type: 3}
@@ -2259,81 +2259,60 @@ PrefabInstance:
     - target: {fileID: 1478590577995798463, guid: 00041707c1abe7741a064dcde2090cb9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.73
+      value: -2.92
       objectReference: {fileID: 0}
     - target: {fileID: 1478590577995798463, guid: 00041707c1abe7741a064dcde2090cb9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.75
+      value: -0.24
       objectReference: {fileID: 0}
     - target: {fileID: 1478590577995798463, guid: 00041707c1abe7741a064dcde2090cb9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.23
+      value: 1.34
       objectReference: {fileID: 0}
     - target: {fileID: 1478590577995798463, guid: 00041707c1abe7741a064dcde2090cb9,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.66526145
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 1478590577995798463, guid: 00041707c1abe7741a064dcde2090cb9,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.028911276
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1478590577995798463, guid: 00041707c1abe7741a064dcde2090cb9,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.02959629
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1478590577995798463, guid: 00041707c1abe7741a064dcde2090cb9,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.74546325
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 1478590577995798463, guid: 00041707c1abe7741a064dcde2090cb9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1478590577995798463, guid: 00041707c1abe7741a064dcde2090cb9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -83.498
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 1478590577995798463, guid: 00041707c1abe7741a064dcde2090cb9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -1.886
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1478590577995798463, guid: 00041707c1abe7741a064dcde2090cb9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -2.864
-      objectReference: {fileID: 0}
-    - target: {fileID: 1478590577995798463, guid: 00041707c1abe7741a064dcde2090cb9,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.113157675
-      objectReference: {fileID: 0}
-    - target: {fileID: 1478590577995798463, guid: 00041707c1abe7741a064dcde2090cb9,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.11315771
-      objectReference: {fileID: 0}
-    - target: {fileID: 1478590577995798463, guid: 00041707c1abe7741a064dcde2090cb9,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.113157675
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00041707c1abe7741a064dcde2090cb9, type: 3}
---- !u!4 &622794587 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1478590577995798463, guid: 00041707c1abe7741a064dcde2090cb9,
-    type: 3}
-  m_PrefabInstance: {fileID: 622794586}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &649232311
 GameObject:
   m_ObjectHideFlags: 0
@@ -4111,7 +4090,6 @@ Transform:
   - {fileID: 112946635}
   - {fileID: 1163009855}
   - {fileID: 521716654}
-  - {fileID: 622794587}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4599,7 +4577,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 0
+  m_IsOn: 1
 --- !u!114 &1399003003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5367,7 +5345,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 0
+  m_IsOn: 1
 --- !u!114 &1571297016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6546,7 +6524,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!114 &1811253066
 MonoBehaviour:
   m_ObjectHideFlags: 0
