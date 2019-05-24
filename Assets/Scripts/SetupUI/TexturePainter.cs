@@ -76,6 +76,7 @@ public class TexturePainter : MonoBehaviour
             brushObj.transform.parent = brushContainer.transform; //Add the brush to our container to be wiped later
             brushObj.transform.localPosition = uvWorldPosition; //The position of the brush (in the UVMap)
             brushObj.transform.localScale = Vector3.one * brushSize;//The size of the brush
+            brushObj.transform.eulerAngles = cursorSprite.transform.eulerAngles;
         }
 
         brushCounter++; //Add to the max brushes
