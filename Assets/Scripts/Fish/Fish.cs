@@ -33,7 +33,7 @@ public class Fish : MonoBehaviour
 
     public static Vector3 worldUp = -1 * Vector3.forward;
 
-    [Header("Movement System")]
+    [Header("Matt's Movement System")]
     public float turnRate = 0.5f;
     public int moveState = 0;
     public float moveStateTimer;
@@ -46,9 +46,17 @@ public class Fish : MonoBehaviour
     public float screenExitRange = 6;
     public bool exitFlag;
 
+    int prevMoveState = 0;
+
     [Header("Scale Randomiser")]
     public float minScale = 0.1f;
     public float maxScale = 0.5f;
+
+    [Header("Animation System")]
+    public Animator anim;
+    public string triggerLeftString = "turn left";
+    public string triggerRightString = "turn right";
+    public string triggleIdleString = "idle";
 
     //Move states
     /*
@@ -70,6 +78,7 @@ public class Fish : MonoBehaviour
 		exitTimer = Random.Range(minExitTimer, maxExitTimer);
 
 		worldCanvas = GameObject.FindWithTag("WorldCanvas").transform;
+        anim = GetComponent<Animator>();
 
         InitFish();
     }
@@ -139,10 +148,37 @@ public class Fish : MonoBehaviour
 				}
 			}
 		}
-	}
+
+        prevMoveState = moveState;
+
+    }
+
+    void ManageAnim()
+    {
+        if (prevMoveState != moveState)
+        {
+            switch (moveState)
+            {
+                case 0:
+                    //triggers won't work here
+                    break;
+
+                case 1:
+                    anim.SetTrigger(triggerLeftString);
+                    break;
+
+                case 2:
+                    anim.SetTrigger(triggerRightString);
+                    break;
+            }
+        }
+    }
+    
 
     void MattMove()
     {
+        ManageAnim();
+
         switch (moveState)
         {
             case 0://go forward
