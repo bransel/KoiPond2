@@ -19,8 +19,8 @@ public class LotusRandomiser : MonoBehaviour
     {
         rBody = GetComponent<Rigidbody>();
         rBody.useGravity = false;
-
         SetMotion();
+
     }
 
     private void Update()
@@ -42,6 +42,7 @@ public class LotusRandomiser : MonoBehaviour
 
             transform.position = newPos;
         }
+       
     }
 
     [ContextMenu("SetMotion")]
@@ -51,6 +52,6 @@ public class LotusRandomiser : MonoBehaviour
         Vector3 direction = new Vector3(Random.Range(-1.0f, 0), Random.Range(-0.15f, 0.15f), 0);
         rBody.velocity = direction * speedFactor;
 
-        rBody.AddTorque(new Vector3(0,0,Random.Range(-rotationFactor, rotationFactor)) );
+        rBody.AddTorque(new Vector3(0,0,Random.Range(-rotationFactor, rotationFactor)), ForceMode.Force );
     }
 }

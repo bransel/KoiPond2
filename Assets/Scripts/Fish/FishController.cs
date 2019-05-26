@@ -69,7 +69,7 @@ public class FishController : MonoBehaviour
         float randomAngle = Random.Range(0, 360);
         float distance2Middle = 8;
 
-        return new Vector3(Mathf.Cos(randomAngle) * distance2Middle, Mathf.Sin(randomAngle) * distance2Middle, 0);
+        return new Vector3(Mathf.Cos(randomAngle) * distance2Middle, Mathf.Sin(randomAngle) * distance2Middle, Random.Range(-1.4f, 3f));
         /*
         //randomised spawn from origin
 		return new Vector3(Random.Range(-startAndExitBounds.x, startAndExitBounds.x) / 2f,
