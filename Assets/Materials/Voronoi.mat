@@ -76,7 +76,7 @@ Material:
     - _Glossiness: 0.079
     - _GlossyReflections: 1
     - _LightingEnabled: 0
-    - _Metallic: 0.042
+    - _Metallic: 0.142
     - _Mode: 2
     - _NormalStrength: 30
     - _OcclusionStrength: 1
@@ -98,5 +98,5 @@ Material:
     - _ColorAddSubDiff: {r: -1, g: 1, b: 0, a: 0}
     - _EmisColor: {r: 0.2, g: 0.2, b: 0.2, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RippleColor: {r: 0.9811321, g: 0.6382629, b: 0.21751513, a: 0.14117648}
+    - _RippleColor: {r: 1, g: 0.60295665, b: 0.19339621, a: 0.14117648}
     - _SoftParticleFadeParams: {r: 0, g: 1, b: 0, a: 0}
