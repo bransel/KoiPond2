@@ -1176,7 +1176,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 0
+  m_IsOn: 1
 --- !u!114 &273438256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1460,7 +1460,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!114 &343748299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3663,7 +3663,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!114 &1096701249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6896,7 +6896,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 0
+  m_IsOn: 1
 --- !u!114 &1811253066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8095,20 +8095,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2044633265}
   m_CullTransparentMesh: 0
---- !u!114 &2044940522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2534866581665578809}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8d9e8d03aaaeb649ace4e35f063bb11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 5
-  speed: 0.1
 --- !u!1 &2047960294
 GameObject:
   m_ObjectHideFlags: 0
@@ -8841,7 +8827,6 @@ GameObject:
   - component: {fileID: 3248338879186680719}
   - component: {fileID: 2834078682963242844}
   - component: {fileID: 6806638069041234860}
-  - component: {fileID: 2044940522}
   m_Layer: 0
   m_Name: default
   m_TagString: Untagged
@@ -8941,7 +8926,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2534866581665578809}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.1395, y: 7.8, z: 4.3148}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.38021, y: 0.38021, z: 0.38021}
   m_Children: []
   m_Father: {fileID: 5006512735291271351}
@@ -9161,7 +9146,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8296172669235600036}
   m_LocalRotation: {x: -0.67149234, y: -0.26605746, z: 0.25475648, w: 0.64297014}
-  m_LocalPosition: {x: 4.3813, y: -18.154, z: 12.06}
+  m_LocalPosition: {x: 7.21, y: -7.86, z: 0.73}
   m_LocalScale: {x: 1.3429475, y: 1.3429475, z: 1.3429475}
   m_Children:
   - {fileID: 3248338879186680719}
@@ -9392,6 +9377,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5006512735291271351}
+  - component: {fileID: 8296172669235600037}
   m_Layer: 0
   m_Name: lilyleaf
   m_TagString: Untagged
@@ -9399,6 +9385,29 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8296172669235600037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8296172669235600036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d9e8d03aaaeb649ace4e35f063bb11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 5
+  speed: 0.02
+  stepX: 0
+  stepY: 0
+  gap: 0.26
+  resetgap: 0.08
+  timer: 0
+  timing: 6
+  returning: 0
+  stepReset: 1
+  negate: 0
 --- !u!4 &8323942534019946648
 Transform:
   m_ObjectHideFlags: 0
