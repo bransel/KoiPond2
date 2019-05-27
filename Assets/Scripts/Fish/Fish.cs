@@ -89,6 +89,7 @@ public class Fish : MonoBehaviour
         float randomScale = Random.Range(minScale, maxScale);
         transform.localScale = new Vector3(randomScale, randomScale, randomScale);
         currentTarget = origin;
+        origin.z = transform.position.z;
         moveState = 0;
         exitFlag = false;
 

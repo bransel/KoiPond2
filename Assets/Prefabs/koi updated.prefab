@@ -405,7 +405,11 @@ MonoBehaviour:
   screenExitRange: 8
   exitFlag: 0
   minScale: 0.29
-  maxScale: 0.37
+  maxScale: 0.34
+  anim: {fileID: 0}
+  triggerLeftString: turn left
+  triggerRightString: turn right
+  triggleIdleString: idle
 --- !u!54 &3578995824736014562
 Rigidbody:
   m_ObjectHideFlags: 0
