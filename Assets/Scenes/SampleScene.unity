@@ -1561,7 +1561,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0.5, y: 0.05, z: 0.05, w: 0}
+  m_BoundingSphereOverride: {x: 1.6544117e-24, y: 2048, z: 1.9721532e-31, w: 9.403955e-38}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -9049,6 +9049,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789209241}
   m_Mesh: {fileID: -2432090755550338912, guid: 23319f678ed6d3b4ca63d094ebbd9cd5, type: 3}
+--- !u!4 &1792644640 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 223109523853402303, guid: 68e02fd233d8f3f4bbc99b9f13d64bf7,
+    type: 3}
+  m_PrefabInstance: {fileID: 223109523875844132}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1812029516
 GameObject:
   m_ObjectHideFlags: 0
@@ -10260,7 +10266,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2059490989}
   m_LocalRotation: {x: -0.70323336, y: 0.7060982, z: 0.074137695, w: -0.03730611}
-  m_LocalPosition: {x: 6.98, y: 0, z: -2.91}
+  m_LocalPosition: {x: 6.98, y: 0, z: -3.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 305928533}
@@ -10962,7 +10968,7 @@ ParticleSystem:
     radiusThickness: 1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: 0, y: 0, z: 0}
+    m_Rotation: {x: 0, y: -0.77, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
@@ -13850,7 +13856,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 3
     type: 0
     collisionMode: 0
@@ -13858,7 +13864,7 @@ ParticleSystem:
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
     multiplyColliderForceByCollisionAngle: 1
-    plane0: {fileID: 0}
+    plane0: {fileID: 1792644640}
     plane1: {fileID: 0}
     plane2: {fileID: 0}
     plane3: {fileID: 0}
@@ -13920,7 +13926,7 @@ ParticleSystem:
     m_Bounce:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 1
       maxCurve:
         serializedVersion: 2
