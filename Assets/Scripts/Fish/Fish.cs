@@ -4,32 +4,32 @@ using UnityEngine;
 
 public class Fish : MonoBehaviour
 {
-	public float minMoveSpeed = 1, maxMoveSpeed = 1;
-	public float minRotSpeed = 1.5f, maxRotSpeed = 1.5f;
-	public float distanceCheck = 1;
-	public float minSwapTimer = 30f, maxSwapTimer = 120f;
-	public float minExitTimer = 30f, maxExitTimer = 120f;
-	public TextureController textureController;
-	public Transform mouth;
-	public GameObject bubblePrefab;
-	
-	public long id { get; set; }
-	public string message { get; set; }
+    public float minMoveSpeed = 1, maxMoveSpeed = 1;
+    public float minRotSpeed = 1.5f, maxRotSpeed = 1.5f;
+    public float distanceCheck = 1;
+    public float minSwapTimer = 30f, maxSwapTimer = 120f;
+    public float minExitTimer = 30f, maxExitTimer = 120f;
+    public TextureController textureController;
+    public Transform mouth;
+    public GameObject bubblePrefab;
 
-	public Transform worldCanvas { get; set; }
-	public FishController fishController { get; set; }
-	public BubbleButton bubbleButton { get; set; }
-	public Vector3 currentTarget { get; set; }
+    public long id { get; set; }
+    public string message { get; set; }
 
-	public float moveSpeed { get; set; }
-	public float rotSpeed { get; set; }
+    public Transform worldCanvas { get; set; }
+    public FishController fishController { get; set; }
+    public BubbleButton bubbleButton { get; set; }
+    public Vector3 currentTarget { get; set; }
 
-	private new Rigidbody rigidbody;	
-	private float swapTimer;
-	private float exitTimer;
+    public float moveSpeed { get; set; }
+    public float rotSpeed { get; set; }
 
-    
-    
+    private new Rigidbody rigidbody;
+    private float swapTimer;
+    private float exitTimer;
+
+    ParticleSystem KoiParticles;
+
 
     public static Vector3 worldUp = -1 * Vector3.forward;
 
@@ -68,18 +68,19 @@ public class Fish : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-	{
-		moveSpeed = Random.Range(minMoveSpeed, maxMoveSpeed);
-		rotSpeed = Random.Range(minRotSpeed, maxRotSpeed);
+    {
+        moveSpeed = Random.Range(minMoveSpeed, maxMoveSpeed);
+        rotSpeed = Random.Range(minRotSpeed, maxRotSpeed);
 
-		rigidbody = GetComponent<Rigidbody>();
+        rigidbody = GetComponent<Rigidbody>();
 
-		swapTimer = Random.Range(minSwapTimer, maxSwapTimer);
-		exitTimer = Random.Range(minExitTimer, maxExitTimer);
+        swapTimer = Random.Range(minSwapTimer, maxSwapTimer);
+        exitTimer = Random.Range(minExitTimer, maxExitTimer);
 
-		worldCanvas = GameObject.FindWithTag("WorldCanvas").transform;
+        worldCanvas = GameObject.FindWithTag("WorldCanvas").transform;
         anim = GetComponent<Animator>();
 
+        KoiParticles = GetComponentInChildren<ParticleSystem>();
         InitFish();
     }
 
@@ -98,32 +99,32 @@ public class Fish : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-	{
-		rigidbody.MovePosition(rigidbody.position + transform.forward * moveSpeed * Time.deltaTime);
-		rigidbody.MoveRotation(Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(currentTarget - transform.position, worldUp), Time.deltaTime * rotSpeed));
+    {
+        rigidbody.MovePosition(rigidbody.position + transform.forward * moveSpeed * Time.deltaTime);
+        rigidbody.MoveRotation(Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(currentTarget - transform.position, worldUp), Time.deltaTime * rotSpeed));
 
         MattMove();
 
         if (moveState != 3 && !exitFlag)
-		{
-			if (Input.GetMouseButtonDown(0))
-			{
-				Vector3 nearPoint = Camera.main.ScreenToWorldPoint(
-					new Vector3(Input.mousePosition.x, 
-								Input.mousePosition.y, 
-								Camera.main.nearClipPlane));
-				
-				Vector3 farPoint = Camera.main.ScreenToWorldPoint(
-					new Vector3(Input.mousePosition.x, 
-								Input.mousePosition.y, 
-								Camera.main.farClipPlane));
-				
-				RaycastHit hit;
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Vector3 nearPoint = Camera.main.ScreenToWorldPoint(
+                    new Vector3(Input.mousePosition.x,
+                                Input.mousePosition.y,
+                                Camera.main.nearClipPlane));
 
-				if (Physics.Raycast(nearPoint, farPoint - nearPoint, out hit))
-				{
-					if (hit.transform.root == transform)
-					{
+                Vector3 farPoint = Camera.main.ScreenToWorldPoint(
+                    new Vector3(Input.mousePosition.x,
+                                Input.mousePosition.y,
+                                Camera.main.farClipPlane));
+
+                RaycastHit hit;
+
+                if (Physics.Raycast(nearPoint, farPoint - nearPoint, out hit))
+                {
+                    if (hit.transform.root == transform)
+                    {
                         /* 
                          * 
                         textureController.Flash();
@@ -144,11 +145,12 @@ public class Fish : MonoBehaviour
                         exitFlag = true;
 
                         textureController.Flash();
-						SpawnBubble();
-					}
-				}
-			}
-		}
+                        KoiParticlesOn();
+                        SpawnBubble();
+                    }
+                }
+            }
+        }
 
         prevMoveState = moveState;
 
@@ -174,7 +176,7 @@ public class Fish : MonoBehaviour
             }
         }
     }
-    
+
 
     void MattMove()
     {
@@ -200,19 +202,19 @@ public class Fish : MonoBehaviour
 
         }
 
-        
+
 
         if (moveStateTimer > 0)
         {
-            moveStateTimer -= Time.deltaTime;            
+            moveStateTimer -= Time.deltaTime;
         }
         else
         {
             NewState();
         }
 
-        if(moveState != 3)
-        { 
+        if (moveState != 3)
+        {
             //go back to the middle if you're too far from the middle
             if (Vector3.Distance(transform.position, origin) >= maxWanderRange)
             {
@@ -236,7 +238,7 @@ public class Fish : MonoBehaviour
         {
             moveState = 3;
             return;
-        } 
+        }
 
         moveStateTimer = Random.Range(stateTimerFloor, stateTimerCeiling);
         moveState = Random.Range(0, 2);
@@ -248,31 +250,42 @@ public class Fish : MonoBehaviour
         }
     }
 
-	public bool IsVisibleFrom(Renderer renderer, Camera camera)
+    public bool IsVisibleFrom(Renderer renderer, Camera camera)
     {
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(camera);
         return GeometryUtility.TestPlanesAABB(planes, renderer.bounds);
     }
 
-	public void SpawnBubble()
-	{
-		bubbleButton = Instantiate(bubblePrefab).GetComponentInChildren<BubbleButton>();
-		bubbleButton.transform.parent.SetParent(worldCanvas);
-		bubbleButton.transform.parent.localScale = Vector3.one;
-		bubbleButton.transform.parent.position = mouth.position;
-		bubbleButton.message = message;
-		bubbleButton.fish = this;
-		bubbleButton.fishController = fishController;
+    public void SpawnBubble()
+    {
+        bubbleButton = Instantiate(bubblePrefab).GetComponentInChildren<BubbleButton>();
+        bubbleButton.transform.parent.SetParent(worldCanvas);
+        bubbleButton.transform.parent.localScale = Vector3.one;
+        bubbleButton.transform.parent.position = mouth.position;
+        bubbleButton.message = message;
+        bubbleButton.fish = this;
+        bubbleButton.fishController = fishController;
 
-		//newBubble.rigidbody2D.AddForce(mouth.forward * 10f);
-	}
+        //newBubble.rigidbody2D.AddForce(mouth.forward * 10f);
+    }
 
-	public void Exit()
-	{
-		if (!exitFlag)
-		{
-			exitFlag = true;
-			currentTarget = fishController.GetNewExitPos();
-		}
-	}
+    public void Exit()
+    {
+        if (!exitFlag)
+        {
+            exitFlag = true;
+            currentTarget = fishController.GetNewExitPos();
+            KoiParticlesOff();
+        }
+    }
+
+    public void KoiParticlesOn()
+    {
+        KoiParticles.Play();
+    }
+    public void KoiParticlesOff()
+    {
+        KoiParticles.Stop();
+    }
+
 }
