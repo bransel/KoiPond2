@@ -13,7 +13,7 @@ public class IntensityRandom : MonoBehaviour
     void Start()
     {
         light = this.GetComponent<Light>();
-        random = Random.Range(0.65f, 1f);
+        random = Random.Range(0.45f, 1.1f);
         light.intensity = random;
         currentInt = light.intensity;
         
@@ -29,10 +29,10 @@ public class IntensityRandom : MonoBehaviour
 
         currentInt = light.intensity;
 
-        if (Timer > 13 )
+        if (Timer > 25 )
         {
             Timer = 0;
-            random = Random.Range(0.65f, 1f);
+            random = Random.Range(0.45f, 1.1f);
         }
     }
 }
