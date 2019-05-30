@@ -152,7 +152,7 @@ public class Fish : MonoBehaviour
             }
         }
 
-        prevMoveState = moveState;
+        
 
     }
 
@@ -163,6 +163,7 @@ public class Fish : MonoBehaviour
             switch (moveState)
             {
                 case 0:
+                    anim.SetTrigger(triggleIdleString);
                     //triggers won't work here
                     break;
 
@@ -175,6 +176,7 @@ public class Fish : MonoBehaviour
                     break;
             }
         }
+        prevMoveState = moveState;
     }
 
 
