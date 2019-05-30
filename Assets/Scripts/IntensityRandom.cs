@@ -6,21 +6,33 @@ public class IntensityRandom : MonoBehaviour
 {
     Light light;
     public float Timer = 0;
+    public float currentInt;
+    public float interpolation;
+    private float random; 
     // Start is called before the first frame update
     void Start()
     {
-        light = this.GetComponent<Light>();    
+        light = this.GetComponent<Light>();
+        random = Random.Range(0.65f, 1f);
+        light.intensity = random;
+        currentInt = light.intensity;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         Timer += Time.deltaTime;
-        if (Timer >9)
+
+        light.intensity = Mathf.Lerp(currentInt, (random), Time.deltaTime * interpolation);
+
+
+        currentInt = light.intensity;
+
+        if (Timer > 13 )
         {
-            light.intensity = Random.Range(0.65f, 0.96f);
             Timer = 0;
+            random = Random.Range(0.65f, 1f);
         }
-        
     }
 }
