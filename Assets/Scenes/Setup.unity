@@ -521,8 +521,8 @@ MonoBehaviour:
   words:
   - Share something hopeful
   - I believe in you
-  - You are special
-  - Tell us your hope
+  - 'What''s a quote that''s changed your life? '
+  - Words of wisdom?
   - You'll think of something
   current: 0
   input: {fileID: 1953864285}
