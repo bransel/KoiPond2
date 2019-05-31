@@ -52,7 +52,7 @@ public class RemainingChar : MonoBehaviour
 
     private void Reset()
     {
-        current = Random.Range(0, words.Length + 1);
+        current = Random.Range(0, words.Length );
        
         
     }
