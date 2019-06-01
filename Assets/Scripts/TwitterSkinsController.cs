@@ -88,7 +88,8 @@ public class TwitterSkinsController : MonoBehaviour
 
                 string link = tweet.text.Split(' ')[0];
                 fishData.message = tweet.text.Replace(string.Format("{0} ", link), "");
-                //fishData.message = tweet.text;
+                // Use tweet.user.screen_name to get the twitter handler from mentions tweets.
+                fishData.message += string.Format("\r\n- @{0}", tweet.user.screen_name);
 
                 fishDataList.Add(fishData);
             }

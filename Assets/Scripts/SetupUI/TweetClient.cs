@@ -148,6 +148,7 @@ public class Tweet
     public long id;
     public string text;
     public Extended_Entities extended_entities;
+    public User user;
 }
 
 [Serializable]
@@ -163,4 +164,10 @@ public class Media
     public string media_url;
     public string media_url_https;
     public string type;
+}
+
+[Serializable]
+public class User
+{
+    public string screen_name;
 }
