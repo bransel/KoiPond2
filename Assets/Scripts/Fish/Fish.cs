@@ -19,7 +19,7 @@ public class Fish : MonoBehaviour
     public Transform worldCanvas { get; set; }
     public FishController fishController { get; set; }
     public BubbleButton bubbleButton { get; set; }
-    public Vector3 currentTarget { get; set; }
+    public Vector3 currentTarget;
 
     public float moveSpeed { get; set; }
     public float rotSpeed { get; set; }
@@ -45,6 +45,7 @@ public class Fish : MonoBehaviour
     public float maxWanderRange = 3;
     public float screenExitRange = 6;
     public bool exitFlag;
+    public double zLimit = -1.51f;
 
     int prevMoveState = 0;
 
@@ -223,6 +224,11 @@ public class Fish : MonoBehaviour
                 currentTarget = origin;
                 moveState = 0;
             }
+
+            if (transform.position.z <= zLimit)
+            {
+                currentTarget = origin;                
+            }
         }
         else
         {
@@ -231,6 +237,8 @@ public class Fish : MonoBehaviour
             {
                 InitFish();
             }
+
+            
         }
     }
 
