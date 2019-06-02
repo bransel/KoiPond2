@@ -395,6 +395,7 @@ MonoBehaviour:
   mouth: {fileID: 7124595683006640402}
   bubblePrefab: {fileID: 3752079931806541661, guid: ed496dca2d217b945afa6a266047c16d,
     type: 3}
+  currentTarget: {x: 0, y: 0, z: 0}
   turnRate: 0.5
   moveState: 0
   moveStateTimer: 0
@@ -406,6 +407,7 @@ MonoBehaviour:
   maxWanderRange: 4
   screenExitRange: 8
   exitFlag: 0
+  zLimit: -1.5099999904632568
   minScale: 0.29
   maxScale: 0.34
   anim: {fileID: 0}
@@ -754,7 +756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea56f607ecb4f2045a4ee7b958ff4cdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 0}
+  meshRenderer: {fileID: 1556930463802880899}
 --- !u!1 &8432471423990952274
 GameObject:
   m_ObjectHideFlags: 0

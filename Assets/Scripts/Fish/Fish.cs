@@ -92,6 +92,8 @@ public class Fish : MonoBehaviour
         transform.localScale = new Vector3(randomScale, randomScale, randomScale);
         currentTarget = origin;
         origin.z = transform.position.z;
+        origin.x = Random.Range(-4f, 4f);
+        origin.y = Random.Range(2f, -2f);
         moveState = 0;
         exitFlag = false;
 

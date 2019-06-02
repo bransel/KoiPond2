@@ -63,7 +63,9 @@ public class TexturePainter : MonoBehaviour
             float width = cursorPaint.texture.width;
             float height = cursorPaint.texture.height;
 
+
             SpriteRenderer brushSprite = brushObj.AddComponent<SpriteRenderer>();
+
 
             //brushSprite.sprite = Sprite.Create(cursorPaint.texture, new Rect(0, 0, width, height), Vector2.one / 2f, cursorPaint.pixelsPerUnit);
             brushSprite.sprite = cursorSprite.sprite;
@@ -98,6 +100,7 @@ public class TexturePainter : MonoBehaviour
         {
             brushCursor.SetActive(true);
             brushCursor.transform.position = uvWorldPosition + brushContainer.transform.position;
+
         }
         else
         {
@@ -189,6 +192,7 @@ public class TexturePainter : MonoBehaviour
     { //Sets the size of the cursor brush or decal
         brushSize = size;
         brushCursor.transform.localScale = Vector3.one * brushSize;
+        
     }
 
     public void SetBrushColour(Image image)
