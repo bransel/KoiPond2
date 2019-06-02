@@ -25,9 +25,10 @@ public class TexturePainter : MonoBehaviour
     bool saving = false; //Flag to check if we are saving the texture
     bool uploadInProgress = false, messageUploaded = false, textureUploaded = false;
 
-    SpriteRenderer cursorSprite;
+    public SpriteRenderer cursorSprite;
     Sprite targetSprite;
 	TweetClient tweetClient;
+    public float pivotx, pivoty;
 
     void Awake()
     {
@@ -181,8 +182,12 @@ public class TexturePainter : MonoBehaviour
         
         float width = sprite.texture.width;
 		float height = sprite.texture.height;
-		
-        cursorSprite.sprite = Sprite.Create(sprite.texture, new Rect(0, 0, width, height), Vector2.one / 2f, sprite.pixelsPerUnit);
+
+        //Vector2 pivot = new Vector2(pivotx, pivoty);
+        //Debug.Log(pivot);
+           
+     // cursorSprite.sprite = Sprite.Create(sprite.texture, new Rect(0, 0, width, height), Vector2.one/2f, sprite.pixelsPerUnit);
+       cursorSprite.sprite = Sprite.Create(sprite.texture, new Rect(0,0, width, height), Vector2.one/2f, sprite.pixelsPerUnit);
         cursorSprite.color = brushColor;
 
         cursorPaint = sprite;
@@ -192,6 +197,7 @@ public class TexturePainter : MonoBehaviour
     { //Sets the size of the cursor brush or decal
         brushSize = size;
         brushCursor.transform.localScale = Vector3.one * brushSize;
+        //trying to reset the position of cursorsprite on resize
         
     }
 
