@@ -1,4 +1,4 @@
-﻿Shader "Custom/Click Ripple"
+﻿Shader "Custom/Click Ripple DX11"
 {
     Properties
     {
@@ -6,6 +6,7 @@
         _Amplitude ("Amplitude", Range(0,2)) = 1
         _Duration ("Duration", Range(0,30)) = 2
         _Radius ("Radius", Range(0,30)) = 0.5
+        // _Speed ("Speed", Range(-3,3)) = 0.5
     }
     SubShader
     {
@@ -20,13 +21,11 @@
         Pass
         {
             CGPROGRAM
-
+            #pragma target 4.5
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
             #include "./easingFunctions.cginc"
-
-            #define MAX_RIPPLES 1000
 
             struct appdata
             {
@@ -75,8 +74,7 @@
                 return pol;
             }
 
-            uniform fixed4 rippleObjects[MAX_RIPPLES];
-            uniform int rippleObjectCount;
+            StructuredBuffer<RippleInfo> rippleObjects : register(t1);
 
             float GetRippleAmount(polar pol,float dTime){
                 float timeNorm  = dTime / _Duration;
@@ -100,13 +98,19 @@
 
             half4 frag(v2f IN) : SV_Target
             {
-            uint numStructs = rippleObjectCount;
+            uint numStructs;
+            uint stride;
+            rippleObjects.GetDimensions(numStructs,stride);
+
+            // if(numStructs == 0)
+            // return fixed4(1,0,0,1);
+
             float4 offsetPos= float4(0,0,0,0);
             for(uint i = 0; i < numStructs; i++){
-                float dTime = _Time.y - rippleObjects[i].w;
-                if(dTime >  _Duration || rippleObjects[i].w == -1)
+                float dTime = _Time.y - rippleObjects[i].timeStamp;
+                if(dTime >  _Duration)
                 continue;
-                float3 dpos = rippleObjects[i].xyz - IN.worldPos;
+                float3 dpos = rippleObjects[i].position - IN.worldPos;
                 polar pol = ToPolar(dpos);
                 float val = GetRippleAmount(pol,dTime);
                 // if(val == 1)

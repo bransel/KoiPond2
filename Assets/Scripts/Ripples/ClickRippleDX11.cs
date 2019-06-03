@@ -4,22 +4,23 @@ using System.Linq;
 namespace KoiPond2
 {
 
-    public class ClickRipple : MonoBehaviour
+    public class ClickRippleDX11 : MonoBehaviour
     {
 
         public Material clickRippleMat;
         List<ClickRippleInfo> rippleInfos;
-        // [Range(1, 512)]
-        int maxRipples = 1000;
+        ComputeBuffer rippleObjects;
+        [Range(1, 512)]
+        public int maxRipples = 32;
         // Vector3 debugPos;
         Plane plane;
 
         private void OnEnable()
         {
             rippleInfos = new List<ClickRippleInfo>();
+            rippleObjects = new ComputeBuffer(maxRipples, sizeof(float) * 4);
+            clickRippleMat.SetBuffer("rippleObjects", rippleObjects);
             plane = new Plane(Vector3.forward, transform.position);
-            var ris = new Vector4[maxRipples];
-            clickRippleMat.SetVectorArray("rippleObjects", ris);
         }
 
         private void Start()
@@ -61,30 +62,32 @@ namespace KoiPond2
 
         void SetMaterial()
         {
-            int arrSize = rippleInfos.Count == 0 ? 1 : rippleInfos.Count;
-            var ris = new Vector4[arrSize];
+            var ris = new ClickRippleInfo[maxRipples];
             if (rippleInfos.Count > maxRipples)
                 Debug.LogWarning($"number of ripples exceeds max, please reduce ripple duration or increase max ripple count");
             // Debug.Log($"setting {rippleInfos.Count} ripples");
-            for (int i = 0; i < rippleInfos.Count; i++)
+            for (int i = 0; i < maxRipples; i++)
             {
-                ris[i] = new Vector4(rippleInfos[i].position.x, rippleInfos[i].position.y, rippleInfos[i].position.z, rippleInfos[i].timeStamp);
+                if (i < rippleInfos.Count)
+                    ris[i] = rippleInfos[i];
+                else
+                {
+                    ris[i] = new ClickRippleInfo();
+                    ris[i].timeStamp = -10000;
+                }
+
             }
-            clickRippleMat.SetInt("rippleObjectCount", rippleInfos.Count);
-            clickRippleMat.SetVectorArray("rippleObjects", ris);
             // foreach (var ri in ris)
             // {
             //     Debug.Log(ri.timeStamp);
             // }
-            // rippleObjects.SetData(ris);
+            rippleObjects.SetData(ris);
             // clickRippleMat.SetBuffer("rippleObjects", rippleObjects);
 
         }
-
-        private void OnDestroy()
+        private void OnDisable()
         {
-            clickRippleMat.SetInt("rippleObjectCount", 0);
-            // clickRippleMat.SetVectorArray("rippleObjects", ris);
+            rippleObjects.Dispose();
         }
 
         private void OnDrawGizmos()
