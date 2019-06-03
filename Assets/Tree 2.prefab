@@ -128,7 +128,7 @@ Material:
     - _ShadowOffsetScale: 1
     - _ShadowStrength: 1
     - _SquashAmount: 1
-    - _TranslucencyViewDependency: 0
+    - _TranslucencyViewDependency: 1
     m_Colors:
     - _Color: {r: 0.8679245, g: 0.8440099, b: 0.65913135, a: 1}
     - _TranslucencyColor: {r: 1, g: 0.10283624, b: 0, a: 1}

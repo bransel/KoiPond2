@@ -273,4 +273,14 @@ public class TexturePainter : MonoBehaviour
     {
         UploadMessage.SetActive(false);
     }
+
+    public void Pond()
+    {
+        SceneController sceneController = FindObjectOfType<SceneController>();
+
+       sceneController.LoadNextScene();
+
+
+
+    }
 }
