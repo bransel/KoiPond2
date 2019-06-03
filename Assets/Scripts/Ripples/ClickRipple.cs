@@ -9,9 +9,7 @@ namespace KoiPond2
 
         public Material clickRippleMat;
         List<ClickRippleInfo> rippleInfos;
-        // [Range(1, 512)]
         int maxRipples = 1000;
-        // Vector3 debugPos;
         Plane plane;
 
         private void OnEnable()
@@ -20,6 +18,8 @@ namespace KoiPond2
             plane = new Plane(Vector3.forward, transform.position);
             var ris = new Vector4[maxRipples];
             clickRippleMat.SetVectorArray("rippleObjects", ris);
+            clickRippleMat.SetInt("rippleObjectCount", 0);
+            clickRippleMat.SetFloat("timeStamp", 0);
         }
 
         private void Start()
@@ -36,9 +36,9 @@ namespace KoiPond2
                 if (!plane.Raycast(ray, out enter))
                     return;
                 var pos = ray.GetPoint(enter);
-                // debugPos = pos;
                 AddRipple(pos);
             }
+            clickRippleMat.SetFloat("timeStamp", Time.time);
         }
 
         public void AddRipple(Vector3 position)
@@ -64,32 +64,18 @@ namespace KoiPond2
             int arrSize = rippleInfos.Count == 0 ? 1 : rippleInfos.Count;
             var ris = new Vector4[arrSize];
             if (rippleInfos.Count > maxRipples)
-                Debug.LogWarning($"number of ripples exceeds max, please reduce ripple duration or increase max ripple count");
-            // Debug.Log($"setting {rippleInfos.Count} ripples");
+                Debug.LogWarning($"number of ripples exceeds max, please reduce ripple duration");
             for (int i = 0; i < rippleInfos.Count; i++)
             {
                 ris[i] = new Vector4(rippleInfos[i].position.x, rippleInfos[i].position.y, rippleInfos[i].position.z, rippleInfos[i].timeStamp);
             }
             clickRippleMat.SetInt("rippleObjectCount", rippleInfos.Count);
             clickRippleMat.SetVectorArray("rippleObjects", ris);
-            // foreach (var ri in ris)
-            // {
-            //     Debug.Log(ri.timeStamp);
-            // }
-            // rippleObjects.SetData(ris);
-            // clickRippleMat.SetBuffer("rippleObjects", rippleObjects);
-
         }
 
         private void OnDestroy()
         {
             clickRippleMat.SetInt("rippleObjectCount", 0);
-            // clickRippleMat.SetVectorArray("rippleObjects", ris);
-        }
-
-        private void OnDrawGizmos()
-        {
-            // Gizmos.DrawLine(Camera.main.transform.position, debugPos);
         }
 
     }

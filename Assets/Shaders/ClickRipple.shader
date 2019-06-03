@@ -77,6 +77,7 @@
 
             uniform fixed4 rippleObjects[MAX_RIPPLES];
             uniform int rippleObjectCount;
+            uniform float timeStamp;
 
             float GetRippleAmount(polar pol,float dTime){
                 float timeNorm  = dTime / _Duration;
@@ -103,8 +104,9 @@
             uint numStructs = rippleObjectCount;
             float4 offsetPos= float4(0,0,0,0);
             for(uint i = 0; i < numStructs; i++){
-                float dTime = _Time.y - rippleObjects[i].w;
-                if(dTime >  _Duration || rippleObjects[i].w == -1)
+                // float dTime = _Time.y - rippleObjects[i].w;//webgl time seems to run approx 2 seconds slower than unity time
+                float dTime = timeStamp - rippleObjects[i].w;
+                if(dTime >  _Duration || dTime <= 0)
                 continue;
                 float3 dpos = rippleObjects[i].xyz - IN.worldPos;
                 polar pol = ToPolar(dpos);
