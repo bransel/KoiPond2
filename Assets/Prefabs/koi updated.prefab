@@ -950,6 +950,21 @@ PrefabInstance:
       propertyPath: ColorModule.gradient.maxGradient.atime1
       value: 9252
       objectReference: {fileID: 0}
+    - target: {fileID: 4225776259277428713, guid: 268b8495753d5cd4f8ba7de7370e3fd9,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225776259277428713, guid: 268b8495753d5cd4f8ba7de7370e3fd9,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.minScalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225776259277428713, guid: 268b8495753d5cd4f8ba7de7370e3fd9,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 268b8495753d5cd4f8ba7de7370e3fd9, type: 3}
 --- !u!4 &8017057315385467098 stripped
