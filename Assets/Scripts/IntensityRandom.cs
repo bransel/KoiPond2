@@ -32,7 +32,7 @@ public class IntensityRandom : MonoBehaviour
         if (Timer > 25 )
         {
             Timer = 0;
-            random = Random.Range(0.45f, 1.1f);
+            random = Random.Range(0.45f, 1f);
         }
     }
 }
