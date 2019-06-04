@@ -3042,7 +3042,7 @@ MonoBehaviour:
   canvasTexture: {fileID: 8400000, guid: 1dd5c06a4ccfb6e4c8067820f3f0e29b, type: 2}
   baseMaterial: {fileID: 2100000, guid: 2d1ecbf1e18fa4c4e8113b71c877679d, type: 2}
   brushColor: {r: 0.9607844, g: 0.44705886, b: 0.44705886, a: 1}
-  cursorSprite: {fileID: 0}
+  cursorSprite: {fileID: 18788273}
   pivotx: 0.5
   pivoty: 0.5
   UploadMessage: {fileID: 1627664151}
