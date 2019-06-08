@@ -73,7 +73,7 @@ Material:
     - _EmissionEnabled: 0
     - _FlipbookMode: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.121
+    - _Glossiness: 1
     - _GlossyReflections: 1
     - _LightingEnabled: 0
     - _Metallic: 0
@@ -82,7 +82,7 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _RippleDissolve: 2.39
-    - _RippleScale: 15.93
+    - _RippleScale: 15.75
     - _RippleSpeed: 0.46
     - _SmoothnessTextureChannel: 0
     - _SoftParticlesEnabled: 1

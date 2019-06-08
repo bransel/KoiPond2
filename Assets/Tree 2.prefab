@@ -112,7 +112,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpSpecMap:
-        m_Texture: {fileID: 2800000, guid: 2c81cd544754a7c43a7cd42eb02a8778, type: 3}
+        m_Texture: {fileID: 2800000, guid: d0ac21a2abae3c8459f2e8350cb611ab, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -182,13 +182,13 @@ Material:
     - _SpecularHighlights: 1
     - _SquashAmount: 1
     - _SrcBlend: 1
-    - _TranslucencyViewDependency: 1
+    - _TranslucencyViewDependency: 0.677
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.8679245, g: 0.8440099, b: 0.65913135, a: 1}
+    - _Color: {r: 1, g: 0.92788136, b: 0.33490568, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _TranslucencyColor: {r: 0.1509434, g: 0, b: 0, a: 0}
+    - _TranslucencyColor: {r: 1, g: 0.96862745, b: 0, a: 0}
     - _TreeInstanceColor: {r: 1, g: 1, b: 1, a: 1}
     - _TreeInstanceScale: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &-6499914756726947345
