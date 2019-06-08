@@ -17,7 +17,7 @@ public class RemainingChar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        thisOne.text = words[current] + " (" + remain + " Char Left)";
+        thisOne.text = words[current] + "\n" +  " (" + remain + " Char Left)";
         
     }
 
@@ -27,7 +27,7 @@ public class RemainingChar : MonoBehaviour
         
         remain = input.characterLimit - input.text.Length;
         Timer += Time.deltaTime;
-        thisOne.text = words[current] + " (" + remain + " Char Left)";
+        thisOne.text = words[current] + "\n"+ "("+ remain + " Char Left)";
         /*if (Timer > 2 && remain == 280)
         {
             Reset();
