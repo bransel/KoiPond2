@@ -8,12 +8,14 @@ public class IntensityRandom : MonoBehaviour
     public float Timer = 0;
     public float currentInt;
     public float interpolation;
-    private float random; 
+    private float random;
+    public float maxInt = 1.1f;
+    public float minInt = 0.45f;
     // Start is called before the first frame update
     void Start()
     {
         light = this.GetComponent<Light>();
-        random = Random.Range(0.45f, 1.1f);
+        random = Random.Range(minInt, maxInt);
         light.intensity = random;
         currentInt = light.intensity;
         
@@ -32,7 +34,7 @@ public class IntensityRandom : MonoBehaviour
         if (Timer > 25 )
         {
             Timer = 0;
-            random = Random.Range(0.45f, 1f);
+            random = Random.Range(minInt, maxInt);
         }
     }
 }
