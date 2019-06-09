@@ -3302,7 +3302,7 @@ MonoBehaviour:
   pivotx: 0.5
   pivoty: 0.5
   UploadMessage: {fileID: 1627664151}
-  EmptyMessagePanel: {fileID: 132550797}
+  EmptyMessagePanel: {fileID: 1620254933}
   RaycastBlocker: {fileID: 1426051369}
 --- !u!4 &649232313
 Transform:
