@@ -190,10 +190,14 @@ public class Fish : MonoBehaviour
                         animTime = 0;
                     } */
                     anim.SetTrigger(triggerLeftString);
+
+                    anim.SetTrigger(triggleIdleString);
                     break;
 
                 case 2:
                     anim.SetTrigger(triggerRightString);
+
+                    anim.SetTrigger(triggleIdleString);
                     break;
             }
         }
