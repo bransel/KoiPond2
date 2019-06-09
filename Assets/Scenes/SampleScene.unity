@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.03304503, g: 0.008117363, b: 0.09755189, a: 1}
+  m_IndirectSpecularColor: {r: 0.2413387, g: 0.098666765, b: 0.4217921, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1573,13 +1573,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170076733}
-  m_LocalRotation: {x: 0.12656565, y: 0.060901374, z: -0.007785438, w: 0.99005634}
+  m_LocalRotation: {x: 0.5241896, y: 0.324736, z: -0.22569741, w: 0.75420994}
   m_LocalPosition: {x: -8817, y: -6397, z: 11766}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 14.57, y: 7.04, z: 0}
+  m_LocalEulerAnglesHint: {x: 69.6, y: 46.59, z: 0}
 --- !u!114 &170076736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1595,6 +1595,8 @@ MonoBehaviour:
   Timer: 0
   currentInt: 0
   interpolation: 1
+  maxInt: 2.2
+  minInt: 0.68
 --- !u!4 &171994305 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 77283dc4d03d08b4f9f55f4458885b23,
@@ -6513,13 +6515,13 @@ ReflectionProbe:
   m_TimeSlicingMode: 0
   m_Resolution: 128
   m_UpdateFrequency: 0
-  m_BoxSize: {x: 20.12, y: 20.84, z: 10}
+  m_BoxSize: {x: 20.12, y: 20.84, z: 10.45}
   m_BoxOffset: {x: 0, y: 0, z: 0}
   m_NearClip: 0.3
   m_FarClip: 1000
   m_ShadowDistance: 100
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 1, g: 0.8836636, b: 0, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295

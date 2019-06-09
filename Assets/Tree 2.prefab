@@ -182,13 +182,13 @@ Material:
     - _SpecularHighlights: 1
     - _SquashAmount: 1
     - _SrcBlend: 1
-    - _TranslucencyViewDependency: 0.677
+    - _TranslucencyViewDependency: 0.845
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 0.92788136, b: 0.33490568, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _TranslucencyColor: {r: 1, g: 0.96862745, b: 0, a: 0}
+    - _TranslucencyColor: {r: 0.9150943, g: 0, b: 0.2613847, a: 0}
     - _TreeInstanceColor: {r: 1, g: 1, b: 1, a: 1}
     - _TreeInstanceScale: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &-6499914756726947345
