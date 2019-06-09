@@ -73,7 +73,6 @@ public class Fish : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Time.timeScale = 3;
 		moveSpeed = Random.Range(minMoveSpeed, maxMoveSpeed);
         rotSpeed = Random.Range(minRotSpeed, maxRotSpeed);
 
