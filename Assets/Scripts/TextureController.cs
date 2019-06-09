@@ -26,16 +26,19 @@ public class TextureController : MonoBehaviour
 
 	IEnumerator FlashCoro()
 	{
-		Color original = meshRenderer.material.GetColor("_EmissionColor");
-		Color color = Color.cyan / 2f;
+		if (!meshRenderer)
+            meshRenderer = GetComponent<SkinnedMeshRenderer>();
+
+		Color original = meshRenderer.materials[0].GetColor("_EmissionColor");
+		Color color = Color.cyan;
 		
-		for (float t = 0; t < 1; t += Time.deltaTime / 0.5f)
+		for (float t = 0; t < 1; t += Time.deltaTime)
 		{
-			meshRenderer.material.SetColor("_EmissionColor", Color.Lerp(original, color, Mathf.Sin(t * Mathf.PI)));
+			meshRenderer.materials[0].SetColor("_EmissionColor", Color.Lerp(original, color, Mathf.Sin(t * Mathf.PI)));
 
 			yield return null;
 		}
 
-		meshRenderer.material.SetColor("_EmissionColor", original);
+		meshRenderer.materials[0].SetColor("_EmissionColor", original);
 	}
 }
