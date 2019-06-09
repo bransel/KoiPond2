@@ -46,6 +46,9 @@ public class Fish : MonoBehaviour
     public float screenExitRange = 6;
     public bool exitFlag;
     public double zLimit = -1.51f;
+    public float animTime;
+    public float animChange = 2f;
+    public float animMax = 4f;
 
     int prevMoveState = 0;
 
@@ -171,6 +174,21 @@ public class Fish : MonoBehaviour
                     break;
 
                 case 1:
+                    /* well that didn't work
+                    animTime += Time.deltaTime;
+                    if (animTime <= animChange)
+                    {
+                        anim.SetTrigger(triggerLeftString);
+                    }
+                    else
+                    {
+                        anim.SetTrigger(triggleIdleString);
+                       
+                    }
+                    if (animTime >= animMax)
+                    {
+                        animTime = 0;
+                    } */
                     anim.SetTrigger(triggerLeftString);
                     break;
 
