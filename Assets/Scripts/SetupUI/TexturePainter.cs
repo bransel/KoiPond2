@@ -242,11 +242,13 @@ public class TexturePainter : MonoBehaviour
     ////////////////// OPTIONAL METHODS //////////////////
 
     public GameObject UploadMessage;
+    public GameObject EmptyMessagePanel;
+    public GameObject RaycastBlocker;
 
     public void SaveTextureAndMessage(InputField inputField)
     {
         if (string.IsNullOrEmpty(inputField.text))
-            Debug.LogError("Message is empty!");
+            ShowEmptyMessagePanel();
         else if (uploadInProgress)
             Debug.LogError("Upload is already in progress!");
         else
@@ -273,6 +275,12 @@ public class TexturePainter : MonoBehaviour
     {
         UploadMessage.SetActive(false);
     }
+
+	void ShowEmptyMessagePanel()
+	{
+		EmptyMessagePanel.SetActive(true);
+		RaycastBlocker.SetActive(true);
+	}
 
     public void Pond()
     {
