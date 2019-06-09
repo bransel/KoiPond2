@@ -6,7 +6,6 @@
         _Amplitude ("Amplitude", Range(0,2)) = 1
         _Duration ("Duration", Range(0,30)) = 2
         _Radius ("Radius", Range(0,30)) = 0.5
-        // _Speed ("Speed", Range(-3,3)) = 0.5
     }
     SubShader
     {
@@ -21,11 +20,13 @@
         Pass
         {
             CGPROGRAM
-            #pragma target 4.5
+
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
             #include "./easingFunctions.cginc"
+
+            #define MAX_RIPPLES 1000
 
             struct appdata
             {
@@ -74,7 +75,9 @@
                 return pol;
             }
 
-            StructuredBuffer<RippleInfo> rippleObjects : register(t1);
+            uniform fixed4 rippleObjects[MAX_RIPPLES];
+            uniform int rippleObjectCount;
+            uniform float timeStamp;
 
             float GetRippleAmount(polar pol,float dTime){
                 float timeNorm  = dTime / _Duration;
@@ -98,19 +101,14 @@
 
             half4 frag(v2f IN) : SV_Target
             {
-            uint numStructs;
-            uint stride;
-            rippleObjects.GetDimensions(numStructs,stride);
-
-            // if(numStructs == 0)
-            // return fixed4(1,0,0,1);
-
+            uint numStructs = rippleObjectCount;
             float4 offsetPos= float4(0,0,0,0);
             for(uint i = 0; i < numStructs; i++){
-                float dTime = _Time.y - rippleObjects[i].timeStamp;
-                if(dTime >  _Duration)
+                // float dTime = _Time.y - rippleObjects[i].w;//webgl time seems to run approx 2 seconds slower than unity time
+                float dTime = timeStamp - rippleObjects[i].w;
+                if(dTime >  _Duration || dTime <= 0)
                 continue;
-                float3 dpos = rippleObjects[i].position - IN.worldPos;
+                float3 dpos = rippleObjects[i].xyz - IN.worldPos;
                 polar pol = ToPolar(dpos);
                 float val = GetRippleAmount(pol,dTime);
                 // if(val == 1)

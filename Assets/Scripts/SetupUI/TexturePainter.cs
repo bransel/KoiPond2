@@ -25,9 +25,10 @@ public class TexturePainter : MonoBehaviour
     bool saving = false; //Flag to check if we are saving the texture
     bool uploadInProgress = false, messageUploaded = false, textureUploaded = false;
 
-    SpriteRenderer cursorSprite;
+    public SpriteRenderer cursorSprite;
     Sprite targetSprite;
 	TweetClient tweetClient;
+    public float pivotx, pivoty;
 
     void Awake()
     {
@@ -63,7 +64,9 @@ public class TexturePainter : MonoBehaviour
             float width = cursorPaint.texture.width;
             float height = cursorPaint.texture.height;
 
+
             SpriteRenderer brushSprite = brushObj.AddComponent<SpriteRenderer>();
+
 
             //brushSprite.sprite = Sprite.Create(cursorPaint.texture, new Rect(0, 0, width, height), Vector2.one / 2f, cursorPaint.pixelsPerUnit);
             brushSprite.sprite = cursorSprite.sprite;
@@ -98,6 +101,7 @@ public class TexturePainter : MonoBehaviour
         {
             brushCursor.SetActive(true);
             brushCursor.transform.position = uvWorldPosition + brushContainer.transform.position;
+
         }
         else
         {
@@ -178,8 +182,12 @@ public class TexturePainter : MonoBehaviour
         
         float width = sprite.texture.width;
 		float height = sprite.texture.height;
-		
-        cursorSprite.sprite = Sprite.Create(sprite.texture, new Rect(0, 0, width, height), Vector2.one / 2f, sprite.pixelsPerUnit);
+
+        //Vector2 pivot = new Vector2(pivotx, pivoty);
+        //Debug.Log(pivot);
+           
+     // cursorSprite.sprite = Sprite.Create(sprite.texture, new Rect(0, 0, width, height), Vector2.one/2f, sprite.pixelsPerUnit);
+       cursorSprite.sprite = Sprite.Create(sprite.texture, new Rect(0,0, width, height), Vector2.one/2f, sprite.pixelsPerUnit);
         cursorSprite.color = brushColor;
 
         cursorPaint = sprite;
@@ -189,6 +197,8 @@ public class TexturePainter : MonoBehaviour
     { //Sets the size of the cursor brush or decal
         brushSize = size;
         brushCursor.transform.localScale = Vector3.one * brushSize;
+        //trying to reset the position of cursorsprite on resize
+        
     }
 
     public void SetBrushColour(Image image)
@@ -232,11 +242,13 @@ public class TexturePainter : MonoBehaviour
     ////////////////// OPTIONAL METHODS //////////////////
 
     public GameObject UploadMessage;
+    public GameObject EmptyMessagePanel;
+    public GameObject RaycastBlocker;
 
     public void SaveTextureAndMessage(InputField inputField)
     {
         if (string.IsNullOrEmpty(inputField.text))
-            Debug.LogError("Message is empty!");
+            ShowEmptyMessagePanel();
         else if (uploadInProgress)
             Debug.LogError("Upload is already in progress!");
         else
@@ -262,5 +274,21 @@ public class TexturePainter : MonoBehaviour
     void DisableUploadMessage()
     {
         UploadMessage.SetActive(false);
+    }
+
+	void ShowEmptyMessagePanel()
+	{
+		EmptyMessagePanel.SetActive(true);
+		RaycastBlocker.SetActive(true);
+	}
+
+    public void Pond()
+    {
+        SceneController sceneController = FindObjectOfType<SceneController>();
+
+       sceneController.LoadNextScene();
+
+
+
     }
 }
