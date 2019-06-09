@@ -100,7 +100,10 @@ public class TwitterSkinsController : MonoBehaviour
     {
         foreach (var tweet in tweets)
         {
-            if (!fishDataList.Select(i => i.id).Contains(tweet.id))
+            if (tweet.extended_entities == null || tweet.extended_entities.media.Length == 0)
+				continue;
+			
+			if (!fishDataList.Select(i => i.id).Contains(tweet.id))
             {
                 TwitterFishData fishData = new TwitterFishData();
                 fishData.id = tweet.id;

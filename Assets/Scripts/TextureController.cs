@@ -1,12 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class TextureController : MonoBehaviour
 {
     public SkinnedMeshRenderer meshRenderer;
-	public UnityEvent OnTextureChange;
 
     void Start()
     {
@@ -19,8 +17,6 @@ public class TextureController : MonoBehaviour
             meshRenderer = GetComponent<SkinnedMeshRenderer>();
         
         meshRenderer.material.SetTexture("_MainTex", texture);
-
-		OnTextureChange.Invoke();
     }
 
 	public void Flash()

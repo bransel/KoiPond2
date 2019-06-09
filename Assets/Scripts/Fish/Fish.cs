@@ -70,7 +70,8 @@ public class Fish : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        moveSpeed = Random.Range(minMoveSpeed, maxMoveSpeed);
+        Time.timeScale = 3;
+		moveSpeed = Random.Range(minMoveSpeed, maxMoveSpeed);
         rotSpeed = Random.Range(minRotSpeed, maxRotSpeed);
 
         rigidbody = GetComponent<Rigidbody>();
@@ -237,10 +238,9 @@ public class Fish : MonoBehaviour
             //return to the centre of the screen;
             if (Vector3.Distance(transform.position, origin) >= screenExitRange)
             {
-                InitFish();
+                Exit();
+				InitFish();
             }
-
-            
         }
     }
 
@@ -283,12 +283,9 @@ public class Fish : MonoBehaviour
 
     public void Exit()
     {
-        if (!exitFlag)
-        {
-            exitFlag = true;
-            currentTarget = fishController.GetNewExitPos();
-            KoiParticlesOff();
-        }
+		fishController.ReassignFish(this);
+		currentTarget = fishController.GetNewExitPos();
+		KoiParticlesOff();
     }
 
     public void KoiParticlesOn()
