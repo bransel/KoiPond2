@@ -30,6 +30,40 @@ public class FishController : MonoBehaviour
 			
 			yield return null;
 		}
+
+		StartCoroutine(ClickOnRandomFish());
+	}
+
+	private float count;
+	private Vector3 mouseDelta;
+	IEnumerator ClickOnRandomFish()
+	{
+		while (true)
+		{
+			if (count < 120)
+				count += Time.deltaTime;
+			else
+			{
+				foreach (var fish in fishes)
+				{
+					if (!fish.Key.exitFlag)
+					{
+						fish.Key.ClickOnFish();
+						break;
+					}
+				}
+
+				count = 0;
+			}
+			
+			if (Input.GetMouseButton(0) || Input.anyKey || mouseDelta != Input.mousePosition)
+			{
+				mouseDelta = Input.mousePosition;
+				count = 0;
+			}
+			
+			yield return null;
+		}
 	}
 
 	public void LinkFishDataList(List<TwitterFishData> fishDataList)
