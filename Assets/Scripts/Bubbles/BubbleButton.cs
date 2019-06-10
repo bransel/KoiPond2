@@ -39,9 +39,10 @@ public class BubbleButton : MonoBehaviour
 
 		fadeInTextLetterByLetter.OnFadeFinish.AddListener(TextFadeFinish);
 
-		Vector3 pos = transform.localPosition;
+		/* Vector3 pos = transform.localPosition;
 		pos.z = -100f;
-		transform.localPosition = pos;
+		transform.localPosition = pos; */
+		transform.position = Camera.main.WorldToScreenPoint(transform.position);
 
 		for (float t = 0; t < 1; t += Time.deltaTime / fadeTimeInSeconds)
 		{
