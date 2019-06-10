@@ -387,10 +387,8 @@ MonoBehaviour:
   minRotSpeed: 1
   maxRotSpeed: 1
   distanceCheck: 1
-  minSwapTimer: 15
-  maxSwapTimer: 30
-  minExitTimer: 60
-  maxExitTimer: 180
+  minExitTimer: 10
+  maxExitTimer: 15
   textureController: {fileID: 5028498689011241064}
   mouth: {fileID: 7124595683006640402}
   bubblePrefab: {fileID: 3752079931806541661, guid: ed496dca2d217b945afa6a266047c16d,
@@ -408,6 +406,9 @@ MonoBehaviour:
   screenExitRange: 8
   exitFlag: 0
   zLimit: -1.5099999904632568
+  animTime: 0
+  animChange: 2
+  animMax: 4
   minScale: 0.29
   maxScale: 0.34
   anim: {fileID: 0}
@@ -757,22 +758,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 1556930463802880899}
-  OnTextureChange:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3666479550647233023}
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &8432471423990952274
 GameObject:
   m_ObjectHideFlags: 0
@@ -986,12 +971,6 @@ PrefabInstance:
 --- !u!4 &8017057315385467098 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7423978931791994572, guid: 268b8495753d5cd4f8ba7de7370e3fd9,
-    type: 3}
-  m_PrefabInstance: {fileID: 595894241730592278}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &3666479550647233023 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4225776259277428713, guid: 268b8495753d5cd4f8ba7de7370e3fd9,
     type: 3}
   m_PrefabInstance: {fileID: 595894241730592278}
   m_PrefabAsset: {fileID: 0}

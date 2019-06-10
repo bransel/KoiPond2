@@ -7,8 +7,6 @@ public class Fish : MonoBehaviour
     public float minMoveSpeed = 1, maxMoveSpeed = 1;
     public float minRotSpeed = 1.5f, maxRotSpeed = 1.5f;
     public float distanceCheck = 1;
-    public float minSwapTimer = 30f, maxSwapTimer = 120f;
-    public float minExitTimer = 30f, maxExitTimer = 120f;
     public TextureController textureController;
     public Transform mouth;
     public GameObject bubblePrefab;
@@ -25,8 +23,6 @@ public class Fish : MonoBehaviour
     public float rotSpeed { get; set; }
 
     private new Rigidbody rigidbody;
-    private float swapTimer;
-    private float exitTimer;
 
     ParticleSystem KoiParticles;
 
@@ -78,9 +74,6 @@ public class Fish : MonoBehaviour
 
         rigidbody = GetComponent<Rigidbody>();
 
-        swapTimer = Random.Range(minSwapTimer, maxSwapTimer);
-        exitTimer = Random.Range(minExitTimer, maxExitTimer);
-
         worldCanvas = GameObject.FindWithTag("WorldCanvas").transform;
         anim = GetComponent<Animator>();
 
@@ -113,7 +106,7 @@ public class Fish : MonoBehaviour
 
         if (moveState != 3 && !exitFlag)
         {
-            if (Input.GetMouseButtonDown(0))
+			if (Input.GetMouseButtonDown(0))
             {
                 Vector3 nearPoint = Camera.main.ScreenToWorldPoint(
                     new Vector3(Input.mousePosition.x,
@@ -131,36 +124,38 @@ public class Fish : MonoBehaviour
                 {
                     if (hit.transform.root == transform)
                     {
-                        /* 
-                         * 
-                        textureController.Flash();
-						SpawnBubble();
-						Exit(); */
-
-                        /*
-						moveSpeed = maxMoveSpeed * 1.5f;
-						rotSpeed = maxRotSpeed * 2;
-                        */
-
-                        if (moveState == 0)
-                            moveState = Random.Range(1, 2);
-
-                        turnRate = 1.5f;
-                        moveStateTimer += Random.Range(9, 12);
-
-                        exitFlag = true;
-
-                        textureController.Flash();
-                        KoiParticlesOn();
-                        SpawnBubble();
+                        ClickOnFish();
                     }
                 }
             }
         }
-
-        
-
     }
+
+	public void ClickOnFish()
+	{
+		/* 
+		* 
+		textureController.Flash();
+		SpawnBubble();
+		Exit(); */
+
+		/*
+		moveSpeed = maxMoveSpeed * 1.5f;
+		rotSpeed = maxRotSpeed * 2;
+		*/
+
+		if (moveState == 0)
+			moveState = Random.Range(1, 2);
+
+		turnRate = 1.5f;
+		moveStateTimer += Random.Range(9, 12);
+
+		exitFlag = true;
+
+		textureController.Flash();
+		KoiParticlesOn();
+		SpawnBubble();
+	}
 
     void ManageAnim()
     {
@@ -292,9 +287,9 @@ public class Fish : MonoBehaviour
     public void SpawnBubble()
     {
         bubbleButton = Instantiate(bubblePrefab).GetComponentInChildren<BubbleButton>();
-        bubbleButton.transform.parent.SetParent(worldCanvas);
-        bubbleButton.transform.parent.localScale = Vector3.one;
-        bubbleButton.transform.parent.position = mouth.position;
+        bubbleButton.transform.SetParent(worldCanvas);
+        bubbleButton.transform.localScale = Vector3.one;
+        bubbleButton.transform.position = mouth.position;
         bubbleButton.message = message;
         bubbleButton.fish = this;
         bubbleButton.fishController = fishController;

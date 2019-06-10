@@ -14,12 +14,13 @@ public class BubbleButton : MonoBehaviour
 	public Fish fish { get; set; }
 	public FishController fishController { get; set; }
 
-	private RectTransform bubbleParent;
 	private RectTransform bubble;
-	private RectTransform bubblePanel;
 	private new CanvasRenderer renderer;
 	private Button button;
 
+	public float fadeTimeInSeconds = 1;
+	public float fadeTimeOutSeconds = 1;
+	public float riseSpeed = 1;
 	public bool triggered { get; set; }
 	private bool fading;
 
@@ -30,30 +31,51 @@ public class BubbleButton : MonoBehaviour
 	IEnumerator Start()
 	{
 		text.text = message;
-		bubbleParent = transform.parent.GetComponent<RectTransform>();
 		bubble = GetComponent<RectTransform>();
-		bubblePanel = GameObject.FindWithTag("BubblePanel").GetComponent<RectTransform>();
 		rigidbody = GetComponent<Rigidbody>();
 		renderer = GetComponent<CanvasRenderer>();
 		button = GetComponent<Button>();
 		AssignActiveBubble(this);
 
-		fadeInTextLetterByLetter.OnFadeFinish.AddListener(TextFadeFinish);
+		RectTransform textRectTransform = text.GetComponent<RectTransform>();
+		textRectTransform.ForceUpdateRectTransforms();
+		yield return null;
 
-		/* Vector3 pos = transform.localPosition;
-		pos.z = -100f;
-		transform.localPosition = pos; */
-
-		for (float t = 0; t < 1; t += Time.deltaTime)
+		if (textRectTransform.sizeDelta.x > 0)
 		{
-			bubbleParent.sizeDelta = Vector3.Lerp(Vector2.one * 5, Vector2.one * 120, Mathf.Pow(t, 2));
-			yield return null;
+			LayoutElement layoutElement = text.GetComponent<LayoutElement>();
+			layoutElement.preferredWidth = bubble.sizeDelta.x;
 		}
 
-		/* while (transform.position.z > -1.5f)
-			yield return null; */
+		yield return null;
 
-		//yield return new WaitForSeconds(10f);
+		text.GetComponent<ContentSizeFitter>().enabled = false;
+
+		Transform bg = text.transform.GetChild(0);
+		RectTransform bgRectTransform = bg.GetComponent<RectTransform>();
+		bgRectTransform.ForceUpdateRectTransforms();
+		Vector2 rectSize = new Vector2(bgRectTransform.rect.width, bgRectTransform.rect.height);
+		GetComponent<BoxCollider2D>().size = rectSize + Vector2.one * 10;
+
+		bg.SetParent(text.transform.parent);
+		bg.SetAsFirstSibling();
+		
+		fadeInTextLetterByLetter.enabled = true;
+
+		fadeInTextLetterByLetter.OnFadeFinish.AddListener(TextFadeFinish);
+
+		//transform.position = Camera.main.WorldToScreenPoint(transform.position);
+		//Vector2 clampedPos = Input.mousePosition;
+		Vector2 clampedPos = Camera.main.WorldToScreenPoint(fish.transform.position);
+		clampedPos.x = Mathf.Clamp(clampedPos.x, 100, Screen.width - 100);
+		clampedPos.y = Mathf.Clamp(clampedPos.y, 100, Screen.height - 100);
+		bubble.anchoredPosition = clampedPos;
+
+		for (float t = 0; t < 1; t += Time.deltaTime / fadeTimeInSeconds)
+		{
+			canvasGroup.alpha = Mathf.Lerp(0, 1, Mathf.SmoothStep(0, 1, t));
+			yield return null;
+		}
 
 		while (fadeTimer < 10f)
 		{
@@ -63,17 +85,14 @@ public class BubbleButton : MonoBehaviour
 		
 		if (!fading)
 			StartCoroutine(FadeOutCoro());
-
-		//yield return new WaitForSeconds(1.5f);
-
-		//Expand();
 	}
 
-	/* void Update()
+	void Update()
 	{
-		if (!CanCameraSeePoint(Camera.main, transform.position))
-			Destroy(bubbleParent.gameObject);
-	} */
+		/* if (!CanCameraSeePoint(Camera.main, transform.position))
+			Destroy(bubbleParent.gameObject); */
+		transform.position += Vector3.up * riseSpeed;
+	}
 
 	// https://forum.unity.com/threads/point-in-camera-view.72523/#post-464141
 	bool CanCameraSeePoint(Camera camera, Vector3 point)
@@ -82,66 +101,9 @@ public class BubbleButton : MonoBehaviour
 		return (viewportPoint.z > 0 && (new Rect(0, 0, 1, 1)).Contains(viewportPoint));
 	}
 
-	public void Expand()
-	{
-		return;
-
-		if (!triggered)
-		{
-			fish.currentTarget = fishController.GetNewTargetPos();
-			fish.moveSpeed = Random.Range(fish.minMoveSpeed, fish.maxMoveSpeed);
-			fish.rotSpeed = Random.Range(fish.minRotSpeed, fish.maxRotSpeed);
-			
-			triggered = true;
-			//AssignActiveBubble(this);
-			StartCoroutine(ExpandCoro());
-		}
-	}
-
 	public void AssignActiveBubble(BubbleButton bubble)
 	{
 		fishController.AssignActiveBubble(bubble);
-	}
-
-	IEnumerator ExpandCoro()
-	{
-		rigidbody.useGravity = false;
-		rigidbody.Sleep();
-
-		Vector3 origin = transform.position;
-
-		for (float t = 0; t < 1; t += Time.deltaTime)
-		{
-			transform.position = Vector3.Lerp(origin, bubblePanel.transform.position, Mathf.Pow(t, 2));
-			yield return null;
-		}
-
-		transform.SetParent(bubblePanel.transform);
-		Destroy(bubbleParent.gameObject);
-		Vector2 size = bubble.sizeDelta;
-
-		for (float t = 0; t < 1; t += Time.deltaTime)
-		{
-			bubble.sizeDelta = Vector2.Lerp(size, Vector2.zero, Mathf.SmoothStep(0, 1, t));
-
-			if (!fading)
-				canvasGroup.alpha = Mathf.Lerp(0.5f, 0.75f, Mathf.SmoothStep(0, 1, t));
-
-			yield return null;
-		}
-
-		int textIndex = 0;
-		while (text.text != message)
-		{
-			text.text += message[textIndex];
-			textIndex++;
-			yield return null;
-		}
-
-		yield return new WaitForSeconds(4);
-
-		if (!fading)
-			StartCoroutine(FadeOutCoro());
 	}
 
 	public void FadeOut()
@@ -184,7 +146,7 @@ public class BubbleButton : MonoBehaviour
 
 		float alpha = canvasGroup.alpha;
 
-		for (float t = 0; t < 1; t += Time.deltaTime)
+		for (float t = 0; t < 1; t += Time.deltaTime / fadeTimeOutSeconds)
 		{
 			canvasGroup.alpha = Mathf.Lerp(alpha, 0, Mathf.SmoothStep(0, 1, t));
 			yield return null;
