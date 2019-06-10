@@ -3073,10 +3073,10 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 311
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -11079,6 +11079,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: WorldCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5866786227956916815, guid: 211a20cbc2b6e7f4fb107dc995b3a0fd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866786227956916815, guid: 211a20cbc2b6e7f4fb107dc995b3a0fd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5866786227956916851, guid: 211a20cbc2b6e7f4fb107dc995b3a0fd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11208,6 +11218,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RenderMode
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866786228405597872, guid: 211a20cbc2b6e7f4fb107dc995b3a0fd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 211a20cbc2b6e7f4fb107dc995b3a0fd, type: 3}

@@ -7,6 +7,7 @@ public class BubbleButton : MonoBehaviour
 {
 	public Text text;
 	public CanvasGroup canvasGroup;
+	public FadeInTextLetterByLetter fadeInTextLetterByLetter;
 
 	public string message { get; set; }
 	public new Rigidbody rigidbody { get; private set; }
@@ -22,6 +23,9 @@ public class BubbleButton : MonoBehaviour
 	public bool triggered { get; set; }
 	private bool fading;
 
+	private float fadeTimer;
+	private int clickCount;
+
 	// Start is called before the first frame update
 	IEnumerator Start()
 	{
@@ -34,9 +38,11 @@ public class BubbleButton : MonoBehaviour
 		button = GetComponent<Button>();
 		AssignActiveBubble(this);
 
-		Vector3 pos = transform.localPosition;
-		pos.z = -50f;
-		transform.localPosition = pos;
+		fadeInTextLetterByLetter.OnFadeFinish.AddListener(TextFadeFinish);
+
+		/* Vector3 pos = transform.localPosition;
+		pos.z = -100f;
+		transform.localPosition = pos; */
 
 		for (float t = 0; t < 1; t += Time.deltaTime)
 		{
@@ -47,7 +53,13 @@ public class BubbleButton : MonoBehaviour
 		/* while (transform.position.z > -1.5f)
 			yield return null; */
 
-		yield return new WaitForSeconds(10f);
+		//yield return new WaitForSeconds(10f);
+
+		while (fadeTimer < 10f)
+		{
+			fadeTimer += Time.deltaTime;
+			yield return null;
+		}
 		
 		if (!fading)
 			StartCoroutine(FadeOutCoro());
@@ -144,6 +156,26 @@ public class BubbleButton : MonoBehaviour
 		
 		if (!fading)
 			StartCoroutine(FadeOutCoro());
+	}
+
+	public void TextFadeFinish()
+	{
+		if (clickCount == 0)
+			clickCount++;
+	}
+
+	public void Click()
+	{
+		if (clickCount == 0)
+		{
+			fadeInTextLetterByLetter.StopAndShowAll();
+			clickCount++;
+		}
+		else if (clickCount == 1)
+		{
+			fadeTimer = 10f;
+			clickCount++;
+		}
 	}
 
 	IEnumerator FadeOutCoro()
