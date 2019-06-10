@@ -153,8 +153,8 @@ public class FishController : MonoBehaviour
 
 	public void AssignActiveBubble(BubbleButton bubble)
 	{
-		if (this.bubble != null)
-			this.bubble.FadeOut();
+		/* if (this.bubble != null)
+			this.bubble.FadeOut(); */
 		
 		this.bubble = bubble;
 	}
