@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 // © 2017 TheFlyingKeyboard and released under MIT License
 // theflyingkeyboard.net
-// Modifed by Matt Cabanag
+// Modifed by Matt Cabanag & Peter Liang
 public class FadeInTextLetterByLetter : MonoBehaviour
 {
     [SerializeField] private Text textToUse;
@@ -14,16 +15,18 @@ public class FadeInTextLetterByLetter : MonoBehaviour
     [SerializeField] private bool useTextText = false;
     [SerializeField] private float fadeSpeedMultiplier = 0.25f;
     [SerializeField] private bool fade;
-
     private float colorFloat = 0.1f;
     private int colorInt;
     private int letterCounter = 0;
     private string shownText;
+	private IEnumerator fadeCoro;
 
     public bool wordMode = false;
     public string[] wordList;
     int wordCounter = 0;
-    public float totalTime;   
+    public float totalTime;
+
+	public UnityEvent OnFadeFinish;
 
     private void Start()
     {
@@ -68,6 +71,8 @@ public class FadeInTextLetterByLetter : MonoBehaviour
 
             yield return null;
         }
+
+		OnFadeFinish.Invoke();
     }
 
     private IEnumerator FadeInWords()
@@ -88,12 +93,25 @@ public class FadeInTextLetterByLetter : MonoBehaviour
             }
             yield return null;
         }
+
+		OnFadeFinish.Invoke();
     }
     public void Fade()
     {
-        if (wordMode)
-            StartCoroutine(FadeInWords());
+        if (fadeCoro != null)
+			StopCoroutine(fadeCoro);
+		
+		if (wordMode)
+            fadeCoro = FadeInWords();
         else
-            StartCoroutine(FadeInText());
+            fadeCoro = FadeInText();
+
+		StartCoroutine(fadeCoro);
     }
+
+	public void StopAndShowAll()
+	{
+		StopCoroutine(fadeCoro);
+		textToUse.text = textToShow;
+	}
 }
