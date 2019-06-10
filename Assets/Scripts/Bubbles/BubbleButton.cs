@@ -14,7 +14,6 @@ public class BubbleButton : MonoBehaviour
 	public Fish fish { get; set; }
 	public FishController fishController { get; set; }
 
-	private RectTransform bubbleParent;
 	private RectTransform bubble;
 	private new CanvasRenderer renderer;
 	private Button button;
@@ -32,16 +31,44 @@ public class BubbleButton : MonoBehaviour
 	IEnumerator Start()
 	{
 		text.text = message;
-		bubbleParent = transform.parent.GetComponent<RectTransform>();
 		bubble = GetComponent<RectTransform>();
 		rigidbody = GetComponent<Rigidbody>();
 		renderer = GetComponent<CanvasRenderer>();
 		button = GetComponent<Button>();
 		AssignActiveBubble(this);
 
+		RectTransform textRectTransform = text.GetComponent<RectTransform>();
+		textRectTransform.ForceUpdateRectTransforms();
+		yield return null;
+
+		if (textRectTransform.sizeDelta.x > 0)
+		{
+			LayoutElement layoutElement = text.GetComponent<LayoutElement>();
+			layoutElement.preferredWidth = bubble.sizeDelta.x;
+		}
+
+		yield return null;
+
+		text.GetComponent<ContentSizeFitter>().enabled = false;
+
+		Transform bg = text.transform.GetChild(0);
+		RectTransform bgRectTransform = bg.GetComponent<RectTransform>();
+		bgRectTransform.ForceUpdateRectTransforms();
+		Vector2 rectSize = new Vector2(bgRectTransform.rect.width, bgRectTransform.rect.height);
+		GetComponent<BoxCollider2D>().size = rectSize + Vector2.one * 10;
+
+		bg.SetParent(text.transform.parent);
+		bg.SetAsFirstSibling();
+		
+		fadeInTextLetterByLetter.enabled = true;
+
 		fadeInTextLetterByLetter.OnFadeFinish.AddListener(TextFadeFinish);
 
-		transform.position = Camera.main.WorldToScreenPoint(transform.position);
+		//transform.position = Camera.main.WorldToScreenPoint(transform.position);
+		Vector2 clampedPos = Input.mousePosition;
+		clampedPos.x = Mathf.Clamp(clampedPos.x, 100, Screen.width - 100);
+		clampedPos.y = Mathf.Clamp(clampedPos.y, 100, Screen.height - 100);
+		bubble.anchoredPosition = clampedPos;
 
 		for (float t = 0; t < 1; t += Time.deltaTime / fadeTimeInSeconds)
 		{

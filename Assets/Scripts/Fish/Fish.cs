@@ -292,9 +292,9 @@ public class Fish : MonoBehaviour
     public void SpawnBubble()
     {
         bubbleButton = Instantiate(bubblePrefab).GetComponentInChildren<BubbleButton>();
-        bubbleButton.transform.parent.SetParent(worldCanvas);
-        bubbleButton.transform.parent.localScale = Vector3.one;
-        bubbleButton.transform.parent.position = mouth.position;
+        bubbleButton.transform.SetParent(worldCanvas);
+        bubbleButton.transform.localScale = Vector3.one;
+        bubbleButton.transform.position = mouth.position;
         bubbleButton.message = message;
         bubbleButton.fish = this;
         bubbleButton.fishController = fishController;
