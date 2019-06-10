@@ -170,12 +170,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d866e882556a24c9637bfa3c484a8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeTime: 5
+  fadeTime: 10
   fadeTimePerWord: 0.3
+  randomElement: 1
   maxAlpha: 1
   text: {fileID: 313123846}
   wordList: []
   framesInTime: 0
+  baseIncrementValue: 0
   incrementValue: 0
 --- !u!114 &313123846
 MonoBehaviour:
@@ -210,8 +212,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Matt is kinda dumb actually Matt is kinda dumb actually Matt is kinda dumb
-    actually
+  m_Text: Inspirational message that fades in randomly
 --- !u!222 &313123847
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -619,6 +620,11 @@ MonoBehaviour:
   wordMode: 1
   wordList: []
   totalTime: 0
+  OnFadeFinish:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &2087073599
 MonoBehaviour:
   m_ObjectHideFlags: 0
