@@ -107,6 +107,7 @@ MonoBehaviour:
   text: {fileID: 3752079933016983745}
   canvasGroup: {fileID: 960904236780626216}
   fadeInTextLetterByLetter: {fileID: 3579692715930254539}
+  fadeTimeInSeconds: 1
 --- !u!114 &6133868984264248308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,3 +365,8 @@ MonoBehaviour:
   wordMode: 1
   wordList: []
   totalTime: 0
+  OnFadeFinish:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null

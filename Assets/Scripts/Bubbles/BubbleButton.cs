@@ -20,6 +20,7 @@ public class BubbleButton : MonoBehaviour
 	private new CanvasRenderer renderer;
 	private Button button;
 
+	public float fadeTimeInSeconds = 1;
 	public bool triggered { get; set; }
 	private bool fading;
 
@@ -40,13 +41,14 @@ public class BubbleButton : MonoBehaviour
 
 		fadeInTextLetterByLetter.OnFadeFinish.AddListener(TextFadeFinish);
 
-		/* Vector3 pos = transform.localPosition;
+		Vector3 pos = transform.localPosition;
 		pos.z = -100f;
-		transform.localPosition = pos; */
+		transform.localPosition = pos;
 
-		for (float t = 0; t < 1; t += Time.deltaTime)
+		for (float t = 0; t < 1; t += Time.deltaTime / fadeTimeInSeconds)
 		{
-			bubbleParent.sizeDelta = Vector3.Lerp(Vector2.one * 5, Vector2.one * 120, Mathf.Pow(t, 2));
+			//bubbleParent.sizeDelta = Vector3.Lerp(Vector2.one * 5, Vector2.one * 120, Mathf.Pow(t, 2));
+			canvasGroup.alpha = Mathf.Lerp(0, 1, Mathf.SmoothStep(0, 1, t));
 			yield return null;
 		}
 
