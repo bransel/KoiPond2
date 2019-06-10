@@ -20,6 +20,8 @@ public class BubbleButton : MonoBehaviour
 	private Button button;
 
 	public float fadeTimeInSeconds = 1;
+	public float fadeTimeOutSeconds = 1;
+	public float riseSpeed = 1;
 	public bool triggered { get; set; }
 	private bool fading;
 
@@ -39,22 +41,13 @@ public class BubbleButton : MonoBehaviour
 
 		fadeInTextLetterByLetter.OnFadeFinish.AddListener(TextFadeFinish);
 
-		/* Vector3 pos = transform.localPosition;
-		pos.z = -100f;
-		transform.localPosition = pos; */
 		transform.position = Camera.main.WorldToScreenPoint(transform.position);
 
 		for (float t = 0; t < 1; t += Time.deltaTime / fadeTimeInSeconds)
 		{
-			//bubbleParent.sizeDelta = Vector3.Lerp(Vector2.one * 5, Vector2.one * 120, Mathf.Pow(t, 2));
 			canvasGroup.alpha = Mathf.Lerp(0, 1, Mathf.SmoothStep(0, 1, t));
 			yield return null;
 		}
-
-		/* while (transform.position.z > -1.5f)
-			yield return null; */
-
-		//yield return new WaitForSeconds(10f);
 
 		while (fadeTimer < 10f)
 		{
@@ -64,17 +57,14 @@ public class BubbleButton : MonoBehaviour
 		
 		if (!fading)
 			StartCoroutine(FadeOutCoro());
-
-		//yield return new WaitForSeconds(1.5f);
-
-		//Expand();
 	}
 
-	/* void Update()
+	void Update()
 	{
-		if (!CanCameraSeePoint(Camera.main, transform.position))
-			Destroy(bubbleParent.gameObject);
-	} */
+		/* if (!CanCameraSeePoint(Camera.main, transform.position))
+			Destroy(bubbleParent.gameObject); */
+		transform.position += Vector3.up * riseSpeed;
+	}
 
 	// https://forum.unity.com/threads/point-in-camera-view.72523/#post-464141
 	bool CanCameraSeePoint(Camera camera, Vector3 point)
@@ -128,7 +118,7 @@ public class BubbleButton : MonoBehaviour
 
 		float alpha = canvasGroup.alpha;
 
-		for (float t = 0; t < 1; t += Time.deltaTime)
+		for (float t = 0; t < 1; t += Time.deltaTime / fadeTimeOutSeconds)
 		{
 			canvasGroup.alpha = Mathf.Lerp(alpha, 0, Mathf.SmoothStep(0, 1, t));
 			yield return null;
