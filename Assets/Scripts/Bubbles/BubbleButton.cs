@@ -16,7 +16,6 @@ public class BubbleButton : MonoBehaviour
 
 	private RectTransform bubbleParent;
 	private RectTransform bubble;
-	private RectTransform bubblePanel;
 	private new CanvasRenderer renderer;
 	private Button button;
 
@@ -33,7 +32,6 @@ public class BubbleButton : MonoBehaviour
 		text.text = message;
 		bubbleParent = transform.parent.GetComponent<RectTransform>();
 		bubble = GetComponent<RectTransform>();
-		bubblePanel = GameObject.FindWithTag("BubblePanel").GetComponent<RectTransform>();
 		rigidbody = GetComponent<Rigidbody>();
 		renderer = GetComponent<CanvasRenderer>();
 		button = GetComponent<Button>();
@@ -84,66 +82,9 @@ public class BubbleButton : MonoBehaviour
 		return (viewportPoint.z > 0 && (new Rect(0, 0, 1, 1)).Contains(viewportPoint));
 	}
 
-	public void Expand()
-	{
-		return;
-
-		if (!triggered)
-		{
-			fish.currentTarget = fishController.GetNewTargetPos();
-			fish.moveSpeed = Random.Range(fish.minMoveSpeed, fish.maxMoveSpeed);
-			fish.rotSpeed = Random.Range(fish.minRotSpeed, fish.maxRotSpeed);
-			
-			triggered = true;
-			//AssignActiveBubble(this);
-			StartCoroutine(ExpandCoro());
-		}
-	}
-
 	public void AssignActiveBubble(BubbleButton bubble)
 	{
 		fishController.AssignActiveBubble(bubble);
-	}
-
-	IEnumerator ExpandCoro()
-	{
-		rigidbody.useGravity = false;
-		rigidbody.Sleep();
-
-		Vector3 origin = transform.position;
-
-		for (float t = 0; t < 1; t += Time.deltaTime)
-		{
-			transform.position = Vector3.Lerp(origin, bubblePanel.transform.position, Mathf.Pow(t, 2));
-			yield return null;
-		}
-
-		transform.SetParent(bubblePanel.transform);
-		Destroy(bubbleParent.gameObject);
-		Vector2 size = bubble.sizeDelta;
-
-		for (float t = 0; t < 1; t += Time.deltaTime)
-		{
-			bubble.sizeDelta = Vector2.Lerp(size, Vector2.zero, Mathf.SmoothStep(0, 1, t));
-
-			if (!fading)
-				canvasGroup.alpha = Mathf.Lerp(0.5f, 0.75f, Mathf.SmoothStep(0, 1, t));
-
-			yield return null;
-		}
-
-		int textIndex = 0;
-		while (text.text != message)
-		{
-			text.text += message[textIndex];
-			textIndex++;
-			yield return null;
-		}
-
-		yield return new WaitForSeconds(4);
-
-		if (!fading)
-			StartCoroutine(FadeOutCoro());
 	}
 
 	public void FadeOut()
