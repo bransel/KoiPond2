@@ -30,9 +30,9 @@ public class TextureController : MonoBehaviour
             meshRenderer = GetComponent<SkinnedMeshRenderer>();
 
 		Color original = meshRenderer.materials[0].GetColor("_EmissionColor");
-		Color color = Color.cyan;
+        Color color = Color.yellow;
 		
-		for (float t = 0; t < 1; t += Time.deltaTime)
+		for (float t = 0; t < 1; t += Time.deltaTime * 0.35f)
 		{
 			meshRenderer.materials[0].SetColor("_EmissionColor", Color.Lerp(original, color, Mathf.Sin(t * Mathf.PI)));
 
