@@ -14,6 +14,11 @@ public class FadeIn : MonoBehaviour
 
 	private bool triggered;
 
+	void Start()
+	{
+		transparent = true;
+	}
+
     // Update is called once per frame
     void Update()
     {

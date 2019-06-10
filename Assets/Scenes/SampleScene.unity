@@ -2018,6 +2018,7 @@ GameObject:
   - component: {fileID: 221274883}
   - component: {fileID: 221274882}
   - component: {fileID: 221274880}
+  - component: {fileID: 221274881}
   m_Layer: 5
   m_Name: MuteToggle
   m_TagString: Untagged
@@ -2092,8 +2093,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 534669903}
-        m_MethodName: set_enabled
+      - m_Target: {fileID: 221274881}
+        m_MethodName: set_MuteAudio
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2106,6 +2107,19 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 0
+--- !u!114 &221274881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221274878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32421d7df3740ac42b9c8ce72e52905a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioListener: {fileID: 534669903}
 --- !u!114 &221274882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3141,18 +3155,7 @@ MonoBehaviour:
   OnTransparent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 221274880}
-        m_MethodName: set_interactable
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2097394227}
+      - m_Target: {fileID: 397710561}
         m_MethodName: set_interactable
         m_Mode: 6
         m_Arguments:
@@ -3168,18 +3171,7 @@ MonoBehaviour:
   OnOpaque:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 221274880}
-        m_MethodName: set_interactable
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 2097394227}
+      - m_Target: {fileID: 397710561}
         m_MethodName: set_interactable
         m_Mode: 6
         m_Arguments:
@@ -3201,8 +3193,8 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 397710555}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
+  m_Alpha: 0
+  m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!4 &408529470 stripped
