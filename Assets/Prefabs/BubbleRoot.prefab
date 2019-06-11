@@ -108,9 +108,11 @@ MonoBehaviour:
   text: {fileID: 3752079933016983745}
   canvasGroup: {fileID: 4705946320065760684}
   fadeInTextLetterByLetter: {fileID: 3579692715930254539}
-  fadeTimeInSeconds: 1
-  fadeTimeOutSeconds: 1
-  riseSpeed: 1
+  parallelfade: {fileID: 0}
+  fadeTimeInSeconds: 3.5
+  fadeTimeOutSeconds: 3.5
+  riseSpeed: 0.09
+  fadeWait: 20
 --- !u!114 &2468777335734543604
 MonoBehaviour:
   m_ObjectHideFlags: 0

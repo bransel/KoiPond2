@@ -14,7 +14,7 @@ public class FishController : MonoBehaviour
 
 	public BubbleButton bubble { get; set; }
 	public Dictionary<Fish, long> fishes { get; set; }
-
+    public float idleTime;
 	private List<TwitterFishData> fishDataList = new List<TwitterFishData>();
 
 	IEnumerator Start()
@@ -40,7 +40,7 @@ public class FishController : MonoBehaviour
 	{
 		while (true)
 		{
-			if (count < 120)
+			if (count < idleTime)
 				count += Time.deltaTime;
 			else
 			{

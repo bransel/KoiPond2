@@ -387,8 +387,6 @@ MonoBehaviour:
   minRotSpeed: 1
   maxRotSpeed: 1
   distanceCheck: 1
-  minExitTimer: 10
-  maxExitTimer: 15
   textureController: {fileID: 5028498689011241064}
   mouth: {fileID: 7124595683006640402}
   bubblePrefab: {fileID: 3752079931806541661, guid: ed496dca2d217b945afa6a266047c16d,
@@ -410,7 +408,7 @@ MonoBehaviour:
   animChange: 2
   animMax: 4
   minScale: 0.29
-  maxScale: 0.34
+  maxScale: 0.33
   anim: {fileID: 0}
   triggerLeftString: turn left
   triggerRightString: turn right

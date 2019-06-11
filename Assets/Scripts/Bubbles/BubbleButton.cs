@@ -8,6 +8,7 @@ public class BubbleButton : MonoBehaviour
 	public Text text;
 	public CanvasGroup canvasGroup;
 	public FadeInTextLetterByLetter fadeInTextLetterByLetter;
+    public UITextFade parallelfade;
 
 	public string message { get; set; }
 	public new Rigidbody rigidbody { get; private set; }
@@ -25,6 +26,8 @@ public class BubbleButton : MonoBehaviour
 	private bool fading;
 
 	private float fadeTimer;
+    public float fadeWait; //hopefully this is how long to wait before fades
+
 	private int clickCount;
 
 	// Start is called before the first frame update
@@ -59,10 +62,12 @@ public class BubbleButton : MonoBehaviour
 
 		bg.SetParent(text.transform.parent);
 		bg.SetAsFirstSibling();
-		
-		fadeInTextLetterByLetter.enabled = true;
 
-		fadeInTextLetterByLetter.OnFadeFinish.AddListener(TextFadeFinish);
+        fadeInTextLetterByLetter.enabled = true;
+        //parallelfade.enabled = true;
+
+        fadeInTextLetterByLetter.OnFadeFinish.AddListener(TextFadeFinish);
+        //parallelfade.OnfadeFinish.AddListener(TextFadeFinish);
 
 		//transform.position = Camera.main.WorldToScreenPoint(transform.position);
 		//Vector2 clampedPos = Input.mousePosition;
@@ -77,7 +82,7 @@ public class BubbleButton : MonoBehaviour
 			yield return null;
 		}
 
-		while (fadeTimer < 10f)
+		while (fadeTimer < fadeWait)
 		{
 			fadeTimer += Time.deltaTime;
 			yield return null;
@@ -135,7 +140,7 @@ public class BubbleButton : MonoBehaviour
 		}
 		else if (clickCount == 1)
 		{
-			fadeTimer = 10f;
+			fadeTimer = fadeWait;
 			clickCount++;
 		}
 	}
