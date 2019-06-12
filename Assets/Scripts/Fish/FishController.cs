@@ -23,7 +23,7 @@ public class FishController : MonoBehaviour
     public float maxRandom = 3;
 
     IEnumerator Start()
-	{		
+	{
 		fishes = new Dictionary<Fish, long>();
 
 		while (fishes.Count < maxFishOnScreen)

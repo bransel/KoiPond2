@@ -27,11 +27,21 @@ public class TexturePainter : MonoBehaviour
 
     public SpriteRenderer cursorSprite;
     Sprite targetSprite;
-	TweetClient tweetClient;
+    TweetClient tweetClient;
     public float pivotx, pivoty;
 
     void Awake()
     {
+        Texture2D tex = new Texture2D(canvasTexture.width, canvasTexture.height, TextureFormat.RGB24, false);
+        var fillColorArray = tex.GetPixels();
+
+        for (var i = 0; i < fillColorArray.Length; ++i)
+            fillColorArray[i] = Color.white;
+
+        tex.SetPixels(fillColorArray);
+        tex.Apply();
+        baseMaterial.mainTexture = tex;
+        
         cursorSprite = brushCursor.GetComponent<SpriteRenderer>();
         targetSprite = cursorSprite.sprite;
 
@@ -147,7 +157,7 @@ public class TexturePainter : MonoBehaviour
         foreach (Transform child in brushContainer.transform)
         {
             //Clear brushes
-			Destroy(child.gameObject);
+            Destroy(child.gameObject);
         }
 
         //StartCoroutine ("SaveTextureToFile"); //Do you want to save the texture? This is your method!
@@ -167,11 +177,11 @@ public class TexturePainter : MonoBehaviour
     public void SetBrush(Sprite sprite)
     {
         targetSprite = sprite;
-        
+
         float width = sprite.texture.width;
-		float height = sprite.texture.height;
-		
-		brushCursor.GetComponent<SpriteRenderer>().sprite = Sprite.Create(sprite.texture, new Rect(0, 0, width, height), Vector2.one / 2f, sprite.pixelsPerUnit);
+        float height = sprite.texture.height;
+
+        brushCursor.GetComponent<SpriteRenderer>().sprite = Sprite.Create(sprite.texture, new Rect(0, 0, width, height), Vector2.one / 2f, sprite.pixelsPerUnit);
         cursorPaint = sprite;
     }
 
@@ -179,15 +189,15 @@ public class TexturePainter : MonoBehaviour
     {
         targetSprite = image.sprite;
         Sprite sprite = image.sprite;
-        
+
         float width = sprite.texture.width;
-		float height = sprite.texture.height;
+        float height = sprite.texture.height;
 
         //Vector2 pivot = new Vector2(pivotx, pivoty);
         //Debug.Log(pivot);
-           
-     // cursorSprite.sprite = Sprite.Create(sprite.texture, new Rect(0, 0, width, height), Vector2.one/2f, sprite.pixelsPerUnit);
-       cursorSprite.sprite = Sprite.Create(sprite.texture, new Rect(0,0, width, height), Vector2.one/2f, sprite.pixelsPerUnit);
+
+        // cursorSprite.sprite = Sprite.Create(sprite.texture, new Rect(0, 0, width, height), Vector2.one/2f, sprite.pixelsPerUnit);
+        cursorSprite.sprite = Sprite.Create(sprite.texture, new Rect(0, 0, width, height), Vector2.one / 2f, sprite.pixelsPerUnit);
         cursorSprite.color = brushColor;
 
         cursorPaint = sprite;
@@ -198,14 +208,14 @@ public class TexturePainter : MonoBehaviour
         brushSize = size;
         brushCursor.transform.localScale = Vector3.one * brushSize;
         //trying to reset the position of cursorsprite on resize
-        
+
     }
 
     public void SetBrushColour(Image image)
     {
         if (!cursorSprite)
             return;
-        
+
         brushColor = image.color;
         brushColor.a = brushOpacity;
 
@@ -216,7 +226,7 @@ public class TexturePainter : MonoBehaviour
     {
         if (!cursorSprite)
             return;
-        
+
         brushColor = newBrushColour;
         brushColor.a = brushOpacity;
 
@@ -227,14 +237,14 @@ public class TexturePainter : MonoBehaviour
     {
         if (!cursorSprite)
             return;
-        
+
         brushOpacity = alpha;
         brushColor.a = brushOpacity;
 
         cursorSprite.color = brushColor;
     }
 
-	public void SetBrushRotation(float angle)
+    public void SetBrushRotation(float angle)
     {
         cursorSprite.transform.eulerAngles = -Vector3.forward * angle * 360;
     }
@@ -257,9 +267,9 @@ public class TexturePainter : MonoBehaviour
             UploadMessage.SetActive(true);
 
             string guid = System.Guid.NewGuid().ToString();
-			byte[] textureBytes = SaveTexture().EncodeToPNG();
+            byte[] textureBytes = SaveTexture().EncodeToPNG();
 
-			SceneController sceneController = FindObjectOfType<SceneController>();
+            SceneController sceneController = FindObjectOfType<SceneController>();
 
             UnityEvent sceneLoadEvent = new UnityEvent();
             sceneLoadEvent.AddListener(sceneController.LoadNextScene);
@@ -276,17 +286,17 @@ public class TexturePainter : MonoBehaviour
         UploadMessage.SetActive(false);
     }
 
-	void ShowEmptyMessagePanel()
-	{
-		EmptyMessagePanel.SetActive(true);
-		RaycastBlocker.SetActive(true);
-	}
+    void ShowEmptyMessagePanel()
+    {
+        EmptyMessagePanel.SetActive(true);
+        RaycastBlocker.SetActive(true);
+    }
 
     public void Pond()
     {
         SceneController sceneController = FindObjectOfType<SceneController>();
 
-       sceneController.LoadNextScene();
+        sceneController.LoadNextScene();
 
 
 

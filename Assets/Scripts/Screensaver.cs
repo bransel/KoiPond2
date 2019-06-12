@@ -14,6 +14,11 @@ public class Screensaver : MonoBehaviour
 
     private Vector3 mouseDelta;
 
+    void Start()
+    {
+        screenSwitchClock = screenSwitchInterval;
+    }
+
     // Update is called once per frame
     void Update()
     {

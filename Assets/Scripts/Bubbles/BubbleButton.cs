@@ -81,7 +81,7 @@ public class BubbleButton : MonoBehaviour
 		//Vector2 clampedPos = Input.mousePosition;
 		Vector2 clampedPos = Camera.main.WorldToScreenPoint(fish.transform.position);
 		clampedPos.x = Mathf.Clamp(clampedPos.x, 100, Screen.width - 100);
-		clampedPos.y = Mathf.Clamp(clampedPos.y, 100, Screen.height - 100);
+		clampedPos.y = Mathf.Clamp(clampedPos.y, 100, Screen.height - 200);
 		bubble.anchoredPosition = clampedPos;
 
 		
