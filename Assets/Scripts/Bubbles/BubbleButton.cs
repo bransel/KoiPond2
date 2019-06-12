@@ -36,10 +36,10 @@ public class BubbleButton : MonoBehaviour
 	// Start is called before the first frame update
 	IEnumerator Start()
 	{
-		origImageColour = image.color;
-		transparentColor = origImageColour;
-		transparentColor.a = 0;
-		image.color = transparentColor;
+		//origImageColour = image.color;
+		//transparentColor = origImageColour;
+		//transparentColor.a = 0;
+		//image.color = transparentColor;
 
 		text.text = message;
 		bubble = GetComponent<RectTransform>();
@@ -87,8 +87,8 @@ public class BubbleButton : MonoBehaviour
 		
 		for (float t = 0; t < 1; t += Time.deltaTime / fadeTimeInSeconds)
 		{
-			//canvasGroup.alpha = Mathf.Lerp(0, 1, Mathf.SmoothStep(0, 1, t));
-			image.color = Color.Lerp(transparentColor, origImageColour, Mathf.SmoothStep(0, 1, t));
+			canvasGroup.alpha = Mathf.Lerp(0, 1, Mathf.SmoothStep(0, 1, t));
+			//image.color = Color.Lerp(transparentColor, origImageColour, Mathf.SmoothStep(0, 1, t));
 			yield return null;
 		}
 
@@ -159,12 +159,12 @@ public class BubbleButton : MonoBehaviour
 	{
 		fading = true;
 
-		//float alpha = canvasGroup.alpha;
+		float alpha = canvasGroup.alpha;
 
 		for (float t = 0; t < 1; t += Time.deltaTime / fadeTimeOutSeconds)
 		{
-			//canvasGroup.alpha = Mathf.Lerp(alpha, 0, Mathf.SmoothStep(0, 1, t));
-			image.color = Color.Lerp(origImageColour, transparentColor, Mathf.SmoothStep(0, 1, t));
+			canvasGroup.alpha = Mathf.Lerp(alpha, 0, Mathf.SmoothStep(0, 1, t));
+			//image.color = Color.Lerp(origImageColour, transparentColor, Mathf.SmoothStep(0, 1, t));
 			yield return null;
 		}
 
