@@ -17,7 +17,12 @@ public class FishController : MonoBehaviour
     public float idleTime;
 	private List<TwitterFishData> fishDataList = new List<TwitterFishData>();
 
-	IEnumerator Start()
+    [Header("Spawn Location (by Matt)")]
+    public float distance2Middle = 12;
+    public float minRandom = -1.2f;
+    public float maxRandom = 3;
+
+    IEnumerator Start()
 	{		
 		fishes = new Dictionary<Fish, long>();
 
@@ -100,10 +105,9 @@ public class FishController : MonoBehaviour
 
 	public Vector3 GetNewStartPos()
 	{
-        float randomAngle = Random.Range(0, 360);
-        float distance2Middle = 10;
+        float randomAngle = Random.Range(0, 360);        
 
-        return new Vector3(Mathf.Cos(randomAngle) * distance2Middle, Mathf.Sin(randomAngle) * distance2Middle, Random.Range(-1.2f, 3f));
+        return new Vector3(Mathf.Cos(randomAngle) * distance2Middle, Mathf.Sin(randomAngle) * distance2Middle, Random.Range(minRandom, maxRandom));
         /*
         //randomised spawn from origin
 		return new Vector3(Random.Range(-startAndExitBounds.x, startAndExitBounds.x) / 2f,
