@@ -35,6 +35,8 @@ public class MusicFader : MonoBehaviour
     public AudioSource currentSecondary;
     public float currentTime;
     public bool fadeSwitch = false;
+    public AudioClip primaryClip;
+    public AudioClip secondaryClip;
 
     // Start is called before the first frame update
     void Start()
@@ -52,22 +54,22 @@ public class MusicFader : MonoBehaviour
     {
         currentTime = currentPrimary.time;
 
-        if (trackIndex < tracklist.Length)
-        { 
-            if (currentPrimary.clip.length - currentPrimary.time <= fadeTimeTrigger && !fadeSwitch)
+        if (currentPrimary.clip.length - currentPrimary.time <= fadeTimeTrigger && !fadeSwitch)
+        {
+
+            if (trackIndex + 1 < tracklist.Length)
+                trackIndex++;
+            else
             {
-
-                if (trackIndex + 1 < tracklist.Length)
-                    trackIndex++;
-                else
-                    trackIndex = 0;//loop through list
-
-                fadeSwitch = true;
+                trackIndex = 0;//loop through list
             }
 
-            HandleSwitching();
-            HandleFading();
+            fadeSwitch = true;
         }
+
+        HandleSwitching();
+        HandleFading();
+
     }
 
     void HandleSwitching()
@@ -99,11 +101,18 @@ public class MusicFader : MonoBehaviour
         {
             currentPrimary.volume = 1;
             currentSecondary.volume = 0;
+            currentSecondary.Stop();
             fadeClock = 0;
 
             //prepare next clip
-            if(trackIndex + 1 < tracklist.Length)
+            if (trackIndex + 1 < tracklist.Length)
                 currentSecondary.clip = tracklist[trackIndex + 1];
+            else
+                currentSecondary.clip = tracklist[0];//loop through list
+
+            primaryClip = currentPrimary.clip;
+            secondaryClip = currentSecondary.clip;
+
         }
     }
 
