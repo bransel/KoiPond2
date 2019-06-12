@@ -10661,11 +10661,15 @@ MonoBehaviour:
   refreshTimerInSeconds: 150
   fishController: {fileID: 685364408}
   mentionsTextures:
-  - {fileID: 2800000, guid: 444e400e7db21c04e826f9c911dd7dd6, type: 3}
-  - {fileID: 2800000, guid: 444e400e7db21c04e826f9c911dd7dd6, type: 3}
-  - {fileID: 2800000, guid: 444e400e7db21c04e826f9c911dd7dd6, type: 3}
-  - {fileID: 2800000, guid: 444e400e7db21c04e826f9c911dd7dd6, type: 3}
-  - {fileID: 2800000, guid: 444e400e7db21c04e826f9c911dd7dd6, type: 3}
+  - {fileID: 2800000, guid: fff5d0cbcbb89d240bada89d7b949726, type: 3}
+  - {fileID: 2800000, guid: 48a88b009c746ca459e4373c5d33a47b, type: 3}
+  - {fileID: 2800000, guid: 56fc48bf2d1cabf439377cbe00c03345, type: 3}
+  - {fileID: 2800000, guid: a4ce6b2c6dd024c4ea63647d915e0d71, type: 3}
+  - {fileID: 2800000, guid: 8ab56f48c669ea144be42baeeb60bdff, type: 3}
+  - {fileID: 2800000, guid: 8be05b3ba67dc3f4cb57dd196708c34c, type: 3}
+  - {fileID: 2800000, guid: 63b60993c439ba4469d26b2c6efb1b84, type: 3}
+  - {fileID: 2800000, guid: 2dfe7d8310eca6740a4356bdd72d4e28, type: 3}
+  - {fileID: 2800000, guid: 128215d6f33e8ce42bbee5a9822db9b4, type: 3}
 --- !u!1 &1086130480
 GameObject:
   m_ObjectHideFlags: 0
@@ -26811,7 +26815,17 @@ PrefabInstance:
     - target: {fileID: 5794292385204827268, guid: 4fd74718d45e3214b85ef845702cbaa5,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.6177936
+      value: 1.292973
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794292385204827268, guid: 4fd74718d45e3214b85ef845702cbaa5,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.576106
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794292385204827268, guid: 4fd74718d45e3214b85ef845702cbaa5,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.810489
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fd74718d45e3214b85ef845702cbaa5, type: 3}
