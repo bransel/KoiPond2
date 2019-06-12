@@ -89,7 +89,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3752079931806541661}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 3752079933016983745}
+  image: {fileID: 1251311923896255607}
   canvasGroup: {fileID: 4705946320065760684}
   fadeInTextLetterByLetter: {fileID: 3579692715930254539}
   parallelfade: {fileID: 0}

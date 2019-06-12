@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Mute : MonoBehaviour
 {
-    public AudioListener audioListener;
+    public AudioListener[] audioListeners;
 
 	public bool MuteAudio
 	{
-		set { audioListener.enabled = !value; }
+		set
+		{ 
+			foreach (var audioListener in audioListeners)
+				audioListener.enabled = !value;
+		}
 	}
 }

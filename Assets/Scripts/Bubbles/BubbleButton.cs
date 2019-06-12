@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class BubbleButton : MonoBehaviour
 {
 	public Text text;
+	public Image image;
 	public CanvasGroup canvasGroup;
 	public FadeInTextLetterByLetter fadeInTextLetterByLetter;
     public UITextFade parallelfade;
@@ -29,10 +30,17 @@ public class BubbleButton : MonoBehaviour
     public float fadeWait; //hopefully this is how long to wait before fades
 
 	private int clickCount;
+	private Color origImageColour;
+	private Color transparentColor;
 
 	// Start is called before the first frame update
 	IEnumerator Start()
 	{
+		origImageColour = image.color;
+		transparentColor = origImageColour;
+		transparentColor.a = 0;
+		image.color = transparentColor;
+
 		text.text = message;
 		bubble = GetComponent<RectTransform>();
 		rigidbody = GetComponent<Rigidbody>();
@@ -76,9 +84,11 @@ public class BubbleButton : MonoBehaviour
 		clampedPos.y = Mathf.Clamp(clampedPos.y, 100, Screen.height - 100);
 		bubble.anchoredPosition = clampedPos;
 
+		
 		for (float t = 0; t < 1; t += Time.deltaTime / fadeTimeInSeconds)
 		{
-			canvasGroup.alpha = Mathf.Lerp(0, 1, Mathf.SmoothStep(0, 1, t));
+			//canvasGroup.alpha = Mathf.Lerp(0, 1, Mathf.SmoothStep(0, 1, t));
+			image.color = Color.Lerp(transparentColor, origImageColour, Mathf.SmoothStep(0, 1, t));
 			yield return null;
 		}
 
@@ -149,11 +159,12 @@ public class BubbleButton : MonoBehaviour
 	{
 		fading = true;
 
-		float alpha = canvasGroup.alpha;
+		//float alpha = canvasGroup.alpha;
 
 		for (float t = 0; t < 1; t += Time.deltaTime / fadeTimeOutSeconds)
 		{
-			canvasGroup.alpha = Mathf.Lerp(alpha, 0, Mathf.SmoothStep(0, 1, t));
+			//canvasGroup.alpha = Mathf.Lerp(alpha, 0, Mathf.SmoothStep(0, 1, t));
+			image.color = Color.Lerp(origImageColour, transparentColor, Mathf.SmoothStep(0, 1, t));
 			yield return null;
 		}
 
