@@ -408,7 +408,7 @@ MonoBehaviour:
   animChange: 2
   animMax: 4
   minScale: 0.29
-  maxScale: 0.33
+  maxScale: 0.32
   anim: {fileID: 0}
   triggerLeftString: turn left
   triggerRightString: turn right

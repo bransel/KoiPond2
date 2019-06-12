@@ -2562,7 +2562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.18867922, g: 0.16286932, b: 0.16286932, a: 0.67058825}
+  m_Color: {r: 0.18867922, g: 0.16286932, b: 0.16286932, a: 0.92941177}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3654,7 +3654,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 24}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &759909815
@@ -3690,7 +3690,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Hello! Lorem ipsum!
+  m_Text: "Hello,\n\nHere you can create a koi and attach a message of hope.\nThink
+    about a quote or some words that you'd like to share with\nothers to inspire them.
+    \nExpress yourself by personalising your koi as well.\nWhen you're done, press
+    'Submit',\nor 'Cancel' to skip this process. "
 --- !u!222 &759909816
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -101,7 +101,7 @@ public class FishController : MonoBehaviour
 	public Vector3 GetNewStartPos()
 	{
         float randomAngle = Random.Range(0, 360);
-        float distance2Middle = 8;
+        float distance2Middle = 10;
 
         return new Vector3(Mathf.Cos(randomAngle) * distance2Middle, Mathf.Sin(randomAngle) * distance2Middle, Random.Range(-1.2f, 3f));
         /*
