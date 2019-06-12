@@ -3784,7 +3784,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 18}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &311547812
@@ -3821,8 +3821,10 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: "Welcome, \nThis pond is filled with koi that carry messages of hope.\nTo
-    interact with a koi, click on it.  \nTo create a koi, hover your cursor to the
-    bottom left of the pond."
+    interact with a koi, simply click on it.  \nA menu to create a koi, to mute sound
+    or to change views\ncan be found at the bottom left of the screen.\nAll messages
+    can be found at the twitter account\n@hopefulkoi. \nPlease enjoy and visit us
+    again!"
 --- !u!222 &311547813
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16255,7 +16257,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1687214410
 MonoBehaviour:
   m_ObjectHideFlags: 0
