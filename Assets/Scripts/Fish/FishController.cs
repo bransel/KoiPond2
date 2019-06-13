@@ -172,6 +172,18 @@ public class FishController : MonoBehaviour
 		if (fishDataList.Count == 0)
 			return null;
 		
+		int index = -1;
+
+		index = Random.Range(0, fishDataList.Count);
+
+		if (fishes.ContainsValue(fishDataList[index].id))
+			return null;
+
+		return fishDataList[index];
+
+		/* if (fishDataList.Count == 0)
+			return null;
+		
 		if (maxFishOnScreen == fishDataList.Count || !unique)
 		{
 			return fishDataList[Random.Range(0, fishDataList.Count)];
@@ -186,7 +198,7 @@ public class FishController : MonoBehaviour
 				return null;
 
 			return fishDataList[index];
-		}
+		} */
 	}
 
 	public void AssignActiveBubble(BubbleButton bubble)

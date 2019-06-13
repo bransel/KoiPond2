@@ -16,7 +16,7 @@ public class Mute : MonoBehaviour
 		set
 		{ 
 			foreach (var audioSource in audioSources)
-				audioSource.volume = value ? 0 : 1;
+				audioSource.mute = value;
 		}
 	}
 }
