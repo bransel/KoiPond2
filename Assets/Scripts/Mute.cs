@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class Mute : MonoBehaviour
 {
-    public AudioListener[] audioListeners;
+    public AudioSource[] audioSources;
+
+	void Start()
+	{
+		audioSources = FindObjectsOfType<AudioSource>();
+	}
 
 	public bool MuteAudio
 	{
 		set
 		{ 
-			foreach (var audioListener in audioListeners)
-				audioListener.enabled = !value;
+			foreach (var audioSource in audioSources)
+				audioSource.enabled = !value;
 		}
 	}
 }
