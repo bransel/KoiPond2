@@ -2051,16 +2051,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170076733}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0795730aed6e7348915b24bc009a769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Timer: 0
-  currentInt: 0
+  Timer: 15.725424
+  currentInt: 0.534989
   interpolation: 1
-  maxInt: 2
-  minInt: 0.48
+  maxInt: 1.9
+  minInt: 0.38
 --- !u!4 &171994305 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 77283dc4d03d08b4f9f55f4458885b23,
@@ -2924,9 +2924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32421d7df3740ac42b9c8ce72e52905a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioListeners:
-  - {fileID: 534669903}
-  - {fileID: 952154714}
+  audioSources: []
 --- !u!114 &221274882
 MonoBehaviour:
   m_ObjectHideFlags: 0
