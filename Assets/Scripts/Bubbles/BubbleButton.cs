@@ -36,6 +36,7 @@ public class BubbleButton : MonoBehaviour
 	// Start is called before the first frame update
 	IEnumerator Start()
 	{
+		canvasGroup.alpha = 0;
 		//origImageColour = image.color;
 		//transparentColor = origImageColour;
 		//transparentColor.a = 0;
