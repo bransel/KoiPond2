@@ -41,6 +41,7 @@ public class FishController : MonoBehaviour
 
 	private float count;
 	private Vector3 mouseDelta;
+	Fish[] fishKeyss;
 	IEnumerator ClickOnRandomFish()
 	{
 		while (true)
@@ -49,16 +50,11 @@ public class FishController : MonoBehaviour
 				count += Time.deltaTime;
 			else
 			{
-				foreach (var fish in fishes)
+				if (fishes.Count > 0)
 				{
-					if (!fish.Key.exitFlag)
-					{
-						fish.Key.ClickOnFish();
-						break;
-					}
+					fishes.Keys.ToArray()[Random.Range(0, fishes.Count)].ClickOnFish();
+					count = 0;
 				}
-
-				count = 0;
 			}
 			
 			if (Input.GetMouseButton(0) || Input.anyKey || mouseDelta != Input.mousePosition)

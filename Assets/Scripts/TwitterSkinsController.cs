@@ -62,6 +62,8 @@ public class TwitterSkinsController : MonoBehaviour
 
     void RefreshTweets()
     {
+        fishDataList.Clear();
+        
         UnityEvent mentionsEvent = new UnityEvent();
         mentionsEvent.AddListener(delegate {
             ProcessMentionsTweets(tweetClient.GetMentionsTweets());
