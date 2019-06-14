@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -92,6 +93,7 @@ public class TwitterSkinsController : MonoBehaviour
                 fishData.message = tweet.text.Replace(string.Format("{0} ", link), "");
                 // Use tweet.user.screen_name to get the twitter handler from mentions tweets.
                 fishData.message += string.Format("\r\n- @{0}", tweet.user.screen_name);
+                fishData.message = WebUtility.HtmlDecode(fishData.message);
 
                 fishDataList.Add(fishData);
             }
@@ -114,6 +116,7 @@ public class TwitterSkinsController : MonoBehaviour
                 string link = tweet.text.Split(' ').Last();
                 fishData.message = tweet.text.Replace(string.Format(" {0}", link), "");
                 //fishData.message = tweet.text;
+                fishData.message = WebUtility.HtmlDecode(fishData.message);
 
                 StartCoroutine(FinishTextureFish(fishData, fishData.textureURL));
             }
@@ -137,6 +140,11 @@ public class TwitterSkinsController : MonoBehaviour
                 fishDataList.Add(fishData);
             }
         }
+    }
+
+    public string ProcessSpecialCharacters(string value)
+    {
+        return WebUtility.HtmlDecode(value);
     }
 }
 
