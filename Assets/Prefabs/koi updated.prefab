@@ -421,7 +421,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3431570795395300452}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 10
   m_Drag: 50
   m_AngularDrag: 50
   m_UseGravity: 0
@@ -827,10 +827,10 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: cb6129f8c99f5b44aba142166c21236a, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.38
-  m_Height: 2.41
+  m_Radius: 0.6977702
+  m_Height: 2.94
   m_Direction: 1
-  m_Center: {x: 0.11, y: 0.17204393, z: 0.55191785}
+  m_Center: {x: 0.19777015, y: 0.17204392, z: 0.55191785}
 --- !u!1 &9176489431787829398
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,11 +979,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1856673464957718135}
     m_Modifications:
-    - target: {fileID: 18832702127797231, guid: e1a80f7c87747cf439af589cfd7a851f,
-        type: 3}
-      propertyPath: m_Name
-      value: Bubbles
-      objectReference: {fileID: 0}
     - target: {fileID: 7442626945975614423, guid: e1a80f7c87747cf439af589cfd7a851f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1038,6 +1033,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 18832702127797231, guid: e1a80f7c87747cf439af589cfd7a851f,
+        type: 3}
+      propertyPath: m_Name
+      value: Bubbles
       objectReference: {fileID: 0}
     - target: {fileID: 4245268653254177522, guid: e1a80f7c87747cf439af589cfd7a851f,
         type: 3}
