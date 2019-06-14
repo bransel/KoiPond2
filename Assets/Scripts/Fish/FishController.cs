@@ -52,7 +52,9 @@ public class FishController : MonoBehaviour
 			{
 				if (fishes.Count > 0)
 				{
-					fishes.Keys.ToArray()[Random.Range(0, fishes.Count)].ClickOnFish();
+					while (fishes.Keys.ToArray()[Random.Range(0, fishes.Count)].ClickOnFish())
+						yield return null;
+					
 					count = 0;
 				}
 			}

@@ -41,6 +41,7 @@ public class Fish : MonoBehaviour
     public float maxWanderRange = 3;
     public float screenExitRange = 6;
     public bool exitFlag;
+    public bool clicked;
     public double zLimit = -1.51f;
     public float animTime;
     public float animChange = 2f;
@@ -92,6 +93,7 @@ public class Fish : MonoBehaviour
         origin.y = Random.Range(2f, -2f);
         moveState = 0;
         exitFlag = false;
+        clicked = false;
 
         //ED add code here to vary starting conditions...
     }
@@ -131,30 +133,28 @@ public class Fish : MonoBehaviour
         }
     }
 
-	public void ClickOnFish()
+    public bool ClickOnFish()
 	{
-		/* 
-		* 
-		textureController.Flash();
-		SpawnBubble();
-		Exit(); */
+		if (!clicked)
+        {
+            clicked = true;
+            
+            if (moveState == 0)
+                moveState = Random.Range(1, 2);
 
-		/*
-		moveSpeed = maxMoveSpeed * 1.5f;
-		rotSpeed = maxRotSpeed * 2;
-		*/
+            turnRate = 1.5f;
+            moveStateTimer += Random.Range(9, 12);
 
-		if (moveState == 0)
-			moveState = Random.Range(1, 2);
+            exitFlag = true;
 
-		turnRate = 1.5f;
-		moveStateTimer += Random.Range(9, 12);
+            textureController.Flash();
+            KoiParticlesOn();
+            SpawnBubble();
 
-		exitFlag = true;
-
-		textureController.Flash();
-		KoiParticlesOn();
-		SpawnBubble();
+            return true;
+        }
+        else
+            return false;
 	}
 
     void ManageAnim()
