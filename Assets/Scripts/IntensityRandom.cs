@@ -11,6 +11,9 @@ public class IntensityRandom : MonoBehaviour
     private float random;
     public float maxInt = 1.1f;
     public float minInt = 0.45f;
+    public ReflectionProbe rp;
+    RenderTexture targetTexture;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +21,8 @@ public class IntensityRandom : MonoBehaviour
         random = Random.Range(minInt, maxInt);
         light.intensity = random;
         currentInt = light.intensity;
-        
+        rp.RenderProbe(targetTexture = null);
+
     }
 
     // Update is called once per frame
@@ -35,6 +39,7 @@ public class IntensityRandom : MonoBehaviour
         {
             Timer = 0;
             random = Random.Range(minInt, maxInt);
+            rp.RenderProbe(targetTexture = null);
         }
     }
 }

@@ -403,7 +403,8 @@ MonoBehaviour:
   maxWanderRange: 4
   screenExitRange: 8
   exitFlag: 0
-  zLimit: -1.5099999904632568
+  clicked: 0
+  zLimit: -1.45
   animTime: 0
   animChange: 2
   animMax: 4
@@ -979,6 +980,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1856673464957718135}
     m_Modifications:
+    - target: {fileID: 18832702127797231, guid: e1a80f7c87747cf439af589cfd7a851f,
+        type: 3}
+      propertyPath: m_Name
+      value: Bubbles
+      objectReference: {fileID: 0}
     - target: {fileID: 7442626945975614423, guid: e1a80f7c87747cf439af589cfd7a851f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1033,11 +1039,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 18832702127797231, guid: e1a80f7c87747cf439af589cfd7a851f,
-        type: 3}
-      propertyPath: m_Name
-      value: Bubbles
       objectReference: {fileID: 0}
     - target: {fileID: 4245268653254177522, guid: e1a80f7c87747cf439af589cfd7a851f,
         type: 3}

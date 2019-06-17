@@ -88,7 +88,9 @@ public class Fish : MonoBehaviour
         float randomScale = Random.Range(minScale, maxScale);
         transform.localScale = new Vector3(randomScale, randomScale, randomScale);
         currentTarget = origin;
-        origin.z = transform.position.z;
+        // origin.z = transform.position.z; maybe this is what caused the spinning fish
+
+        origin.z = Random.Range(-1f, 3.5f);
         origin.x = Random.Range(-4f, 4f);
         origin.y = Random.Range(2f, -2f);
         moveState = 0;
