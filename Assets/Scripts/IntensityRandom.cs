@@ -39,7 +39,7 @@ public class IntensityRandom : MonoBehaviour
         {
             Timer = 0;
             random = Random.Range(minInt, maxInt);
-            rp.RenderProbe(targetTexture = null);
+           // rp.RenderProbe(targetTexture = null);
         }
     }
 }
