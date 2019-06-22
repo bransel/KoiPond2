@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1629804376476547821}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.9720552, y: 1.0141, z: 1.0141}
+  m_LocalScale: {x: 2.3695176, y: 1.2184892, z: 1.9438556}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -79,7 +79,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 12106, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: Tree Data
   m_EditorClassIdentifier: 
-  _uniqueID: 7
+  _uniqueID: 9
   materialHash: 31d6cfe0d16ae931b73c59d7e0c089c0-583008256
   root:
     _uniqueID: 1
@@ -241,17 +241,17 @@ MonoBehaviour:
     rootSpread: 0
     groundOffset: 0
     rootMatrix:
-      e00: 0.84483445
-      e01: -0.53467166
-      e02: -0.019519428
+      e00: -0.9135112
+      e01: 0.119125165
+      e02: 0.38898137
       e03: 0
-      e10: 0.53342336
-      e11: 0.8445635
-      e12: -0.04660624
+      e10: -0.13698183
+      e11: -0.99040294
+      e12: -0.018387852
       e13: 0
-      e20: 0.041404434
-      e21: 0.028962437
-      e22: 0.9987226
+      e20: 0.3830578
+      e21: -0.07008089
+      e22: 0.9210621
       e23: 0
       e30: 0
       e31: 0
@@ -615,17 +615,17 @@ MonoBehaviour:
     pitch: -0
     rotation: {x: 0, y: 0, z: 0, w: 1}
     matrix:
-      e00: 0.84483445
-      e01: -0.53467166
-      e02: -0.019519428
+      e00: -0.9135112
+      e01: 0.119125165
+      e02: 0.38898137
       e03: 0
-      e10: 0.53342336
-      e11: 0.8445635
-      e12: -0.04660624
+      e10: -0.13698183
+      e11: -0.99040294
+      e12: -0.018387852
       e13: 0
-      e20: 0.041404434
-      e21: 0.028962437
-      e22: 0.9987226
+      e20: 0.3830578
+      e21: -0.07008089
+      e22: 0.9210621
       e23: 0
       e30: 0
       e31: 0
@@ -758,18 +758,18 @@ MonoBehaviour:
     pitch: -0
     rotation: {x: 0.07740762, y: -0.08742739, z: 0.006814323, w: 0.99313545}
     matrix:
-      e00: 0.9252531
-      e01: 0.03941648
-      e02: 0.37729698
-      e03: 0.03941648
-      e10: 0.37766612
-      e11: -0.18933064
-      e12: -0.9063786
-      e13: -0.18933064
-      e20: 0.035707634
-      e21: 0.9811219
-      e22: -0.19006501
-      e23: 0.9811219
+      e00: -0.9202737
+      e01: 0.39083877
+      e02: -0.018475207
+      e03: 0.39083877
+      e10: 0.038157675
+      e11: 0.13663913
+      e12: 0.98988575
+      e13: 0.13663913
+      e20: 0.3894102
+      e21: 0.9102608
+      e22: -0.14065889
+      e23: 0.9102608
       e30: 0
       e31: 0
       e32: 0
@@ -777,6 +777,55 @@ MonoBehaviour:
     parentID: 2
     groupID: 5
     _uniqueID: 6
+  - spline:
+      nodes:
+      - point: {x: 0, y: 0, z: 0}
+        rot: {x: 0, y: 0, z: 0, w: 1}
+        normal: {x: 0, y: 0, z: 1}
+        tangent: {x: 0, y: 1, z: 0}
+        time: 0
+      - point: {x: -0.022611326, y: 0.5253764, z: -0.07743906}
+        rot: {x: -0.073089756, y: 0.0015584896, z: 0.021218127, w: 0.9970985}
+        normal: {x: -0, y: 0.14582175, z: 0.9893109}
+        tangent: {x: -0.042539753, y: 0.98841536, z: -0.14568976}
+        time: 1
+      tension: 0.5
+    seed: 2468
+    animSeed: 0.35274515
+    visible: 1
+    triStart: 20
+    triEnd: 28
+    vertStart: 20
+    vertEnd: 30
+    capRange: 0
+    breakOffset: 1
+    size: 0.06711784
+    scale: 0.44745225
+    offset: 0
+    baseAngle: 82.7868
+    angle: 82.7868
+    pitch: -31.275
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    matrix:
+      e00: 0.1255619
+      e01: 0.8479213
+      e02: 0.5150376
+      e03: 0.44228253
+      e10: 0
+      e11: 0.5191462
+      e12: -0.8546854
+      e13: 0.27079082
+      e20: -0.9920858
+      e21: 0.1073159
+      e22: 0.065184966
+      e23: 0.05597683
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    parentID: 4
+    groupID: 7
+    _uniqueID: 8
   mesh: {fileID: 2044917361182964774}
   optimizedSolidMaterial: {fileID: 523120296800989868}
   optimizedCutoutMaterial: {fileID: 1820905838085764345}
