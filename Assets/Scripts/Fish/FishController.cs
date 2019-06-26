@@ -52,11 +52,23 @@ public class FishController : MonoBehaviour
 			{
 				if (fishes.Count > 0)
 				{
+					IEnumerable<Fish> unclickedFish = fishes.Keys.ToArray().Where(i => !i.clicked);
+
+					int[] indices = RandomIndices(3, unclickedFish.Count());
+
+					for (int i = 0; i < indices.Length; i++)
+						unclickedFish.ElementAt(indices[i]).ClickOnFish();
+					
+					count = 0;
+				}
+				
+				/* if (fishes.Count > 0)
+				{
 					while (!fishes.Keys.ToArray()[Random.Range(0, fishes.Count)].ClickOnFish())
 						yield return null;
 					
 					count = 0;
-				}
+				} */
 			}
 			
 			if (Input.GetMouseButton(0) || Input.anyKey || mouseDelta != Input.mousePosition)
@@ -67,6 +79,35 @@ public class FishController : MonoBehaviour
 			
 			yield return null;
 		}
+	}
+
+	int[] RandomIndices(int targetLength, int size)
+	{
+		int[] indices = null;
+		
+		if (targetLength >= size)
+		{
+			indices = new int[size];
+
+			for (int i = 0; i < indices.Length; i++)
+				indices[i] = i;
+		}
+		else
+		{
+			indices = new int[targetLength];
+
+			for (int i = 0; i < indices.Length; i++)
+			{
+				int index = Random.Range(0, size);
+
+				while (indices.Contains(index))
+					index = Random.Range(0, size);
+				
+				indices[i] = index;
+			}
+		}
+
+		return indices;
 	}
 
 	public void LinkFishDataList(List<TwitterFishData> fishDataList)
