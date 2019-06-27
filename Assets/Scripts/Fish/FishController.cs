@@ -37,7 +37,6 @@ public class FishController : MonoBehaviour
 		}
 
 		StartCoroutine(ClickOnRandomFish());
-		Time.timeScale =3;
 	}
 
 	private float count;
