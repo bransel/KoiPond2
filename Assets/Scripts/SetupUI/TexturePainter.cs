@@ -10,6 +10,7 @@ using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.Networking;
 using UnityEngine.Events;
+using System.Collections.Generic;
 
 public class TexturePainter : MonoBehaviour
 {
@@ -30,6 +31,15 @@ public class TexturePainter : MonoBehaviour
     TweetClient tweetClient;
     public float pivotx, pivoty;
 
+	public GameObject UploadMessage;
+    public GameObject EmptyMessagePanel;
+    public GameObject ProfanityPanel;
+    public Text ProfanityMessage;
+    public GameObject RaycastBlocker;
+
+	private ProfanityClass profanityClass;
+	private string origProfanityMsgTxt;
+
     void Awake()
     {
         Texture2D tex = new Texture2D(canvasTexture.width, canvasTexture.height, TextureFormat.RGB24, false);
@@ -47,6 +57,9 @@ public class TexturePainter : MonoBehaviour
 
         GameObject tweetClientObject = new GameObject("TweetClient");
         tweetClient = tweetClientObject.AddComponent<TweetClient>();
+
+		profanityClass = new ProfanityClass();
+		origProfanityMsgTxt = ProfanityMessage.text;
     }
 
     void Update()
@@ -251,14 +264,12 @@ public class TexturePainter : MonoBehaviour
 
     ////////////////// OPTIONAL METHODS //////////////////
 
-    public GameObject UploadMessage;
-    public GameObject EmptyMessagePanel;
-    public GameObject RaycastBlocker;
-
     public void SaveTextureAndMessage(InputField inputField)
     {
         if (string.IsNullOrEmpty(inputField.text))
             ShowEmptyMessagePanel();
+		else if (profanityClass.IsContentProfane(inputField.text))
+			ShowProfanityPanel(profanityClass.GetProfanity(inputField.text));
         else if (uploadInProgress)
             Debug.LogError("Upload is already in progress!");
         else
@@ -289,6 +300,14 @@ public class TexturePainter : MonoBehaviour
     void ShowEmptyMessagePanel()
     {
         EmptyMessagePanel.SetActive(true);
+        RaycastBlocker.SetActive(true);
+    }
+
+	void ShowProfanityPanel(List<string> profanity)
+    {
+        ProfanityMessage.text = origProfanityMsgTxt + string.Join(", ", profanity);
+
+		ProfanityPanel.SetActive(true);
         RaycastBlocker.SetActive(true);
     }
 

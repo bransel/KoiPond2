@@ -53,14 +53,11 @@ public class FishController : MonoBehaviour
 				if (fishes.Count > 0)
 				{
 					fishKeys = fishes.Keys.ToArray().Where(i => !i.clicked && i.moveState != 3).ToArray();
-					PrintArray(fishKeys);
 
 					int[] indices = RandomIndices(3, fishKeys.Length);
-					PrintArray(indices);
 
 					for (int i = 0; i < indices.Length; i++)
 					{
-						print(i);
 						fishKeys[indices[i]].ClickOnFish();
 					}
 					
@@ -84,11 +81,6 @@ public class FishController : MonoBehaviour
 			
 			yield return null;
 		}
-	}
-
-	void PrintArray<T>(IEnumerable<T> array)
-	{
-		print(string.Format("[{0}]", string.Join(", ", array)));
 	}
 
 	int[] RandomIndices(int targetLength, int size)

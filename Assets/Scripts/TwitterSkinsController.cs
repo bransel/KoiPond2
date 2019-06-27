@@ -16,6 +16,7 @@ public class TwitterSkinsController : MonoBehaviour
     private TweetClient tweetClient;
     private List<TwitterFishData> fishDataList = new List<TwitterFishData>();
     private float timerTime;
+	private ProfanityClass profanityClass;
     
     // Start is called before the first frame update
     /* void Start()
@@ -34,7 +35,8 @@ public class TwitterSkinsController : MonoBehaviour
     } */
     IEnumerator Start()
     {
-        tweetClient = FindObjectOfType<TweetClient>();
+        profanityClass = new ProfanityClass();
+		tweetClient = FindObjectOfType<TweetClient>();
 
         if (!tweetClient)
         {
@@ -95,7 +97,13 @@ public class TwitterSkinsController : MonoBehaviour
                 fishData.message += string.Format("\r\n- @{0}", tweet.user.screen_name);
                 fishData.message = WebUtility.HtmlDecode(fishData.message);
 
-                fishDataList.Add(fishData);
+                if (profanityClass.IsContentProfane(fishData.message))
+				{
+					print("RUDE! This fish wanted to say: " + string.Join(", ", profanityClass.GetProfanity(fishData.message)));
+					print("Original Message: " + fishData.message);
+				}
+				else
+					fishDataList.Add(fishData);
             }
         }
     }
@@ -118,7 +126,13 @@ public class TwitterSkinsController : MonoBehaviour
                 //fishData.message = tweet.text;
                 fishData.message = WebUtility.HtmlDecode(fishData.message);
 
-                StartCoroutine(FinishTextureFish(fishData, fishData.textureURL));
+                if (profanityClass.IsContentProfane(fishData.message))
+				{
+					print("RUDE! This fish wanted to say: " + string.Join(", ", profanityClass.GetProfanity(fishData.message)));
+					print("Original Message: " + fishData.message);
+				}
+				else
+					StartCoroutine(FinishTextureFish(fishData, fishData.textureURL));
             }
         }
     }
