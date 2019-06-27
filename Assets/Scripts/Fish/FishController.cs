@@ -37,11 +37,12 @@ public class FishController : MonoBehaviour
 		}
 
 		StartCoroutine(ClickOnRandomFish());
+		Time.timeScale =3;
 	}
 
 	private float count;
 	private Vector3 mouseDelta;
-	Fish[] fishKeyss;
+	Fish[] fishKeys;
 	IEnumerator ClickOnRandomFish()
 	{
 		while (true)
@@ -52,12 +53,17 @@ public class FishController : MonoBehaviour
 			{
 				if (fishes.Count > 0)
 				{
-					IEnumerable<Fish> unclickedFish = fishes.Keys.ToArray().Where(i => !i.clicked);
+					fishKeys = fishes.Keys.ToArray().Where(i => !i.clicked && i.moveState != 3).ToArray();
+					PrintArray(fishKeys);
 
-					int[] indices = RandomIndices(3, unclickedFish.Count());
+					int[] indices = RandomIndices(3, fishKeys.Length);
+					PrintArray(indices);
 
 					for (int i = 0; i < indices.Length; i++)
-						unclickedFish.ElementAt(indices[i]).ClickOnFish();
+					{
+						print(i);
+						fishKeys[indices[i]].ClickOnFish();
+					}
 					
 					count = 0;
 				}
@@ -79,6 +85,11 @@ public class FishController : MonoBehaviour
 			
 			yield return null;
 		}
+	}
+
+	void PrintArray<T>(IEnumerable<T> array)
+	{
+		print(string.Format("[{0}]", string.Join(", ", array)));
 	}
 
 	int[] RandomIndices(int targetLength, int size)

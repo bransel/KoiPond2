@@ -6174,12 +6174,12 @@ PrefabInstance:
     - target: {fileID: 3752079933016983751, guid: ed496dca2d217b945afa6a266047c16d,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 45
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 3752079933016983751, guid: ed496dca2d217b945afa6a266047c16d,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 45
+      value: 60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed496dca2d217b945afa6a266047c16d, type: 3}
@@ -16558,7 +16558,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1687214410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18430,6 +18430,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_DynamicPixelsPerUnit
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866786227956916813, guid: 211a20cbc2b6e7f4fb107dc995b3a0fd,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866786227956916813, guid: 211a20cbc2b6e7f4fb107dc995b3a0fd,
+        type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866786227956916813, guid: 211a20cbc2b6e7f4fb107dc995b3a0fd,
+        type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5866786228405597872, guid: 211a20cbc2b6e7f4fb107dc995b3a0fd,
         type: 3}
