@@ -21,6 +21,7 @@ public class FishController : MonoBehaviour
     public float distance2Middle = 12;
     public float minRandom = -1.2f;
     public float maxRandom = 3;
+    public Transform originRef;
 
     IEnumerator Start()
 	{
@@ -148,6 +149,10 @@ public class FishController : MonoBehaviour
 	{
         float randomAngle = Random.Range(0, 360);        
 
+        Vector3 randomComponent = new Vector3(Mathf.Cos(randomAngle) * distance2Middle, Mathf.Sin(randomAngle) * distance2Middle, Random.Range(minRandom, maxRandom));
+
+
+
         return new Vector3(Mathf.Cos(randomAngle) * distance2Middle, Mathf.Sin(randomAngle) * distance2Middle, Random.Range(minRandom, maxRandom));
         /*
         //randomised spawn from origin
@@ -167,6 +172,7 @@ public class FishController : MonoBehaviour
 	public void AddFish(long id, string message, Texture texture = null)
 	{
 		Fish fish = Instantiate(fishPrefab);
+        fish.origin = originRef.position;
 		fish.fishController = this;
 		fish.transform.position = GetNewStartPos();
 		fish.transform.eulerAngles += Vector3.up * 180;
