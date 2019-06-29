@@ -11586,7 +11586,7 @@ MonoBehaviour:
   - {fileID: 1296742593}
   - {fileID: 279545283}
   idleTime: 15
-  distance2Middle: 12
+  distance2Middle: 8
   minRandom: -1.2
   maxRandom: 3
   originRef: {fileID: 1452144423}
@@ -11705,6 +11705,7 @@ GameObject:
   - component: {fileID: 691576421}
   - component: {fileID: 691576420}
   - component: {fileID: 691576419}
+  - component: {fileID: 691576418}
   m_Layer: 0
   m_Name: ViewReference_underwater
   m_TagString: Untagged
@@ -11712,6 +11713,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &691576418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691576417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82c940cb0b49b714eb739d769d6035b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRenderer: {fileID: 0}
 --- !u!23 &691576419
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25050,6 +25064,7 @@ GameObject:
   - component: {fileID: 1452144423}
   - component: {fileID: 1452144422}
   - component: {fileID: 1452144421}
+  - component: {fileID: 1452144424}
   m_Layer: 0
   m_Name: ViewReference_topdown
   m_TagString: Untagged
@@ -25116,6 +25131,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1452144424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452144420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82c940cb0b49b714eb739d769d6035b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRenderer: {fileID: 0}
 --- !u!1 &1456306157
 GameObject:
   m_ObjectHideFlags: 0
