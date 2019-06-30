@@ -80,9 +80,18 @@ public class BubbleButton : MonoBehaviour
 
 		//transform.position = Camera.main.WorldToScreenPoint(transform.position);
 		//Vector2 clampedPos = Input.mousePosition;
+
+		RectTransform bubbleRegion = GameObject.FindWithTag("BubbleRegion").GetComponent<RectTransform>();
+		
+		// x = left, y = right, z = top, w = bottom
+		Vector4 lrtb = new Vector4(-bubbleRegion.sizeDelta.x / 2f + bubbleRegion.anchoredPosition.x, 
+								   -bubbleRegion.sizeDelta.x / 2f - bubbleRegion.anchoredPosition.x,
+								   -bubbleRegion.sizeDelta.y / 2f - bubbleRegion.anchoredPosition.y,
+								   -bubbleRegion.sizeDelta.y / 2f + bubbleRegion.anchoredPosition.y);
+								   
 		Vector2 clampedPos = Camera.main.WorldToScreenPoint(fish.transform.position);
-		clampedPos.x = Mathf.Clamp(clampedPos.x, 100, Screen.width - 100);
-		clampedPos.y = Mathf.Clamp(clampedPos.y, 100, Screen.height - 200);
+		clampedPos.x = Mathf.Clamp(clampedPos.x, lrtb.x, Screen.width - lrtb.y);
+		clampedPos.y = Mathf.Clamp(clampedPos.y, lrtb.z, Screen.height - lrtb.w);
 		bubble.anchoredPosition = clampedPos;
 
 		

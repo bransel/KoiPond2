@@ -6,11 +6,12 @@ public class ProfanityClass
 {
     public bool IsContentProfane(string content)
 	{
-		string alphaContent = string.Join("", content.Where(i => char.IsLetter(i)));
+		string alphabetAndSpaceOnly = string.Join("", content.Where(i => char.IsLetter(i) || i == ' '));
+		string[] wordsInContent = alphabetAndSpaceOnly.Split(" "[0]);
 		
-		foreach (var word in ProfanityWords)
+		foreach (var word in wordsInContent)
 		{
-			if (alphaContent.Contains(word.ToLower()))
+			if (ProfanityWords.Contains(word.ToLower()))
 				return true;
 		}
 		
@@ -19,12 +20,13 @@ public class ProfanityClass
 
 	public List<string> GetProfanity(string content)
 	{
-		string alphaContent = string.Join("", content.Where(i => char.IsLetter(i)));
+		string alphabetAndSpaceOnly = string.Join("", content.Where(i => char.IsLetter(i) || i == ' '));
+		string[] wordsInContent = alphabetAndSpaceOnly.Split(" "[0]);
 		List<string> profanityList = new List<string>();
 
-		foreach (var word in ProfanityWords)
+		foreach (var word in wordsInContent)
 		{
-			if (alphaContent.Contains(word.ToLower()))
+			if (ProfanityWords.Contains(word.ToLower()))
 			{
 				Debug.Log("RUDE! YOU SAID: " + word);
 				profanityList.Add(word);
