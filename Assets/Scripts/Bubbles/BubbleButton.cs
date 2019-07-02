@@ -33,6 +33,15 @@ public class BubbleButton : MonoBehaviour
 	private Color origImageColour;
 	private Color transparentColor;
 
+	private PostAndUIControls postAndUIControls;
+	private LayoutElement textLayoutElement;
+	private RectTransform textRectTransform;
+	private ContentSizeFitter textContentSizeFitter;
+
+	private Transform bg;
+	private RectTransform bgRectTransform;
+	private BoxCollider2D boxCollider2D;
+
 	// Start is called before the first frame update
 	IEnumerator Start()
 	{
@@ -49,25 +58,29 @@ public class BubbleButton : MonoBehaviour
 		button = GetComponent<Button>();
 		AssignActiveBubble(this);
 
-		RectTransform textRectTransform = text.GetComponent<RectTransform>();
+		postAndUIControls = FindObjectOfType<PostAndUIControls>();
+		textLayoutElement = text.GetComponent<LayoutElement>();
+		textRectTransform = text.GetComponent<RectTransform>();
+		textContentSizeFitter = text.GetComponent<ContentSizeFitter>();
+
+		bg = text.transform.GetChild(0);
+		bgRectTransform = bg.GetComponent<RectTransform>();
+		boxCollider2D = GetComponent<BoxCollider2D>();
+
 		textRectTransform.ForceUpdateRectTransforms();
+
 		yield return null;
 
 		if (textRectTransform.sizeDelta.x > 0)
-		{
-			LayoutElement layoutElement = text.GetComponent<LayoutElement>();
-			layoutElement.preferredWidth = bubble.sizeDelta.x;
-		}
+			textLayoutElement.preferredWidth = bubble.sizeDelta.x;
 
 		yield return null;
 
-		text.GetComponent<ContentSizeFitter>().enabled = false;
+		textContentSizeFitter.enabled = false;
 
-		Transform bg = text.transform.GetChild(0);
-		RectTransform bgRectTransform = bg.GetComponent<RectTransform>();
 		bgRectTransform.ForceUpdateRectTransforms();
 		Vector2 rectSize = new Vector2(bgRectTransform.rect.width, bgRectTransform.rect.height);
-		GetComponent<BoxCollider2D>().size = rectSize + Vector2.one * 10;
+		boxCollider2D.size = rectSize + Vector2.one * 10;
 
 		bg.SetParent(text.transform.parent);
 		bg.SetAsFirstSibling();
@@ -94,6 +107,7 @@ public class BubbleButton : MonoBehaviour
 		clampedPos.y = Mathf.Clamp(clampedPos.y, lrtb.w, Screen.height - lrtb.z);
 		bubble.anchoredPosition = clampedPos;
 
+		StartCoroutine(UpdateUI());
 		
 		for (float t = 0; t < 1; t += Time.deltaTime / fadeTimeInSeconds)
 		{
@@ -112,10 +126,47 @@ public class BubbleButton : MonoBehaviour
 			StartCoroutine(FadeOutCoro());
 	}
 
+	IEnumerator UpdateUI()
+	{
+		int fontSize = 0;
+		Vector2 bubbleSizeDelta = Vector2.zero;
+		WaitForSeconds waitYield = new WaitForSeconds(0.1f);
+
+		while (true)
+		{
+			fontSize = postAndUIControls.bubbleFontSizeFloat;
+			bubbleSizeDelta = new Vector2(postAndUIControls.bubbleWidthFloat, bubble.sizeDelta.y);
+			
+			if (text.fontSize != fontSize || bubble.sizeDelta != bubbleSizeDelta)
+			{
+				text.fontSize = fontSize;
+				bubble.sizeDelta = bubbleSizeDelta;
+				
+				fadeInTextLetterByLetter.enabled = false;
+				fontSize = text.fontSize;
+				bg.SetParent(text.transform);
+				textContentSizeFitter.enabled = true;
+				textLayoutElement.preferredWidth = bubbleSizeDelta.x;
+				textRectTransform.ForceUpdateRectTransforms();
+
+				yield return null;
+
+				fadeInTextLetterByLetter.enabled = true;
+
+				bgRectTransform.ForceUpdateRectTransforms();
+				boxCollider2D.size = new Vector2(bgRectTransform.rect.width, bgRectTransform.rect.height) + Vector2.one * 10;
+
+				textContentSizeFitter.enabled = false;
+				bg.SetParent(text.transform.parent);
+				bg.SetAsFirstSibling();
+			}
+
+			yield return waitYield;
+		}
+	}
+
 	void Update()
 	{
-		/* if (!CanCameraSeePoint(Camera.main, transform.position))
-			Destroy(bubbleParent.gameObject); */
 		transform.position += Vector3.up * riseSpeed;
 	}
 

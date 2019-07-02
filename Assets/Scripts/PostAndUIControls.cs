@@ -9,7 +9,10 @@ using UnityEngine.Rendering.PostProcessing;
 public class PostAndUIControls : MonoBehaviour
 {
     public PostProcessVolume postProcessVolume;
+    public BubbleButton bubbleButton;
+    public RectTransform bubbleRect;
     public Text panelText;
+    public Renderer voronoiRenderer;
 
     private Bloom bloom;
     private ColorGrading colorGrading;
@@ -47,6 +50,11 @@ public class PostAndUIControls : MonoBehaviour
     public InputField bubbleFontSize;
     public InputField bubbleWidth;
     public InputField panelFontSize;
+    public InputField voronoiScale;
+    public InputField voronoiSpeed;
+
+    public int bubbleFontSizeFloat { get; set; }
+    public float bubbleWidthFloat { get; set; }
 
     public void ChangeIntensityValue()
     {
@@ -189,17 +197,27 @@ public class PostAndUIControls : MonoBehaviour
 
     public void ChangeBubbleFontSizeValue()
     {
-        
+        bubbleFontSizeFloat = Convert.ToInt32(bubbleFontSize.text);
     }
 
     public void ChangeBubbleWidthValue()
     {
-       
+       bubbleWidthFloat = Convert.ToSingle(bubbleWidth.text);
     }
 
     public void ChangePanelFontSizeValue()
     {
         panelText.fontSize = Convert.ToInt32(panelFontSize.text);
+    }
+
+    public void ChangeVoronoiScaleValue()
+    {
+        voronoiRenderer.material.SetFloat("_RippleScale", Convert.ToSingle(voronoiScale.text));
+    }
+
+    public void ChangeVoronoiSpeedValue()
+    {
+        voronoiRenderer.material.SetFloat("_RippleSpeed", Convert.ToSingle(voronoiSpeed.text));
     }
     
     // Start is called before the first frame update
@@ -252,12 +270,14 @@ public class PostAndUIControls : MonoBehaviour
 
 
 
-        panelFontSize.text = panelText.fontSize.ToString();
-    }
+        bubbleFontSize.text = bubbleButton.text.fontSize.ToString();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        bubbleWidth.text = bubbleRect.sizeDelta.x.ToString();
+
+        panelFontSize.text = panelText.fontSize.ToString();
+
+        voronoiScale.text = voronoiRenderer.material.GetFloat("_RippleScale").ToString();
+
+        voronoiSpeed.text = voronoiRenderer.material.GetFloat("_RippleSpeed").ToString();
     }
 }
