@@ -14,6 +14,10 @@ public class PostAndUIControls : MonoBehaviour
 	public Renderer voronoiRenderer1;
 	public Renderer voronoiRenderer2;
 
+	public Image hueBG;
+	public Image saturationBG;
+	public Image valueBG;
+
 	public BubbleButton bubbleButton;
 	public RectTransform bubbleRect;
 	public Text panelText;
@@ -111,6 +115,10 @@ public class PostAndUIControls : MonoBehaviour
 	public void ChangeBloomColourValue()
 	{
 		bloom.color.Override(Color.HSVToRGB(bloomH.value, bloomS.value, bloomV.value));
+
+		hueBG.color = bloom.color.value;
+		saturationBG.color = bloom.color.value;
+		valueBG.color = bloom.color.value;
 	}
 
 
