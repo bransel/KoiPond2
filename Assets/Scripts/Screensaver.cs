@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Screensaver : MonoBehaviour
 {
@@ -12,11 +13,14 @@ public class Screensaver : MonoBehaviour
     public float screenSwitchInterval = 60;
     public float screenSwitchClock = 0;
 
+	[HideInInspector]
+	public UnityEvent switchEvent;
+
     private Vector3 mouseDelta;
 
     void Start()
     {
-        screenSwitchClock = screenSwitchInterval;
+		screenSwitchClock = screenSwitchInterval;
     }
 
     // Update is called once per frame
@@ -28,9 +32,7 @@ public class Screensaver : MonoBehaviour
         }
         else
         {
-            primaryCamera.SetActive(!primaryCamera.activeSelf);
-            secondaryCamera.SetActive(!primaryCamera.activeSelf);
-            screenSwitchClock = screenSwitchInterval;
+            Switch();
         }
 
         if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
@@ -45,6 +47,9 @@ public class Screensaver : MonoBehaviour
 
     public void Switch()
     {
-        screenSwitchClock = 0;
+        primaryCamera.SetActive(!primaryCamera.activeSelf);
+		secondaryCamera.SetActive(!primaryCamera.activeSelf);
+		screenSwitchClock = screenSwitchInterval;
+		switchEvent.Invoke();
     }
 }
