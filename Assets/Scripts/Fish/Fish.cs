@@ -46,6 +46,7 @@ public class Fish : MonoBehaviour
     public float animTime;
     public float animChange = 2f;
     public float animMax = 4f;
+    public Transform customOrigin;
 
     int prevMoveState = 0;
 
@@ -84,15 +85,14 @@ public class Fish : MonoBehaviour
 
     void InitFish()
     {
+        if (customOrigin != null)
+            origin = customOrigin.position;
+
         //randomise the fish size.
         float randomScale = Random.Range(minScale, maxScale);
         transform.localScale = new Vector3(randomScale, randomScale, randomScale);
         currentTarget = origin;
-        // origin.z = transform.position.z; maybe this is what caused the spinning fish
 
-        origin.z = Random.Range(-1f, 3.5f);
-        origin.x = Random.Range(-4f, 4f);
-        origin.y = Random.Range(2f, -2f);
         moveState = 0;
         exitFlag = false;
         clicked = false;
