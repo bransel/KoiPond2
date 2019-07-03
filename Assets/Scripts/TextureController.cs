@@ -5,10 +5,17 @@ using UnityEngine;
 public class TextureController : MonoBehaviour
 {
     public SkinnedMeshRenderer meshRenderer;
+    public bool preloadedMode = false;
+    public Texture[] preloaded;
 
     void Start()
     {
         meshRenderer = GetComponent<SkinnedMeshRenderer>();
+
+        if(preloadedMode)
+        {
+            meshRenderer.material.SetTexture("_MainTex",preloaded[Random.Range(0, preloaded.Length - 1)]);
+        }
     }
 
     public void ApplyTexture(Texture texture)
