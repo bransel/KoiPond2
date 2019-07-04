@@ -68,6 +68,7 @@ public class BubbleButton : MonoBehaviour
 		boxCollider2D = GetComponent<BoxCollider2D>();
 
 		textRectTransform.ForceUpdateRectTransforms();
+       
 
 		yield return null;
 
@@ -95,14 +96,21 @@ public class BubbleButton : MonoBehaviour
 		//Vector2 clampedPos = Input.mousePosition;
 
 		RectTransform bubbleRegion = GameObject.FindWithTag("BubbleRegion").GetComponent<RectTransform>();
-		
-		// x = left, y = right, z = top, w = bottom
+
+        // x = left, y = right, z = top, w = bottom
+        
 		Vector4 lrtb = new Vector4(-bubbleRegion.sizeDelta.x / 2f + bubbleRegion.anchoredPosition.x, 
 								   -bubbleRegion.sizeDelta.x / 2f - bubbleRegion.anchoredPosition.x,
 								   -bubbleRegion.sizeDelta.y / 2f - bubbleRegion.anchoredPosition.y,
 								   -bubbleRegion.sizeDelta.y / 2f + bubbleRegion.anchoredPosition.y);
-								   
-		Vector2 clampedPos = Camera.main.WorldToScreenPoint(fish.transform.position);
+			
+        /* Vector4 lrtb = new Vector4((-bubbleRegion.sizeDelta.x / 2f + bubbleRegion.anchoredPosition.x)*(Screen.width/4642),
+(-bubbleRegion.sizeDelta.x / 2f - bubbleRegion.anchoredPosition.x) *(Screen.width/4642),
+                                  ( -bubbleRegion.sizeDelta.y / 2f - bubbleRegion.anchoredPosition.y) * (Screen.height/2456),
+                                  ( -bubbleRegion.sizeDelta.y / 2f + bubbleRegion.anchoredPosition.y)* (Screen.height/2456));
+        */
+
+        Vector2 clampedPos = Camera.main.WorldToScreenPoint(fish.transform.position);
 		clampedPos.x = Mathf.Clamp(clampedPos.x, lrtb.x, Screen.width - lrtb.y);
 		clampedPos.y = Mathf.Clamp(clampedPos.y, lrtb.w, Screen.height - lrtb.z);
 		bubble.anchoredPosition = clampedPos;

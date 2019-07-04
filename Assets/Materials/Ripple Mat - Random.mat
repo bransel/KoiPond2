@@ -21,7 +21,7 @@ Material:
     m_TexEnvs: []
     m_Floats:
     - _Amplitude: 0.842
-    - _Duration: 2.4
+    - _Duration: 3.5
     - _Frequency: 5
     - _Radius: 2.3
     m_Colors: []
