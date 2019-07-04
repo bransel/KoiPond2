@@ -21,6 +21,7 @@ public class Fish : MonoBehaviour
 
     public float moveSpeed { get; set; }
     public float rotSpeed { get; set; }
+    public bool slitFish = false;
 
     private new Rigidbody rigidbody;
 
@@ -239,8 +240,15 @@ public class Fish : MonoBehaviour
 
         if (moveState != 3)
         {
+            if (transform.position.x >= 12.2f || transform.position.x <= -17.3f || transform.position.y >= 7.9f || transform.position.y <= -11.8f && slitFish == true)
+            {
+
+                currentTarget = origin;
+                moveState = 0;
+            }
             //go back to the middle if you're too far from the middle
-            if (Vector3.Distance(transform.position, origin) >= maxWanderRange)
+                if (Vector3.Distance(transform.position, origin) >= maxWanderRange && slitFish == false)
+           
             {
                 currentTarget = origin;
                 moveState = 0;

@@ -56,7 +56,7 @@ public class FishController : MonoBehaviour
 				{
 					fishKeys = fishes.Keys.ToArray().Where(i => !i.clicked && i.moveState != 3).ToArray();
 
-					int[] indices = RandomIndices(3, fishKeys.Length);
+					int[] indices = RandomIndices(2, fishKeys.Length);
 
 					for (int i = 0; i < indices.Length; i++)
 					{
@@ -201,9 +201,9 @@ public class FishController : MonoBehaviour
 		
 		fishes[fish] = fishData.id;
 		
-		fish.transform.position = GetNewStartPos();
-		fish.transform.eulerAngles += Vector3.up * 180;
-        fish.currentTarget = GetNewTargetPos();
+		//fish.transform.position = GetNewStartPos();
+		//fish.transform.eulerAngles += Vector3.up * 180;
+        //fish.currentTarget = GetNewTargetPos();
 		if (fishData.texture)
 			fish.textureController.ApplyTexture(fishData.texture);
 		fish.id = fishData.id;
