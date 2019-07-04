@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.2804242, g: 0.13076684, b: 0.45175362, a: 1}
+  m_IndirectSpecularColor: {r: 0.28042504, g: 0.1307671, b: 0.45175475, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9193,7 +9193,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &347897392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9223,7 +9223,7 @@ Transform:
   m_LocalScale: {x: 235.66997, y: 235.66995, z: 235.66998}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 31
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &364352463
 GameObject:
@@ -11640,7 +11640,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &441179305
 GameObject:
@@ -27770,7 +27770,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 28
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1103233484 stripped
 Transform:
@@ -30435,6 +30435,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 18832702127797231, guid: e1a80f7c87747cf439af589cfd7a851f,
+        type: 3}
+      propertyPath: m_Name
+      value: BubblesParticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 18832702127797231, guid: e1a80f7c87747cf439af589cfd7a851f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 18832702127797231, guid: e1a80f7c87747cf439af589cfd7a851f,
+        type: 3}
+      propertyPath: m_Name
+      value: BubblesParticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 18832702127797231, guid: e1a80f7c87747cf439af589cfd7a851f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7442626945975614423, guid: e1a80f7c87747cf439af589cfd7a851f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -30488,26 +30508,6 @@ PrefabInstance:
     - target: {fileID: 7442626945975614423, guid: e1a80f7c87747cf439af589cfd7a851f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 18832702127797231, guid: e1a80f7c87747cf439af589cfd7a851f,
-        type: 3}
-      propertyPath: m_Name
-      value: BubblesParticle
-      objectReference: {fileID: 0}
-    - target: {fileID: 18832702127797231, guid: e1a80f7c87747cf439af589cfd7a851f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 18832702127797231, guid: e1a80f7c87747cf439af589cfd7a851f,
-        type: 3}
-      propertyPath: m_Name
-      value: BubblesParticle
-      objectReference: {fileID: 0}
-    - target: {fileID: 18832702127797231, guid: e1a80f7c87747cf439af589cfd7a851f,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4245268653254177522, guid: e1a80f7c87747cf439af589cfd7a851f,
@@ -41225,7 +41225,7 @@ PrefabInstance:
     - target: {fileID: 7647244051721641531, guid: f96e974edee918e42aedcc1f90f16028,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f96e974edee918e42aedcc1f90f16028, type: 3}
@@ -45746,7 +45746,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1788163097
 GameObject:
@@ -47962,7 +47962,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1855119936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53305,7 +53305,7 @@ Transform:
 --- !u!199 &2059490991
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -60562,7 +60562,7 @@ Transform:
   m_LocalScale: {x: 11.5455, y: 1.7293034, z: 9.2364}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: -263.811, y: 0, z: 0}
 --- !u!65 &223109523698125454
 BoxCollider:
