@@ -98,22 +98,28 @@ public class BubbleButton : MonoBehaviour
 		RectTransform bubbleRegion = GameObject.FindWithTag("BubbleRegion").GetComponent<RectTransform>();
 
         // x = left, y = right, z = top, w = bottom
-        
-		Vector4 lrtb = new Vector4(-bubbleRegion.sizeDelta.x / 2f + bubbleRegion.anchoredPosition.x, 
-								   -bubbleRegion.sizeDelta.x / 2f - bubbleRegion.anchoredPosition.x,
-								   -bubbleRegion.sizeDelta.y / 2f - bubbleRegion.anchoredPosition.y,
-								   -bubbleRegion.sizeDelta.y / 2f + bubbleRegion.anchoredPosition.y);
-			
-        /* Vector4 lrtb = new Vector4((-bubbleRegion.sizeDelta.x / 2f + bubbleRegion.anchoredPosition.x)*(Screen.width/4642),
-(-bubbleRegion.sizeDelta.x / 2f - bubbleRegion.anchoredPosition.x) *(Screen.width/4642),
-                                  ( -bubbleRegion.sizeDelta.y / 2f - bubbleRegion.anchoredPosition.y) * (Screen.height/2456),
-                                  ( -bubbleRegion.sizeDelta.y / 2f + bubbleRegion.anchoredPosition.y)* (Screen.height/2456));
-        */
+
+               Vector4 lrtb = new Vector4(-bubbleRegion.sizeDelta.x / 2f + bubbleRegion.anchoredPosition.x, 
+                                           -bubbleRegion.sizeDelta.x / 2f - bubbleRegion.anchoredPosition.x,
+                                           -bubbleRegion.sizeDelta.y / 2f - bubbleRegion.anchoredPosition.y,
+                                           -bubbleRegion.sizeDelta.y / 2f + bubbleRegion.anchoredPosition.y);
+
+          
+        // Vector4 lrtb = new Vector4((Screen.width/100)*44.5f, (Screen.width/100) * 72f , (Screen.height/50)*14.6f, (Screen.height/50) * 27.8f);
+       /* Vector4 lrtb = new Vector4((-bubbleRegion.sizeDelta.x / 2f + bubbleRegion.anchoredPosition.x) /(4642*Screen.width),
+
+                                      (-bubbleRegion.sizeDelta.x / 2f - bubbleRegion.anchoredPosition.x)/ (4642*Screen.width),
+                                      (-bubbleRegion.sizeDelta.y / 2f - bubbleRegion.anchoredPosition.y)/(2456 * Screen.height),
+                                      (-bubbleRegion.sizeDelta.y / 2f + bubbleRegion.anchoredPosition.y) /(2456 * Screen.height));
+                                      */
 
         Vector2 clampedPos = Camera.main.WorldToScreenPoint(fish.transform.position);
-		clampedPos.x = Mathf.Clamp(clampedPos.x, lrtb.x, Screen.width - lrtb.y);
-		clampedPos.y = Mathf.Clamp(clampedPos.y, lrtb.w, Screen.height - lrtb.z);
-		bubble.anchoredPosition = clampedPos;
+        clampedPos.x = Mathf.Clamp(clampedPos.x, lrtb.x, Screen.width - lrtb.y);
+        clampedPos.y = Mathf.Clamp(clampedPos.y, lrtb.w, Screen.height - lrtb.z);
+
+       // clampedPos.x = Mathf.Clamp(clampedPos.x, lrtb.x,  lrtb.y);
+       // clampedPos.y = Mathf.Clamp(clampedPos.y, lrtb.w,  lrtb.z);
+        bubble.anchoredPosition = clampedPos;
 
 		StartCoroutine(UpdateUI());
 		
