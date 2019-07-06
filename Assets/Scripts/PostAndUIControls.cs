@@ -24,6 +24,8 @@ public class PostAndUIControls : MonoBehaviour
 
 	public Screensaver screensaver;
 
+	public CanvasGroup canvasGroup;
+
 	private PostProcessVolume activePostProcessVolume;
 	private Renderer activeVoronoiRenderer;
 
@@ -282,6 +284,10 @@ public class PostAndUIControls : MonoBehaviour
 		screensaver.switchEvent.AddListener(RefreshUI);
 
 		RefreshUI();
+
+		bubbleFontSize.text = bubbleButton.text.fontSize.ToString();
+
+		bubbleWidth.text = bubbleRect.sizeDelta.x.ToString();
 	}
 
 	public void RefreshUI()
@@ -344,14 +350,16 @@ public class PostAndUIControls : MonoBehaviour
 
 
 
-		bubbleFontSize.text = bubbleButton.text.fontSize.ToString();
-
-		bubbleWidth.text = bubbleRect.sizeDelta.x.ToString();
-
 		panelFontSize.text = panelText.fontSize.ToString();
 
 		voronoiScale.text = activeVoronoiRenderer.material.GetFloat("_RippleScale").ToString();
 
 		voronoiSpeed.text = activeVoronoiRenderer.material.GetFloat("_RippleSpeed").ToString();
+	}
+
+	public void SetEnabled(bool value)
+	{
+		canvasGroup.alpha = value ? 1 : 0;
+		canvasGroup.interactable = value;
 	}
 }
