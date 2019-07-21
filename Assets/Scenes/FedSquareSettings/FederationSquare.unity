@@ -10333,7 +10333,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Tweet your hopeful messages to @hopefulkoi to add them to the pond
+  m_Text: "Tweet your messages of positivity and hope to @hopefulkoi and add them
+    to the pond!\r\n\r\n"
 --- !u!222 &388187215
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -47212,7 +47213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 613748216, guid: 211a20cbc2b6e7f4fb107dc995b3a0fd, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 977555510, guid: 211a20cbc2b6e7f4fb107dc995b3a0fd, type: 3}
       propertyPath: m_IsActive
