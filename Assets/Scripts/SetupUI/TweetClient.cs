@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -147,8 +147,21 @@ public class Tweet
 {
     public long id;
     public string text;
+    public Entities entities;
     public Extended_Entities extended_entities;
     public User user;
+}
+
+[Serializable]
+public class Entities
+{
+    public User_Mentions[] user_mentions;
+}
+
+[Serializable]
+public class User_Mentions
+{
+    public string screen_name;
 }
 
 [Serializable]

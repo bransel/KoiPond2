@@ -67,11 +67,11 @@ public class TwitterSkinsController : MonoBehaviour
     {
         fishDataList.Clear();
         
-        UnityEvent mentionsEvent = new UnityEvent();
+        /* UnityEvent mentionsEvent = new UnityEvent();
         mentionsEvent.AddListener(delegate {
             ProcessMentionsTweets(tweetClient.GetMentionsTweets());
         });
-        StartCoroutine(tweetClient.RetrieveMentionsTweets(mentionsEvent));
+        StartCoroutine(tweetClient.RetrieveMentionsTweets(mentionsEvent)); */
 
         UnityEvent userEvent = new UnityEvent();
         userEvent.AddListener(delegate {
@@ -81,7 +81,7 @@ public class TwitterSkinsController : MonoBehaviour
     }
 
     public Texture[] mentionsTextures;
-    void ProcessMentionsTweets(List<Tweet> tweets)
+    /* void ProcessMentionsTweets(List<Tweet> tweets)
     {
         foreach (var tweet in tweets)
         {
@@ -106,33 +106,56 @@ public class TwitterSkinsController : MonoBehaviour
 					fishDataList.Add(fishData);
             }
         }
-    }
+    } */
 
     void ProcessUserTweets(List<Tweet> tweets)
     {
         foreach (var tweet in tweets)
         {
-            if (tweet.extended_entities == null || tweet.extended_entities.media.Length == 0)
-				continue;
-			
 			if (!fishDataList.Select(i => i.id).Contains(tweet.id))
             {
                 TwitterFishData fishData = new TwitterFishData();
                 fishData.id = tweet.id;
-                fishData.textureURL = tweet.extended_entities.media[0].media_url_https;
 
-                string link = tweet.text.Split(' ').Last();
-                fishData.message = tweet.text.Replace(string.Format(" {0}", link), "");
-                //fishData.message = tweet.text;
-                fishData.message = WebUtility.HtmlDecode(fishData.message);
+                if (tweet.extended_entities == null || tweet.extended_entities.media.Length == 0)
+                {
+                    if (tweet.entities.user_mentions.Length < 2)
+                        continue;
+                    
+                    fishData.texture = mentionsTextures[UnityEngine.Random.Range(0, mentionsTextures.Length)];
 
-                if (profanityClass.IsContentProfane(fishData.message))
-				{
-					print("RUDE! This fish wanted to say: " + string.Join(", ", profanityClass.GetProfanity(fishData.message)));
-					print("Original Message: " + fishData.message);
-				}
-				else
-					StartCoroutine(FinishTextureFish(fishData, fishData.textureURL));
+                    string[] tags = tweet.text.Split(' ');
+                    fishData.message = tweet.text.Replace(string.Format("{0} ", tags[0]), "");
+                    fishData.message = fishData.message.Replace(string.Format("{0} ", tags[1]), "");
+                    // Use tweet.user.screen_name to get the twitter handler from mentions tweets.
+                    fishData.message += string.Format("\r\n- @{0}", tweet.entities.user_mentions[0].screen_name);
+                    fishData.message = WebUtility.HtmlDecode(fishData.message);
+
+                    if (profanityClass.IsContentProfane(fishData.message))
+                    {
+                        print("RUDE! This fish wanted to say: " + string.Join(", ", profanityClass.GetProfanity(fishData.message)));
+                        print("Original Message: " + fishData.message);
+                    }
+                    else
+                        fishDataList.Add(fishData);
+                }
+                else
+                {
+                    fishData.textureURL = tweet.extended_entities.media[0].media_url_https;
+
+                    string link = tweet.text.Split(' ').Last();
+                    fishData.message = tweet.text.Replace(string.Format(" {0}", link), "");
+                    //fishData.message = tweet.text;
+                    fishData.message = WebUtility.HtmlDecode(fishData.message);
+
+                    if (profanityClass.IsContentProfane(fishData.message))
+                    {
+                        print("RUDE! This fish wanted to say: " + string.Join(", ", profanityClass.GetProfanity(fishData.message)));
+                        print("Original Message: " + fishData.message);
+                    }
+                    else
+                        StartCoroutine(FinishTextureFish(fishData, fishData.textureURL));
+                }
             }
         }
     }
