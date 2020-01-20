@@ -75,9 +75,11 @@ public class TwitterSkinsController : MonoBehaviour
 
         UnityEvent userEvent = new UnityEvent();
         userEvent.AddListener(delegate {
-            ProcessUserTweets(tweetClient.GetUserTweets());
+            //ProcessUserTweets(tweetClient.GetUserTweets());
+            ProcessUserTweets(tweetClient.GetSearchTweets());
         });
-        StartCoroutine(tweetClient.RetrieveUserTweets(userEvent));
+        //StartCoroutine(tweetClient.RetrieveUserTweets(userEvent));
+        StartCoroutine(tweetClient.RetrieveSearchTweets(userEvent));
     }
 
     public Texture[] mentionsTextures;
@@ -117,7 +119,22 @@ public class TwitterSkinsController : MonoBehaviour
                 TwitterFishData fishData = new TwitterFishData();
                 fishData.id = tweet.id;
 
-                if (tweet.extended_entities == null || tweet.extended_entities.media.Length == 0)
+                fishData.texture = mentionsTextures[UnityEngine.Random.Range(0, mentionsTextures.Length)];
+
+                string[] tags = tweet.text.Split(' ');
+                fishData.message = tweet.text.Replace(string.Format("{0} ", tags[0]), "");
+                fishData.message = fishData.message.Replace(string.Format("{0} ", tags[1]), "");
+                fishData.message = WebUtility.HtmlDecode(fishData.message);
+
+                if (profanityClass.IsContentProfane(fishData.message))
+                {
+                    print("RUDE! This fish wanted to say: " + string.Join(", ", profanityClass.GetProfanity(fishData.message)));
+                    print("Original Message: " + fishData.message);
+                }
+                else
+                    fishDataList.Add(fishData);
+
+                /* if (tweet.extended_entities == null || tweet.extended_entities.media.Length == 0)
                 {
                     if (tweet.entities.user_mentions.Length < 2)
                         continue;
@@ -155,7 +172,7 @@ public class TwitterSkinsController : MonoBehaviour
                     }
                     else
                         StartCoroutine(FinishTextureFish(fishData, fishData.textureURL));
-                }
+                } */
             }
         }
     }

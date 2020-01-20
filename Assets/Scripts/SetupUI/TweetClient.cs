@@ -7,6 +7,7 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using Newtonsoft.Json;
 using UnityEngine.Events;
+using System.Linq;
 
 public class TweetClient : MonoBehaviour
 {
@@ -140,6 +141,36 @@ public class TweetClient : MonoBehaviour
             }
         }
     }
+
+    List<Tweet> searchTweets;
+    public List<Tweet> GetSearchTweets()
+    {
+        return searchTweets;
+    }
+
+    public IEnumerator RetrieveSearchTweets(UnityEvent searchEvent)
+    {
+        using (UnityWebRequest webRequest = UnityWebRequest.Get("https://asia-east2-unity-koi.cloudfunctions.net/search-pause-fest"))
+        {
+            yield return webRequest.SendWebRequest();
+
+            if (webRequest.isNetworkError || webRequest.isHttpError)
+            {
+                Debug.Log("Error: " + webRequest.error);
+            }
+            else
+            {
+                searchTweets = JsonConvert.DeserializeObject<Status>(webRequest.downloadHandler.text).Statuses.ToList();
+                searchEvent.Invoke();
+            }
+        }
+    }
+}
+
+[Serializable]
+public class Status
+{
+    public Tweet[] Statuses;
 }
 
 [Serializable]
