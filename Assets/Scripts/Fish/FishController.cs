@@ -15,7 +15,12 @@ public class FishController : MonoBehaviour
 	public BubbleButton bubble { get; set; }
 	public Dictionary<Fish, long> fishes { get; set; }
     public float idleTime;
-	private List<TwitterFishData> fishDataList = new List<TwitterFishData>();
+    // max
+    public float idleTimeMax;
+
+    //randomizing idletime
+    public float idleTimer;
+    private List<TwitterFishData> fishDataList = new List<TwitterFishData>();
 
     [Header("Spawn Location (by Matt)")]
     public float distance2Middle = 12;
@@ -25,7 +30,7 @@ public class FishController : MonoBehaviour
 
     IEnumerator Start()
 	{
-		//Time.timeScale = 10;
+		Time.timeScale = 10;
 		fishes = new Dictionary<Fish, long>();
 
 		while (fishes.Count < maxFishOnScreen)
@@ -48,7 +53,11 @@ public class FishController : MonoBehaviour
 	{
 		while (true)
 		{
-			if (count < idleTime)
+            // randoming idletime
+
+
+            
+			if (count < idleTimer)
 				count += Time.deltaTime;
 			else
 			{
@@ -56,7 +65,7 @@ public class FishController : MonoBehaviour
 				{
 					fishKeys = fishes.Keys.ToArray().Where(i => !i.clicked && i.moveState != 3).ToArray();
 
-					int[] indices = RandomIndices(2, fishKeys.Length);
+					int[] indices = RandomIndices(1, fishKeys.Length);
 
 					for (int i = 0; i < indices.Length; i++)
 					{
@@ -64,6 +73,7 @@ public class FishController : MonoBehaviour
 					}
 					
 					count = 0;
+                    idleTimer = Random.Range(idleTime, idleTimeMax);
 				}
 				
 				/* if (fishes.Count > 0)
@@ -256,4 +266,6 @@ public class FishController : MonoBehaviour
 		
 		this.bubble = bubble;
 	}
+
+
 }

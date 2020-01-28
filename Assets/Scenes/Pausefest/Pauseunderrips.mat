@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FedSquareVoronoi
-  m_Shader: {fileID: 4800000, guid: 80e889f4aea8fdb45ab56672d59359f0, type: 3}
+  m_Name: Pauseunderrips
+  m_Shader: {fileID: 4800000, guid: f53592b6fa28cdc43aa6219fd6bf8044, type: 3}
   m_ShaderKeywords: _ALPHABLEND_ON _FADING_ON
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
@@ -73,16 +73,16 @@ Material:
     - _EmissionEnabled: 0
     - _FlipbookMode: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.195
+    - _Glossiness: 0
     - _GlossyReflections: 1
     - _LightingEnabled: 0
     - _Metallic: 0
     - _Mode: 2
-    - _NormalStrength: 0.27
+    - _NormalStrength: 0.56
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _RippleDissolve: 3.34
-    - _RippleScale: 10.2
+    - _RippleScale: 21.4
     - _RippleSpeed: 0.45
     - _SmoothnessTextureChannel: 0
     - _SoftParticlesEnabled: 1
@@ -94,9 +94,9 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
-    - _Color: {r: 0.6597539, g: 0.6597539, b: 0.6597539, a: 0}
+    - _Color: {r: 0.03488786, g: 0.04592612, b: 0.1509434, a: 0}
     - _ColorAddSubDiff: {r: -1, g: 1, b: 0, a: 0}
     - _EmisColor: {r: 0.2, g: 0.2, b: 0.2, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RippleColor: {r: 0.5188679, g: 0.3796088, b: 0.13950694, a: 0.9019608}
+    - _RippleColor: {r: 0.41094545, g: 0.33557516, b: 0.1415048, a: 0.92156863}
     - _SoftParticleFadeParams: {r: 0, g: 1, b: 0, a: 0}
