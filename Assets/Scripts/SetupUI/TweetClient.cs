@@ -160,7 +160,11 @@ public class TweetClient : MonoBehaviour
             }
             else
             {
+                using (StreamWriter sw = new StreamWriter("F:\\hello.txt"))
+                    sw.Write(webRequest.downloadHandler.text);
+                
                 searchTweets = JsonConvert.DeserializeObject<Status>(webRequest.downloadHandler.text).Statuses.ToList();
+
                 searchEvent.Invoke();
             }
         }
@@ -176,11 +180,20 @@ public class Status
 [Serializable]
 public class Tweet
 {
+    public string created_at;
     public long id;
     public string text;
+    public string full_text;
     public Entities entities;
     public Extended_Entities extended_entities;
     public User user;
+    public Retweeted_Status retweeted_status;
+}
+
+[Serializable]
+public class Retweeted_Status
+{
+    public string id_str;
 }
 
 [Serializable]

@@ -82,9 +82,9 @@ public class TwitterSkinsController : MonoBehaviour
 
                 fishData.texture = mentionsTextures[UnityEngine.Random.Range(0, mentionsTextures.Length)];
 
-                string[] tags = tweet.text.Split(' ');
-                fishData.message = tweet.text.Replace(string.Format("{0} ", tags[0]), "");
-                fishData.message = fishData.message.Replace(string.Format("{0} ", tags[1]), "");
+                string[] created_at_separated = tweet.created_at.Split(' ');
+                fishData.message = string.Format("@{0} • {1} {2}\r\n\r\n", tweet.user.screen_name, created_at_separated[1], created_at_separated[2]);
+                fishData.message += tweet.full_text;
                 fishData.message = WebUtility.HtmlDecode(fishData.message);
 
                 if (profanityClass.IsContentProfane(fishData.message))
@@ -92,11 +92,8 @@ public class TwitterSkinsController : MonoBehaviour
                     print("RUDE! This fish wanted to say: " + string.Join(", ", profanityClass.GetProfanity(fishData.message)));
                     print("Original Message: " + fishData.message);
                 }
-                else
+                else if (!blacklist.Contains(tweet.user.screen_name) && tweet.retweeted_status == null)
                 {
-                    if (blacklist.Contains(tweet.user.screen_name))
-                        continue;
-
                     fishDataList.Add(fishData);
                 }
             }
