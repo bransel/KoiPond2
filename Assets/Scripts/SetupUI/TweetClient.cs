@@ -160,11 +160,7 @@ public class TweetClient : MonoBehaviour
             }
             else
             {
-                using (StreamWriter sw = new StreamWriter("F:\\hello.txt"))
-                    sw.Write(webRequest.downloadHandler.text);
-                
                 searchTweets = JsonConvert.DeserializeObject<Status>(webRequest.downloadHandler.text).Statuses.ToList();
-
                 searchEvent.Invoke();
             }
         }
