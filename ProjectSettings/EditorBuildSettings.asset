@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FedSquareSettings/FederationSquare.unity
     guid: d8290163e6c1b0043a32d9e1c62f833e
   - enabled: 0
@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 9cc5466a6d7a07b438c7cc973815d3cb
+  - enabled: 1
+    path: Assets/Scenes/Pausefest/Pausefest.unity
+    guid: 19e0241f63454ba4e83419a2b739214c
   m_configObjects: {}

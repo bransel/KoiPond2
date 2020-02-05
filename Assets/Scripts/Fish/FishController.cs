@@ -30,7 +30,7 @@ public class FishController : MonoBehaviour
 
     IEnumerator Start()
 	{
-		Time.timeScale = 10;
+		//Time.timeScale = 10;
 		fishes = new Dictionary<Fish, long>();
 
 		while (fishes.Count < maxFishOnScreen)

@@ -113,7 +113,7 @@ MonoBehaviour:
   fadeTimeInSeconds: 3.5
   fadeTimeOutSeconds: 3.5
   riseSpeed: 0.09
-  fadeWait: 20
+  fadeWait: 30
 --- !u!114 &2468777335734543604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,7 +276,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 55f6741166a9939409379f5b67d9f7bf, type: 3}
-    m_FontSize: 30
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -304,7 +304,7 @@ MonoBehaviour:
   useThisText: 1
   textToShow: 
   useTextText: 1
-  fadeSpeedMultiplier: 2
+  fadeSpeedMultiplier: 4
   fade: 1
   wordMode: 1
   wordList: []

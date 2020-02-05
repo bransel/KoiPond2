@@ -4746,7 +4746,7 @@ MonoBehaviour:
   interpolation: 1
   maxInt: 1.9
   minInt: 0.38
-  rp: {fileID: 0}
+  rp: {fileID: 1101389509}
 --- !u!4 &171994305 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 77283dc4d03d08b4f9f55f4458885b23,
@@ -7775,6 +7775,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MusicFader
       objectReference: {fileID: 0}
+    - target: {fileID: 3074177346131917645, guid: ce6ed4b37bf07554eb145d6c75036480,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3074177346131917635, guid: ce6ed4b37bf07554eb145d6c75036480,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10342,8 +10347,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13, y: 539}
-  m_SizeDelta: {x: 1315.6, y: 937.1}
+  m_AnchoredPosition: {x: 13, y: 679}
+  m_SizeDelta: {x: 2340.4, y: 937.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &388187214
 MonoBehaviour:
@@ -10367,7 +10372,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 55f6741166a9939409379f5b67d9f7bf, type: 3}
-    m_FontSize: 93
+    m_FontSize: 73
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -18728,9 +18733,9 @@ MonoBehaviour:
   startAndExitBounds: {x: 5, y: 5}
   targets:
   - {fileID: 1296742593}
-  idleTime: 2
-  idleTimeMax: 15
-  idleTimer: 15
+  idleTime: 10
+  idleTimeMax: 20
+  idleTimer: 20
   distance2Middle: 8
   minRandom: -1.2
   maxRandom: 3
@@ -33990,14 +33995,14 @@ RectTransform:
   m_GameObject: {fileID: 1389684790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 17.075842, y: 4.2697377, z: 2.9707623}
+  m_LocalScale: {x: 20.717104, y: 2.7026758, z: 1.880445}
   m_Children: []
   m_Father: {fileID: 121370238}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8, y: 879}
+  m_AnchoredPosition: {x: -7.9999, y: 1104}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1389684792
@@ -34013,7 +34018,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.76862746}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.8117647}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -41295,7 +41300,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 671, y: -73.37999}
+  m_AnchoredPosition: {x: 671, y: -73.37988}
   m_SizeDelta: {x: 1342, y: 146.75998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1617160283
@@ -42773,7 +42778,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 671, y: -45.20667}
+  m_AnchoredPosition: {x: 671, y: -45.206787}
   m_SizeDelta: {x: 1342, y: 90.41334}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1660802113
@@ -54530,7 +54535,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 3.1
+      value: 7.89
       mode: 0
       spread: 0
       speed:
